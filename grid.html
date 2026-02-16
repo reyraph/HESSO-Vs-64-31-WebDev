@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid – Sample Implementations</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ====================================================
+         Page header (reuses .page-header from styles.css)
+    ===================================================== -->
+    <header class="page-header">
+        <h1>CSS Grid</h1>
+        <p>Seven hands-on demos to master the CSS Grid Layout module</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Demo navigation">
+        <span class="grid-nav__logo">⊞ GridCourse</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="#demo-basic">Basic</a></li>
+            <li><a class="grid-nav__link" href="#demo-span">Spanning</a></li>
+            <li><a class="grid-nav__link" href="#demo-areas">Areas</a></li>
+            <li><a class="grid-nav__link" href="#demo-autofit">auto-fit</a></li>
+            <li><a class="grid-nav__link" href="#demo-autofill">fill vs fit</a></li>
+            <li><a class="grid-nav__link" href="#demo-dense">Dense</a></li>
+            <li><a class="grid-nav__link" href="#demo-align">Alignment</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ================================================
+             Demo 1 – Basic columns & rows
+             Key properties: display:grid, grid-template-columns,
+             grid-template-rows, gap, fr unit
+        ================================================= -->
+        <section id="demo-basic" class="demo-section">
+            <div class="demo-label">
+                <h2>Demo 1 — Basic Columns &amp; Rows</h2>
+                <p>
+                    <code>display: grid</code> &nbsp;|&nbsp;
+                    <code>grid-template-columns: repeat(3, 1fr)</code> &nbsp;|&nbsp;
+                    <code>grid-template-rows</code> &nbsp;|&nbsp;
+                    <code>gap</code>
+                </p>
+            </div>
+            <p class="demo-section__note">
+                The <code>fr</code> unit means <em>fraction of available space</em>.
+                <code>repeat(3, 1fr)</code> creates three equal columns that share all remaining width.
+            </p>
+
+            <div class="gd-basic" aria-label="3 × 2 grid example">
+                <div class="gd-basic__cell gd-basic__cell--c1">col 1 / row 1</div>
+                <div class="gd-basic__cell gd-basic__cell--c2">col 2 / row 1</div>
+                <div class="gd-basic__cell gd-basic__cell--c3">col 3 / row 1</div>
+                <div class="gd-basic__cell gd-basic__cell--c4">col 1 / row 2</div>
+                <div class="gd-basic__cell gd-basic__cell--c5">col 2 / row 2</div>
+                <div class="gd-basic__cell gd-basic__cell--c6">col 3 / row 2</div>
+            </div>
+
+            <aside class="demo-why">
+                <strong>Unit cheatsheet:</strong>
+                <code>1fr</code> = proportional share &nbsp;|&nbsp;
+                <code>200px</code> = fixed &nbsp;|&nbsp;
+                <code>auto</code> = shrinks/grows with content &nbsp;|&nbsp;
+                <code>minmax(100px, 1fr)</code> = at least 100 px, then flexible
+            </aside>
+        </section>
+
+        <!-- ================================================
+             Demo 2 – Column & row spanning (magazine mosaic)
+             Key properties: grid-column: span N, grid-row: span N
+        ================================================= -->
+        <section id="demo-span" class="demo-section">
+            <div class="demo-label">
+                <h2>Demo 2 — Column &amp; Row Spanning</h2>
+                <p>
+                    <code>grid-column: span 2</code> &nbsp;|&nbsp;
+                    <code>grid-row: span 2</code> &nbsp;|&nbsp;
+                    <code>grid-column: 1 / 3</code> (line-based)
+                </p>
+            </div>
+            <p class="demo-section__note">
+                Items can span multiple tracks using the <code>span</code> keyword or explicit
+                line numbers (<code>grid-column: 1 / 3</code> = from line 1 to line 3).
+            </p>
+
+            <div class="gd-mosaic" aria-label="Magazine photo mosaic">
+                <!-- Large feature: spans 2 cols × 2 rows -->
+                <div class="gd-mosaic__cell gd-mosaic__cell--span-both">
+                    <img
+                        class="gd-mosaic__img"
+                        src="https://picsum.photos/seed/mosaic1/800/600"
+                        alt="Featured landscape photo"
+                        loading="lazy"
+                    >
+                    <span class="gd-mosaic__label">span 2 cols &amp; 2 rows</span>
+                </div>
+                <!-- Spans 2 columns -->
+                <div class="gd-mosaic__cell gd-mosaic__cell--span-col">
+                    <img
+                        class="gd-mosaic__img"
+                        src="https://picsum.photos/seed/mosaic2/600/300"
+                        alt="Wide photo"
+                        loading="lazy"
+                    >
+                    <span class="gd-mosaic__label">span 2 cols</span>
+                </div>
+                <!-- Normal cell -->
+                <div class="gd-mosaic__cell">
+                    <img
+                        class="gd-mosaic__img"
+                        src="https://picsum.photos/seed/mosaic3/300/300"
+                        alt="Square photo"
+                        loading="lazy"
+                    >
+                    <span class="gd-mosaic__label">1 × 1</span>
+                </div>
+                <!-- Spans 2 rows -->
+                <div class="gd-mosaic__cell gd-mosaic__cell--span-row">
+                    <img
+                        class="gd-mosaic__img"
+                        src="https://picsum.photos/seed/mosaic4/300/600"
+                        alt="Tall photo"
+                        loading="lazy"
+                    >
+                    <span class="gd-mosaic__label">span 2 rows</span>
+                </div>
+                <!-- Normal cells to fill the mosaic -->
+                <div class="gd-mosaic__cell">
+                    <img
+                        class="gd-mosaic__img"
+                        src="https://picsum.photos/seed/mosaic5/300/300"
+                        alt="Photo"
+                        loading="lazy"
+                    >
+                    <span class="gd-mosaic__label">1 × 1</span>
+                </div>
+                <div class="gd-mosaic__cell">
+                    <img
+                        class="gd-mosaic__img"
+                        src="https://picsum.photos/seed/mosaic6/300/300"
+                        alt="Photo"
+                        loading="lazy"
+                    >
+                    <span class="gd-mosaic__label">1 × 1</span>
+                </div>
+                <div class="gd-mosaic__cell">
+                    <img
+                        class="gd-mosaic__img"
+                        src="https://picsum.photos/seed/mosaic7/300/300"
+                        alt="Photo"
+                        loading="lazy"
+                    >
+                    <span class="gd-mosaic__label">1 × 1</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================
+             Demo 3 – Named template areas
+             Key properties: grid-template-areas, grid-area
+        ================================================= -->
+        <section id="demo-areas" class="demo-section">
+            <div class="demo-label">
+                <h2>Demo 3 — Named Template Areas</h2>
+                <p>
+                    <code>grid-template-areas</code> &nbsp;|&nbsp;
+                    <code>grid-area</code> &nbsp;|&nbsp;
+                    <code>.</code> for empty cells
+                </p>
+            </div>
+            <p class="demo-section__note">
+                Name each region in the CSS template string — the browser places items
+                automatically. The visual map in the CSS is an exact picture of the layout.
+            </p>
+
+            <!-- Template diagram shown to students -->
+            <pre class="gd-areas-diagram" aria-label="Grid template areas diagram">
+grid-template-areas:
+  "header  header  header"
+  "sidebar main    main  "
+  "footer  footer  footer";</pre>
+
+            <div class="gd-page" aria-label="Named areas layout demo">
+                <header class="gd-page__header">
+                    <span class="gd-area-badge">grid-area: header</span>
+                    <p>Header — spans all 3 columns</p>
+                </header>
+                <aside class="gd-page__sidebar">
+                    <span class="gd-area-badge">grid-area: sidebar</span>
+                    <p>Sidebar — 1 column wide</p>
+                    <nav aria-label="Sidebar links">
+                        <ul class="gd-page__nav" role="list">
+                            <li><a href="#demo-basic">Basic grid</a></li>
+                            <li><a href="#demo-span">Spanning</a></li>
+                            <li><a href="#demo-autofit">auto-fit</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+                <article class="gd-page__main">
+                    <span class="gd-area-badge">grid-area: main</span>
+                    <h3>Main content</h3>
+                    <p>This area spans 2 columns. Tip: use <code>.</code> in the template string to leave a cell empty.</p>
+                    <img
+                        class="gd-page__img"
+                        src="https://picsum.photos/seed/areas/900/300"
+                        alt="A wide landscape"
+                        loading="lazy"
+                    >
+                </article>
+                <footer class="gd-page__footer">
+                    <span class="gd-area-badge">grid-area: footer</span>
+                    <p>Footer — spans all 3 columns</p>
+                </footer>
+            </div>
+
+            <aside class="demo-why">
+                <strong>Empty cell tip:</strong> replace an area name with <code>.</code> in the
+                template string to leave that cell completely empty — e.g.
+                <code>"sidebar . main"</code> inserts a gap between the sidebar and content.
+            </aside>
+        </section>
+
+        <!-- ================================================
+             Demo 4 – auto-fit + minmax() responsive grid
+             Key properties: repeat(auto-fit, minmax(200px, 1fr))
+        ================================================= -->
+        <section id="demo-autofit" class="demo-section">
+            <div class="demo-label">
+                <h2>Demo 4 — auto-fit + minmax() Responsive Grid</h2>
+                <p>
+                    <code>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))</code>
+                    &nbsp;|&nbsp; no <code>@media</code> query needed
+                </p>
+            </div>
+            <p class="demo-section__note">
+                <code>auto-fit</code> creates as many columns as fit. <code>minmax(200px, 1fr)</code>
+                means each column is <em>at least</em> 200 px wide and can grow to fill leftover space.
+                Resize the window — the grid reflows automatically.
+            </p>
+
+            <ul class="gd-autofit" role="list">
+                <li class="gd-autofit__card">
+                    <img
+                        class="gd-autofit__img"
+                        src="https://picsum.photos/seed/grid1/600/400"
+                        alt="Nature photo 1"
+                        loading="lazy"
+                    >
+                    <div class="gd-autofit__body">
+                        <h3 class="gd-autofit__title">Sunrise</h3>
+                        <p class="gd-autofit__text">Each card is a grid item. The container dictates columns — cards never need to know how many siblings they have.</p>
+                    </div>
+                </li>
+                <li class="gd-autofit__card">
+                    <img
+                        class="gd-autofit__img"
+                        src="https://picsum.photos/seed/grid2/600/400"
+                        alt="Nature photo 2"
+                        loading="lazy"
+                    >
+                    <div class="gd-autofit__body">
+                        <h3 class="gd-autofit__title">Waterfall</h3>
+                        <p class="gd-autofit__text">Add or remove cards from the HTML — the layout adapts without touching a line of CSS.</p>
+                    </div>
+                </li>
+                <li class="gd-autofit__card">
+                    <img
+                        class="gd-autofit__img"
+                        src="https://picsum.photos/seed/grid3/600/400"
+                        alt="Nature photo 3"
+                        loading="lazy"
+                    >
+                    <div class="gd-autofit__body">
+                        <h3 class="gd-autofit__title">Valley</h3>
+                        <p class="gd-autofit__text">Compare with Flexbox Demo 3: Grid gives <strong>equal column widths</strong>; flex columns follow content width.</p>
+                    </div>
+                </li>
+                <li class="gd-autofit__card">
+                    <img
+                        class="gd-autofit__img"
+                        src="https://picsum.photos/seed/grid4/600/400"
+                        alt="Nature photo 4"
+                        loading="lazy"
+                    >
+                    <div class="gd-autofit__body">
+                        <h3 class="gd-autofit__title">Glacier</h3>
+                        <p class="gd-autofit__text">The minimum (200 px) prevents columns from becoming too narrow to read comfortably on small screens.</p>
+                    </div>
+                </li>
+                <li class="gd-autofit__card">
+                    <img
+                        class="gd-autofit__img"
+                        src="https://picsum.photos/seed/grid5/600/400"
+                        alt="Nature photo 5"
+                        loading="lazy"
+                    >
+                    <div class="gd-autofit__body">
+                        <h3 class="gd-autofit__title">Meadow</h3>
+                        <p class="gd-autofit__text">The maximum (<code>1fr</code>) ensures all columns are the same width, even if there are fewer items than columns.</p>
+                    </div>
+                </li>
+                <li class="gd-autofit__card">
+                    <img
+                        class="gd-autofit__img"
+                        src="https://picsum.photos/seed/grid6/600/400"
+                        alt="Nature photo 6"
+                        loading="lazy"
+                    >
+                    <div class="gd-autofit__body">
+                        <h3 class="gd-autofit__title">Canyon</h3>
+                        <p class="gd-autofit__text">This technique is widely used in production — it is sometimes called the "RAM" pattern (Repeat, Auto, Minmax).</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ================================================
+             Demo 5 – auto-fill vs auto-fit comparison
+             Key properties: repeat(auto-fill,…) vs repeat(auto-fit,…)
+        ================================================= -->
+        <section id="demo-autofill" class="demo-section">
+            <div class="demo-label">
+                <h2>Demo 5 — auto-fill vs auto-fit</h2>
+                <p>
+                    <code>repeat(auto-fill, minmax(120px, 1fr))</code>
+                    &nbsp; vs &nbsp;
+                    <code>repeat(auto-fit, minmax(120px, 1fr))</code>
+                </p>
+            </div>
+            <p class="demo-section__note">
+                Both keywords fill the row with as many columns as fit, but they differ when
+                there are <strong>fewer items than possible columns</strong>.
+                Resize this window wide to see the difference clearly.
+            </p>
+
+            <div class="gd-compare">
+
+                <div class="gd-compare__panel">
+                    <h3 class="gd-compare__title"><code>auto-fill</code></h3>
+                    <p class="gd-compare__desc">Creates all possible column tracks, even if empty. Ghost columns exist — items do <strong>not</strong> stretch.</p>
+                    <div class="gd-fill-grid" aria-label="auto-fill grid">
+                        <div class="gd-fill-cell">Item 1</div>
+                        <div class="gd-fill-cell">Item 2</div>
+                        <div class="gd-fill-cell">Item 3</div>
+                    </div>
+                </div>
+
+                <div class="gd-compare__panel">
+                    <h3 class="gd-compare__title"><code>auto-fit</code></h3>
+                    <p class="gd-compare__desc">Collapses empty tracks to zero. Items <strong>stretch</strong> to fill the full row width.</p>
+                    <div class="gd-fit-grid" aria-label="auto-fit grid">
+                        <div class="gd-fit-cell">Item 1</div>
+                        <div class="gd-fit-cell">Item 2</div>
+                        <div class="gd-fit-cell">Item 3</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Rule of thumb:</strong>
+                use <code>auto-fill</code> when you want columns reserved for future items (e.g. a kanban board).
+                Use <code>auto-fit</code> when items should always fill available space (e.g. a card grid).
+            </aside>
+        </section>
+
+        <!-- ================================================
+             Demo 6 – Dense auto-flow
+             Key properties: grid-auto-flow: dense
+        ================================================= -->
+        <section id="demo-dense" class="demo-section">
+            <div class="demo-label">
+                <h2>Demo 6 — Dense Auto-flow</h2>
+                <p>
+                    <code>grid-auto-flow: dense</code> &nbsp;|&nbsp;
+                    <code>grid-column: span 2</code> &nbsp;|&nbsp;
+                    <code>grid-row: span 2</code>
+                </p>
+            </div>
+            <p class="demo-section__note">
+                By default, items flow in order and leave <strong>holes</strong> when a wide item
+                cannot fit. <code>dense</code> back-fills those holes with later (smaller) items.
+            </p>
+
+            <div class="gd-dense-compare">
+
+                <div class="gd-compare__panel">
+                    <h3 class="gd-compare__title">Default flow</h3>
+                    <p class="gd-compare__desc">Holes appear after wide items — DOM order is preserved.</p>
+                    <div class="gd-flow-grid" aria-label="Default grid flow">
+                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                    </div>
+                </div>
+
+                <div class="gd-compare__panel">
+                    <h3 class="gd-compare__title"><code>grid-auto-flow: dense</code></h3>
+                    <p class="gd-compare__desc">Small items back-fill holes — visual order may differ from DOM order.</p>
+                    <div class="gd-flow-grid gd-flow-grid--dense" aria-label="Dense grid flow">
+                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Accessibility warning:</strong> <code>dense</code> changes the
+                <em>visual</em> order without changing the <em>DOM</em> order.
+                Screen readers and keyboard navigation follow the DOM — use dense only when
+                visual order does not matter for understanding the content.
+            </aside>
+        </section>
+
+        <!-- ================================================
+             Demo 7 – Alignment axes
+             Key properties: justify-items, align-items,
+             justify-content, align-content, place-items
+        ================================================= -->
+        <section id="demo-align" class="demo-section">
+            <div class="demo-label">
+                <h2>Demo 7 — Alignment Axes</h2>
+                <p>
+                    <code>justify-items</code> &nbsp;|&nbsp;
+                    <code>align-items</code> &nbsp;|&nbsp;
+                    <code>place-items</code> (shorthand) &nbsp;|&nbsp;
+                    <code>justify-content</code> &nbsp;|&nbsp;
+                    <code>align-content</code>
+                </p>
+            </div>
+            <p class="demo-section__note">
+                <code>justify-items</code> aligns cell <em>content</em> on the <strong>inline (horizontal)</strong> axis.
+                <code>align-items</code> aligns on the <strong>block (vertical)</strong> axis.
+                <code>place-items: center center</code> is the shorthand for both at once.
+            </p>
+
+            <div class="gd-align-showcase">
+
+                <div class="gd-align-box">
+                    <p class="gd-align-box__label">
+                        <code>justify-items: start</code><br>
+                        <code>align-items: start</code>
+                    </p>
+                    <div class="gd-align-grid gd-align-grid--start">
+                        <div class="gd-align-cell gd-align-cell--a">A</div>
+                        <div class="gd-align-cell gd-align-cell--b">B</div>
+                        <div class="gd-align-cell gd-align-cell--c">C</div>
+                        <div class="gd-align-cell gd-align-cell--a">D</div>
+                        <div class="gd-align-cell gd-align-cell--b">E</div>
+                        <div class="gd-align-cell gd-align-cell--c">F</div>
+                    </div>
+                </div>
+
+                <div class="gd-align-box">
+                    <p class="gd-align-box__label">
+                        <code>justify-items: center</code><br>
+                        <code>align-items: center</code>
+                    </p>
+                    <div class="gd-align-grid gd-align-grid--center">
+                        <div class="gd-align-cell gd-align-cell--a">A</div>
+                        <div class="gd-align-cell gd-align-cell--b">B</div>
+                        <div class="gd-align-cell gd-align-cell--c">C</div>
+                        <div class="gd-align-cell gd-align-cell--a">D</div>
+                        <div class="gd-align-cell gd-align-cell--b">E</div>
+                        <div class="gd-align-cell gd-align-cell--c">F</div>
+                    </div>
+                </div>
+
+                <div class="gd-align-box">
+                    <p class="gd-align-box__label">
+                        <code>justify-items: end</code><br>
+                        <code>align-items: end</code>
+                    </p>
+                    <div class="gd-align-grid gd-align-grid--end">
+                        <div class="gd-align-cell gd-align-cell--a">A</div>
+                        <div class="gd-align-cell gd-align-cell--b">B</div>
+                        <div class="gd-align-cell gd-align-cell--c">C</div>
+                        <div class="gd-align-cell gd-align-cell--a">D</div>
+                        <div class="gd-align-cell gd-align-cell--b">E</div>
+                        <div class="gd-align-cell gd-align-cell--c">F</div>
+                    </div>
+                </div>
+
+                <div class="gd-align-box">
+                    <p class="gd-align-box__label">
+                        <code>justify-items: stretch</code><br>
+                        <code>align-items: stretch</code>
+                        <em>(browser default)</em>
+                    </p>
+                    <div class="gd-align-grid gd-align-grid--stretch">
+                        <div class="gd-align-cell gd-align-cell--a">A</div>
+                        <div class="gd-align-cell gd-align-cell--b">B</div>
+                        <div class="gd-align-cell gd-align-cell--c">C</div>
+                        <div class="gd-align-cell gd-align-cell--a">D</div>
+                        <div class="gd-align-cell gd-align-cell--b">E</div>
+                        <div class="gd-align-cell gd-align-cell--c">F</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Items vs Content:</strong>
+                <code>justify-items</code> / <code>align-items</code> control where each cell's
+                <em>content</em> sits inside its track.
+                <code>justify-content</code> / <code>align-content</code> control how the entire
+                <em>grid</em> is positioned inside its container — only visible when the grid is
+                smaller than its container.
+            </aside>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer (reuses .page-footer from styles.css)
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            CSS Grid Demo &mdash; HES-SO Valais Web Development Course &mdash; Images via
+            <a href="https://picsum.photos" target="_blank" rel="noopener">picsum.photos</a>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -698,3 +698,475 @@ form input.error {
     font-size: 0.82rem;
     color: #666;
 }
+
+/* ============================================================
+   GRID DEMO STYLES
+   Used by: grid.html
+   ============================================================ */
+
+/* ── Page navigation (grid.html) ──────────────────────────── */
+.grid-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #263238;
+    padding: 0.8rem 1.5rem;
+}
+
+.grid-nav__logo {
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-family: Arial, sans-serif;
+}
+
+.grid-nav__links {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-nav__link {
+    color: #eceff1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: Arial, sans-serif;
+    transition: color 0.2s;
+}
+
+.grid-nav__link:hover {
+    color: #4caf50;
+}
+
+/* ── Shared "Why" annotation box ──────────────────────────── */
+.demo-why {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    margin: 0 1.5rem 1.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: #333;
+    line-height: 1.6;
+    border-radius: 0 4px 4px 0;
+}
+
+.demo-why code {
+    background-color: #c8e6c9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.82rem;
+    color: #1b5e20;
+}
+
+/* ── Demo 1 – Basic columns & rows ────────────────────────── */
+/* Demonstrates: display:grid, grid-template-columns, grid-template-rows, gap */
+.gd-basic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* three equal columns */
+    grid-template-rows: repeat(2, 80px);    /* two fixed-height rows */
+    gap: 0.75rem;
+    padding: 1.5rem;
+}
+
+.gd-basic__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+/* Six distinct cell colors */
+.gd-basic__cell--c1 { background-color: #43a047; }
+.gd-basic__cell--c2 { background-color: #00838f; }
+.gd-basic__cell--c3 { background-color: #1565c0; }
+.gd-basic__cell--c4 { background-color: #6a1b9a; }
+.gd-basic__cell--c5 { background-color: #e65100; }
+.gd-basic__cell--c6 { background-color: #c62828; }
+
+/* ── Demo 2 – Spanning (magazine mosaic) ──────────────────── */
+/* Demonstrates: grid-column: span N, grid-row: span N */
+.gd-mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 160px;              /* each row is 160px tall */
+    gap: 0.5rem;
+    padding: 1.5rem;
+}
+
+.gd-mosaic__cell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    background-color: #e0e0e0;
+}
+
+.gd-mosaic__cell--span-col  { grid-column: span 2; }
+.gd-mosaic__cell--span-row  { grid-row: span 2; }
+.gd-mosaic__cell--span-both { grid-column: span 2; grid-row: span 2; }
+
+.gd-mosaic__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gd-mosaic__label {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 0.72rem;
+    font-family: monospace;
+    padding: 3px 7px;
+    border-radius: 4px;
+}
+
+/* ── Demo 3 – Named template areas ────────────────────────── */
+/* Demonstrates: grid-template-areas, grid-area */
+.gd-areas-diagram {
+    background-color: #263238;
+    color: #a5d6a7;
+    font-family: monospace;
+    font-size: 0.85rem;
+    padding: 1rem 1.5rem;
+    margin: 0 1.5rem 0;
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.7;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.gd-page {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header  header  header"
+        "sidebar main    main  "
+        "footer  footer  footer";
+    gap: 0.5rem;
+    padding: 1rem 1.5rem 1.5rem;
+    min-height: 320px;
+}
+
+.gd-page__header  { grid-area: header;  background-color: #1565c0; color: #fff; }
+.gd-page__sidebar { grid-area: sidebar; background-color: #e8f5e9; }
+.gd-page__main    { grid-area: main;    background-color: #fff; border: 1px solid #e0e0e0; }
+.gd-page__footer  { grid-area: footer;  background-color: #263238; color: #eceff1; }
+
+/* Shared region padding */
+.gd-page__header,
+.gd-page__sidebar,
+.gd-page__main,
+.gd-page__footer {
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+.gd-page__header h3,
+.gd-page__main h3 {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.gd-area-badge {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+}
+
+.gd-page__sidebar .gd-area-badge { background-color: #4caf50; }
+.gd-page__main    .gd-area-badge { background-color: #1565c0; }
+
+.gd-page__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+}
+
+.gd-page__nav li { margin-bottom: 0.4rem; }
+
+.gd-page__nav a {
+    color: #388e3c;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.gd-page__nav a:hover { text-decoration: underline; }
+
+.gd-page__img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 0.75rem;
+    display: block;
+}
+
+/* ── Demo 4 – auto-fit + minmax() ─────────────────────────── */
+/* Demonstrates: repeat(auto-fit, minmax(200px, 1fr)) */
+.gd-autofit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    padding: 1.5rem;
+    list-style: none;
+    margin: 0;
+}
+
+.gd-autofit__card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+    background-color: #fff;
+}
+
+.gd-autofit__img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+
+.gd-autofit__body { padding: 0.9rem; }
+
+.gd-autofit__title {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+    color: #2e7d32;
+}
+
+.gd-autofit__text {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* ── Demo 5 – auto-fill vs auto-fit comparison ────────────── */
+/* Demonstrates the difference between the two keywords */
+.gd-compare {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.gd-compare__panel {
+    flex: 1;
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.gd-compare__title {
+    margin: 0 0 0.3rem;
+    font-size: 0.95rem;
+    color: #2e7d32;
+}
+
+.gd-compare__title code {
+    background-color: #e8f5e9;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    color: #1b5e20;
+}
+
+.gd-compare__desc {
+    font-size: 0.83rem;
+    color: #666;
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+}
+
+/* auto-fill grid: keeps ghost columns */
+.gd-fill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.5rem;
+}
+
+/* auto-fit grid: collapses empty tracks */
+.gd-fit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.5rem;
+}
+
+.gd-fill-cell,
+.gd-fit-cell {
+    height: 60px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.gd-fill-cell { background-color: #1565c0; }
+.gd-fit-cell  { background-color: #6a1b9a; }
+
+/* ── Demo 6 – Dense auto-flow ─────────────────────────────── */
+/* Demonstrates: grid-auto-flow: dense */
+.gd-dense-compare {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+/* Base grid used in both panels */
+.gd-flow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 60px;
+    gap: 0.4rem;
+}
+
+.gd-flow-grid--dense {
+    grid-auto-flow: dense;  /* back-fills holes with later small items */
+}
+
+.gd-flow-cell {
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.gd-flow-cell--wide { grid-column: span 2; background-color: #e65100; }
+.gd-flow-cell--a    { background-color: #00838f; }
+.gd-flow-cell--b    { background-color: #43a047; }
+
+/* ── Demo 7 – Alignment axes ──────────────────────────────── */
+/* Demonstrates: justify-items, align-items, place-items */
+.gd-align-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.gd-align-box {
+    flex: 1 1 220px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1rem;
+    background-color: #fafafa;
+}
+
+.gd-align-box__label {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0 0 0.75rem;
+    line-height: 1.6;
+}
+
+.gd-align-box__label code {
+    background-color: #e8f5e9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.78rem;
+    color: #1b5e20;
+}
+
+.gd-align-box__label em {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+    font-style: normal;
+}
+
+/* Grid inside each alignment box – tall rows make alignment visible */
+.gd-align-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 60px;
+    gap: 0.4rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding: 0.4rem;
+}
+
+.gd-align-grid--start   { justify-items: start;   align-items: start; }
+.gd-align-grid--center  { justify-items: center;  align-items: center; }
+.gd-align-grid--end     { justify-items: end;     align-items: end; }
+.gd-align-grid--stretch { justify-items: stretch; align-items: stretch; }
+
+/* Each grid cell is a small colored box */
+.gd-align-cell {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+/* stretch overrides the fixed size so cells fill their track */
+.gd-align-grid--stretch .gd-align-cell {
+    width: auto;
+    height: auto;
+}
+
+.gd-align-cell--a { background-color: #43a047; }
+.gd-align-cell--b { background-color: #1565c0; }
+.gd-align-cell--c { background-color: #6a1b9a; }
+
+/* ── Responsive overrides for grid.html ───────────────────── */
+
+/* Demo 3 – areas: collapse to single column on mobile */
+@media (max-width: 640px) {
+    .gd-page {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+    }
+}
+
+/* Demo 5 & 6 – side-by-side panels stack on mobile */
+@media (max-width: 600px) {
+    .gd-compare,
+    .gd-dense-compare {
+        flex-direction: column;
+    }
+}
+
+/* Nav bar stacks on very small screens */
+@media (max-width: 580px) {
+    .grid-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
