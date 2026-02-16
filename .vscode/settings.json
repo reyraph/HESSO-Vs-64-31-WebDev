@@ -1,0 +1,11 @@
+{
+  "claude.promptFiles": [
+    ".github/prompts/webdev.prompt.md"
+  ],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "html.format.indentInnerHtml": true,
+  "css.lint.important": "warning",
+  "javascript.preferences.quoteStyle": "single"
+}

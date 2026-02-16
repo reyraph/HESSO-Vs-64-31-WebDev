@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodierungsstandards - Web Development</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      background: linear-gradient(135deg, #bbb 0%, #929292 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .principles {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .principles h2 {
+      color: #667eea;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .card h3 {
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card li {
+      padding: 0.3rem 0;
+      font-size: 0.95rem;
+    }
+
+    .section {
+      background: white;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .section-header {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #667eea;
+      transition: background 0.3s;
+    }
+
+    .section-header:hover {
+      background: linear-gradient(to right, #e9ecef, #dee2e6);
+    }
+
+    .section-header h2 {
+      color: #667eea;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-content {
+      padding: 2rem;
+      display: none;
+    }
+
+    .section-content.active {
+      display: block;
+    }
+
+    .toggle {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s;
+    }
+
+    .section.open .toggle {
+      transform: rotate(180deg);
+    }
+
+    .example {
+      margin: 1.5rem 0;
+    }
+
+    .example-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .example-title.good {
+      color: #28a745;
+    }
+
+    .example-title.bad {
+      color: #dc3545;
+    }
+
+    pre {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 1rem;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .example.good pre {
+      background: #d4edda;
+      border-color: #c3e6cb;
+    }
+
+    .example.bad pre {
+      background: #f8d7da;
+      border-color: #f5c6cb;
+    }
+
+    .rule {
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid #667eea;
+    }
+
+    .rule h4 {
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .rule p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .checklist-card {
+      background: white;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .checklist-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid;
+    }
+
+    .checklist-card.html h3 {
+      color: #e34c26;
+      border-color: #e34c26;
+    }
+
+    .checklist-card.css h3 {
+      color: #264de4;
+      border-color: #264de4;
+    }
+
+    .checklist-card.js h3 {
+      color: #f0db4f;
+      border-color: #f0db4f;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    }
+
+    .checklist-card.general h3 {
+      color: #28a745;
+      border-color: #28a745;
+    }
+
+    .checklist-card.security h3 {
+      color: #667eea;
+      border-color: #667eea;
+    }
+
+    .checklist-card ul {
+      list-style: none;
+    }
+
+    .checklist-card li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: start;
+      gap: 0.5rem;
+    }
+
+    .checkbox {
+      min-width: 18px;
+      height: 18px;
+      border: 2px solid #6c757d;
+      border-radius: 3px;
+      margin-top: 2px;
+    }
+
+    .resources {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      border: 2px solid #667eea;
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .resources h2 {
+      color: #667eea;
+      margin-bottom: 1.5rem;
+    }
+
+    .resources a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .resources a:hover {
+      text-decoration: underline;
+    }
+
+    .resources ul {
+      list-style: none;
+    }
+
+    .resources li {
+      padding: 0.3rem 0;
+    }
+
+    .note-finale {
+      background: white;
+      border-left: 4px solid #28a745;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .note-finale h2 {
+      color: #28a745;
+      margin-bottom: 1rem;
+    }
+
+    .conseil {
+      background: #e3f2fd;
+      border: 1px solid #667eea;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      color: #6c757d;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 1px solid #dee2e6;
+    }
+
+    code {
+      background: #f8f9fa;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+
+    strong {
+      color: #667eea;
+    }
+
+    .motto {
+      font-size: 1.5em;
+      color: red
+    }
+
+    @media print {
+      .section-header {
+        cursor: default;
+      }
+      .section-content {
+        display: block !important;
+      }
+      .toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📚 Kodierungsstandards</h1>
+      <p>HTML · CSS · JavaScript · React</p>
+      <p style="font-size: 1rem; margin-top: 0.5rem;">Kurs Web Development - HES-SO Wallis</p>
+      <p style="font-size: 0.9rem; margin-top: 0.75rem; font-style: italic; opacity: 0.85;">🔒 <strong class="motto">Secure by design, private by default, educational by nature.</strong></p>
+    </header>
+
+    <div class="principles">
+      <h2>🎯 Allgemeine Grundsätze</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Ziele</h3>
+          <ul>
+            <li>• <strong>Lesbarkeit</strong> : Leicht lesbarer und verständlicher Code</li>
+            <li>• <strong>Wartbarkeit</strong> : Leicht modifizierbarer Code</li>
+            <li>• <strong>Konsistenz</strong> : Einheitlicher Code im gesamten Projekt</li>
+            <li>• <strong>Zusammenarbeit</strong> : Für alle verständlicher Code</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Gemeinsame Regeln</h3>
+          <ul>
+            <li>• Einrückung : <strong>2 Leerzeichen</strong></li>
+            <li>• Zeichenkodierung : <strong>UTF-8</strong></li>
+            <li>• Sprache : DE oder EN (einheitlich)</li>
+            <li>• Max. Zeilenlänge : <strong>100 Zeichen</strong></li>
+            <li>• Dateiende : Leerzeile</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Best Practices</h3>
+          <ul>
+            <li>• Vermeiden Sie globale Variablen</li>
+            <li>• Verwenden Sie aussagekräftige Namen</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Directive .md file</h3>
+          <ul>
+            <li>• Verwenden Sie eine <a href="https://gitlab.com/hesso-vs/business-information-technology/64-31-web-development/64-31-prompt" target="_blank">Direktiven-Datei</a> für Ihr Projekt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- HTML-Abschnitt -->
+    <div class="section open">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>📄 HTML-Standards</h2>
+        <svg class="toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+      <div class="section-content active">
+        <h3>Grundstruktur</h3>
+        <div class="rule">
+          <h4>Mozilla-Richtlinien (offizielle Referenz)</h4>
+          <ul style="list-style: none;">
+            <li>• HTML5-Doctype obligatorisch : <code>&lt;!DOCTYPE html&gt;</code></li>
+            <li>• Dokumentsprache über <code>lang</code> am <code>&lt;html&gt;</code>-Element</li>
+            <li>• Zeichensatz : <code>&lt;meta charset="utf-8" /&gt;</code> (Kleinbuchstaben, selbstschließend)</li>
+            <li>• Viewport : <code>&lt;meta name="viewport" content="width=device-width" /&gt;</code></li>
+          </ul>
+        </div>
+        <div class="example good">
+          <div class="example-title good">✅ Vollständige HTML5-Struktur</div>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width" /&gt;
+  &lt;meta name="description" content="Relevante Beschreibung" /&gt;
+  &lt;title&gt;Beschreibender Titel - Websitename&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Seiteninhalt --&gt;
+
+  &lt;script src="js/script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Semantische Tags</h3>
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Semantische Tags verwenden</div>
+          <pre><code>&lt;header&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#startseite"&gt;Startseite&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#dienste"&gt;Dienste&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h1&gt;Haupttitel des Artikels&lt;/h1&gt;
+    &lt;p&gt;Artikelinhalt...&lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;aside&gt;
+    &lt;h2&gt;Verwandte Artikel&lt;/h2&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;© 2024 Meine Website&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+        </div>
+
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Nur divs verwenden</div>
+          <pre><code>&lt;div class="header"&gt;
+  &lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="content"&gt;
+  &lt;div class="article"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;...&lt;/div&gt;</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Attribute und Benennung</h3>
+        <div class="rule">
+          <h4>Regeln</h4>
+          <ul style="list-style: none;">
+            <li>• Attribute in Kleinbuchstaben</li>
+            <li>• Klassen und IDs in kebab-case (woerter-durch-bindestriche-getrennt)</li>
+            <li>• Doppelte Anführungszeichen für HTML-Attributwerte</li>
+            <li>• Alt-Attribut für Bilder obligatorisch</li>
+            <li>• <strong>Boolesche Attribute</strong> : ohne Wert schreiben (<code>required</code>, <code>disabled</code>, <code>checked</code>)</li>
+            <li>• <strong>Aufzählungsattribute</strong> : immer den Wert angeben (<code>type="submit"</code>)</li>
+            <li>• Literale Zeichen statt HTML-Referenzen verwenden (<code>©</code> statt <code>&amp;copy;</code>)</li>
+          </ul>
+        </div>
+
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Korrekte Attribute</div>
+          <pre><code>&lt;img src="images/logo.png" alt="Firmenlogo" class="haupt-logo"&gt;
+&lt;button type="submit" class="btn-primär"&gt;Absenden&lt;/button&gt;
+&lt;input type="text" id="benutzer-name" name="userName" required /&gt;
+&lt;input type="checkbox" checked /&gt;</code></pre>
+        </div>
+
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Falsche Attribute</div>
+          <pre><code>&lt;!-- Keine Anführungszeichen, camelCase, boolesches Attribut mit Wert --&gt;
+&lt;img src=images/logo.png class=HauptLogo&gt;
+&lt;button type=submit class="BtnPrimary"&gt;Absenden&lt;/button&gt;
+&lt;input type='text' id=BenutzerName required="required"&gt;</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Kommentare</h3>
+        <div class="rule">
+          <h4>Regeln</h4>
+          <ul style="list-style: none;">
+            <li>• Komplexe oder wichtige Code-Abschnitte kommentieren</li>
+            <li>• Triviale Kommentare vermeiden, die keinen Mehrwert bieten</li>
+          </ul>
+        </div>
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Nützlicher Kommentar</div>
+          <pre><code>&lt;!-- Hauptnavigation: Reihenfolge durch das Design-System vorgegeben --&gt;
+&lt;nav class="haupt-nav"&gt;
+  &lt;ul&gt;...&lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Trivialer Kommentar</div>
+          <pre><code>&lt;!-- Absatz --&gt;
+&lt;p&gt;Willkommen auf unserer Website.&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- CSS-Abschnitt -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>🎨 CSS-Standards</h2>
+        <svg class="toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+      <div class="section-content">
+        <h3>CSS-Dateiorganisation</h3>
+        <div class="example good">
+          <div class="example-title good">✅ Empfohlene CSS-Struktur</div>
+          <pre><code>/* ===================================
+   HAUPTDATEI : style.css
+   =================================== */
+
+/* ===== 1. RESET & BASIS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== 2. CSS-VARIABLEN ===== */
+:root {
+  --primärfarbe: #3498db;
+  --sekundärfarbe: #2ecc71;
+  --abstand-sm: 1rem;
+  --abstand-md: 2rem;
+}
+
+/* ===== 3. TYPOGRAFIE ===== */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* ===== 4. LAYOUT ===== */
+/* ===== 5. KOMPONENTEN ===== */
+/* ===== 6. MEDIA QUERIES ===== */</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Google CSS-Regeln (offizielle Referenz)</h3>
+        <div class="rule">
+          <h4>Selektoren</h4>
+          <ul style="list-style: none;">
+            <li>• <strong>ID-Selektoren vermeiden</strong> — Klassen bevorzugen (IDs sind schwer wiederzuverwenden)</li>
+            <li>• <strong>Qualifizierte Typ-Selektoren vermeiden</strong> (<code>div.karte</code> → einfach <code>.karte</code>)</li>
+            <li>• Klassen in kebab-case, bedeutungsvolle und kurze Namen</li>
+          </ul>
+        </div>
+
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Selektoren</div>
+          <pre><code>.btn-primär {
+  background: #36c;
+}
+
+.produkt-karte {
+  border: 1px solid #ddd;
+}</code></pre>
+        </div>
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Selektoren</div>
+          <pre><code>#haupt-button {
+  background: #36c;
+}
+
+div.produkt-karte {
+  border: 1px solid #ddd;
+}</code></pre>
+        </div>
+
+        <div class="rule" style="margin-top: 1.5rem;">
+          <h4>Deklarationsformatierung</h4>
+          <ul style="list-style: none;">
+            <li>• Leerzeichen nach dem Doppelpunkt : <code>color: red</code> (nicht <code>color:red</code>)</li>
+            <li>• Öffnende geschweifte Klammer in derselben Zeile wie der Selektor</li>
+            <li>• <strong>Jede Deklaration immer</strong> mit <code>;</code> abschließen</li>
+            <li>• Leerzeile zwischen jeder CSS-Regel</li>
+            <li>• Alphabetische Reihenfolge der Deklarationen (empfohlen)</li>
+          </ul>
+        </div>
+
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Formatierung</div>
+          <pre><code>.kopfzeile {
+  background: #fff;
+  color: #333;
+  padding: 1rem;
+}
+
+.haupt-nav {
+  display: flex;
+  gap: 1rem;
+}</code></pre>
+        </div>
+
+        <div class="rule" style="margin-top: 1.5rem;">
+          <h4>Werte</h4>
+          <ul style="list-style: none;">
+            <li>• <strong>Einheit nach <code>0</code> weglassen</strong> : <code>margin: 0</code> (nicht <code>margin: 0px</code>)</li>
+            <li>• <strong>Führende Null einschließen</strong> : <code>0.5rem</code> (nicht <code>.5rem</code>)</li>
+            <li>• <strong>3-Zeichen-Hexadezimalnotation</strong> wenn möglich : <code>#fff</code> (nicht <code>#ffffff</code>), <code>#36c</code> (nicht <code>#3366cc</code>)</li>
+            <li>• <strong>Einfache Anführungszeichen</strong> für CSS-Werte : <code>font-family: 'Arial'</code></li>
+            <li>• Kurzschreibweisen verwenden : <code>margin: 1rem 2rem</code> statt vier separater Deklarationen</li>
+          </ul>
+        </div>
+
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Werte</div>
+          <pre><code>.karte {
+  border-radius: 0.5rem;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 1rem 2rem;
+}</code></pre>
+        </div>
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Werte</div>
+          <pre><code>.karte {
+  border-radius: .5rem;
+  color: #333333;
+  font-family: "Arial", sans-serif;
+  margin: 0px;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+}</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">BEM-Konvention</h3>
+        <div class="rule">
+          <h4>BEM = Block Element Modifier</h4>
+          <ul style="list-style: none;">
+            <li>• <code>.block</code> - Hauptkomponente</li>
+            <li>• <code>.block__element</code> - Komponententeil</li>
+            <li>• <code>.block--modifier</code> - Komponentenvariante</li>
+          </ul>
+        </div>
+
+        <div class="example good">
+          <div class="example-title good">✅ GUT - BEM-Benennung</div>
+          <pre><code>.produkt-karte {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.produkt-karte__titel {
+  color: var(--primärfarbe);
+  font-size: 1.5rem;
+}
+
+.produkt-karte__preis {
+  font-weight: bold;
+}
+
+.produkt-karte--aktion {
+  background: #ffe5e5;
+}</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Responsive Design (Mobile First)</h3>
+        <div class="example good">
+          <div class="example-title good">✅ Mobile-First-Ansatz</div>
+          <pre><code>/* Basisstile (Mobil) */
+.raster {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .raster {
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .raster {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript-Abschnitt -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>⚡ JavaScript- &amp; React-Standards</h2>
+        <svg class="toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+      <div class="section-content">
+        <h3>Struktur und Organisation</h3>
+        <div class="example good">
+          <div class="example-title good">✅ Empfohlene JS-Struktur</div>
+          <pre><code>'use strict';
+
+/**
+ * DATEI : script.js
+ * Beschreibung : Skripte für [Projektname]
+ */
+
+// ===== KONSTANTEN =====
+const API_URL = 'https://api.example.com';
+const MAX_VERSUCHE = 3;
+
+// ===== GLOBALE VARIABLEN =====
+let zaehler = 0;
+
+// ===== HILFSFUNKTIONEN =====
+function datumFormatieren(datum) {
+  return datum.toLocaleDateString('de-DE');
+}
+
+// ===== INITIALISIERUNG =====
+document.addEventListener('DOMContentLoaded', initialisieren);</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Namenskonventionen</h3>
+        <div class="rule">
+          <h4>Konventionen</h4>
+          <ul style="list-style: none;">
+            <li>• Variablen und Funktionen : <code>camelCase</code></li>
+            <li>• Konstanten : <code>GROSS_SCHLANGENSTIL</code></li>
+            <li>• Klassen : <code>PascalCase</code></li>
+          </ul>
+        </div>
+
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Konsistente Benennung</div>
+          <pre><code>const MWST_SATZ = 0.077;
+let produktAnzahl = 0;
+let aktiverBenutzer = null;
+
+function gesamtpreisBerechnen(nettoPreis, menge) {
+  return nettoPreis * menge * (1 + MWST_SATZ);
+}
+
+class WarenkorbManager {
+  constructor() {
+    this.artikel = [];
+  }
+}</code></pre>
+        </div>
+
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Inkonsistente Benennung</div>
+          <pre><code>const mwstsatz = 0.077;
+let ProduktAnzahl = 0;
+var user = null;
+
+function berechnen(x, y) {
+  return x * y * 1.077;
+}</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">DOM-Manipulation</h3>
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Modernes addEventListener</div>
+          <pre><code>const bestaetigenButton = document.getElementById('btn-bestaetigen');
+const namensfeld = document.querySelector('#name');
+
+bestaetigenButton.addEventListener('click', (event) =&gt; {
+  event.preventDefault();
+  const name = namensfeld.value.trim();
+
+  if (name === '') {
+    fehlerAnzeigen('Name ist erforderlich');
+    return;
+  }
+
+  formularVerarbeiten(name);
+});</code></pre>
+        </div>
+
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Inline onclick</div>
+          <pre><code>// onclick im HTML vermeiden
+// &lt;button onclick="meineFunktion()"&gt;Klicken&lt;/button&gt;</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">React — Defensives Rendering</h3>
+        <div class="rule">
+          <h4>Rendering-Sicherheit</h4>
+          <ul style="list-style: none;">
+            <li>• <strong>Standard-React-Escaping verwenden</strong> : React maskiert JSX-Werte automatisch</li>
+            <li>• <strong><code>dangerouslySetInnerHTML</code> vermeiden</strong> außer in begründeten Fällen</li>
+            <li>• Wenn vom Benutzer generiertes HTML gerendert werden muss, <strong>DOMPurify</strong> verwenden</li>
+            <li>• ⚠️ Client-seitige Bereinigung ist umgehbar (über Postman/CURL) — echte Sicherheit findet serverseitig statt</li>
+          </ul>
+        </div>
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Sicheres React-Rendering</div>
+          <pre><code>// React maskiert automatisch — standardmäßig sicher
+function Nachricht({ text }) {
+  return &lt;p&gt;{text}&lt;/p&gt;;
+}
+
+// Wenn dynamisches HTML nötig ist: DOMPurify obligatorisch
+import DOMPurify from 'dompurify';
+
+function HtmlInhalt({ html }) {
+  const bereinigtesHtml = DOMPurify.sanitize(html);
+  return &lt;div dangerouslySetInnerHTML={{ __html: bereinigtesHtml }} /&gt;;
+}</code></pre>
+        </div>
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - dangerouslySetInnerHTML ohne Bereinigung</div>
+          <pre><code>// XSS-Sicherheitslücke wenn Inhalt vom Benutzer kommt!
+function HtmlInhalt({ html }) {
+  return &lt;div dangerouslySetInnerHTML={{ __html: html }} /&gt;;
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sicherheitsabschnitt -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>🔒 Sicherheit &amp; Datenschutz</h2>
+        <svg class="toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+      <div class="section-content">
+        <p style="background: #e8f4fd; border: 1px solid #667eea; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-style: italic;">
+          🔒 <strong>Secure by design, private by default, educational by nature.</strong><br>
+          Sicherheit und Datenschutz sind keine Zusätze — sie sind grundlegende architektonische Anforderungen.
+        </p>
+
+        <h3>Privacy-by-Design</h3>
+        <div class="rule">
+          <h4>Datensparsamkeit</h4>
+          <ul style="list-style: none;">
+            <li>• Nur <strong>streng notwendige</strong> Daten erfassen</li>
+            <li>• Die Erfassung jeglicher personenbezogener Daten (PII) hinterfragen</li>
+            <li>• Grundsatz : Wenn Sie die Daten nicht benötigen, fragen Sie nicht danach</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Bekannte Web-Angriffe</h3>
+        <div class="rule">
+          <h4>Client-seitige Angriffe</h4>
+          <ul style="list-style: none;">
+            <li>• <strong>XSS</strong> (Cross-Site Scripting) : Einschleusung bösartiger Skripte in eine Seite</li>
+            <li>• <strong>CSRF</strong> (Cross-Site Request Forgery) : Gefälschte Anfragen von einer anderen Website</li>
+            <li>• <strong>Clickjacking</strong> : Überlagern mit einem unsichtbaren iframe zum Abfangen von Klicks</li>
+            <li>• <strong>Double-Clickjacking</strong> : Variante, die den Doppelklick ausnutzt</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2rem;">HTTP-Sicherheits-Header</h3>
+        <div class="rule">
+          <h4>Defensive Header (serverseitig)</h4>
+          <ul style="list-style: none;">
+            <li>• <code>Content-Security-Policy</code> : Begrenzt erlaubte Quellen (Skripte, Bilder…)</li>
+            <li>• <code>X-Frame-Options: DENY</code> : Schützt vor Clickjacking</li>
+            <li>• <code>X-Content-Type-Options: nosniff</code> : Verhindert MIME-Sniffing</li>
+            <li>• <code>Strict-Transport-Security</code> : Erzwingt HTTPS</li>
+          </ul>
+        </div>
+        <div class="example good">
+          <div class="example-title good">✅ Beispiel sicherer HTTP-Header (Express.js)</div>
+          <pre><code>// Mit der Helmet-Middleware (Node.js/Express)
+import helmet from 'helmet';
+app.use(helmet());
+
+// Oder manuell:
+res.setHeader('X-Frame-Options', 'DENY');
+res.setHeader('X-Content-Type-Options', 'nosniff');</code></pre>
+        </div>
+
+        <h3 style="margin-top: 2rem;">CORS-Richtlinien &amp; WAF</h3>
+        <div class="rule">
+          <h4>Konzepte</h4>
+          <ul style="list-style: none;">
+            <li>• <strong>CORS</strong> (Cross-Origin Resource Sharing) : Kontrolliert, welche Domains auf Ihre API zugreifen können</li>
+            <li>• <strong>Same-Origin Policy</strong> : Ein Skript kann nur Ressourcen seiner eigenen Domain lesen</li>
+            <li>• <strong>WAF</strong> (Web Application Firewall) : Filtert bösartige Anfragen, bevor sie den Server erreichen</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Client-seitige Bereinigung — DOMPurify</h3>
+        <div class="rule">
+          <h4>Grundsatz</h4>
+          <ul style="list-style: none;">
+            <li>• <strong>DOMPurify</strong> verwenden, um HTML zu bereinigen, bevor es in das DOM eingefügt wird</li>
+            <li>• ⚠️ Client-seitige Bereinigung <strong>ist allein nicht ausreichend</strong> : Sie kann über Postman, CURL oder die DevTools umgangen werden</li>
+            <li>• Echte Sicherheit wird immer <strong>serverseitig</strong> validiert</li>
+          </ul>
+        </div>
+        <div class="example good">
+          <div class="example-title good">✅ GUT - Bereinigung mit DOMPurify</div>
+          <pre><code>import DOMPurify from 'dompurify';
+
+// Immer bereinigen, bevor dynamisches HTML eingefügt wird
+const bereinigtesHtml = DOMPurify.sanitize(benutzerInhalt);
+element.innerHTML = bereinigtesHtml;</code></pre>
+        </div>
+        <div class="example bad">
+          <div class="example-title bad">❌ SCHLECHT - Direktes innerHTML</div>
+          <pre><code>// XSS-Sicherheitslücke!
+element.innerHTML = benutzerInhalt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dateiorganisation -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>📁 Dateiorganisation</h2>
+        <svg class="toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+      <div class="section-content">
+        <h3>Empfohlene Struktur</h3>
+        <pre style="background: #131313; color: #00ff00;"><code style="background-color: transparent;">mein-web-projekt/
+│
+├── index.html
+├── ueber-uns.html
+├── kontakt.html
+│
+├── css/
+│   ├── style.css
+│   ├── reset.css
+│   └── responsive.css
+│
+├── js/
+│   ├── script.js
+│   ├── utils.js
+│   └── api.js
+│
+├── images/
+│   ├── logo.png
+│   ├── hero.jpg
+│   └── produkte/
+│       ├── produkt1.jpg
+│       └── produkt2.jpg
+│
+└── README.md</code></pre>
+
+        <h3 style="margin-top: 2rem;">Dateiverknüpfung</h3>
+        <div class="example good">
+          <div class="example-title good">✅ Ladereihenfolge in index.html</div>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;title&gt;Mein Projekt&lt;/title&gt;
+
+  &lt;!-- CSS in der Reihenfolge --&gt;
+  &lt;link rel="stylesheet" href="css/reset.css"&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+  &lt;link rel="stylesheet" href="css/responsive.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Inhalt --&gt;
+
+  &lt;!-- JavaScript am Ende des body --&gt;
+  &lt;script src="js/utils.js"&gt;&lt;/script&gt;
+  &lt;script src="js/api.js"&gt;&lt;/script&gt;
+  &lt;script src="js/script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validierungs-Checkliste -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>✅ Validierungs-Checkliste</h2>
+        <svg class="toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+      <div class="section-content">
+        <p style="background: #fff3cd; border: 1px solid #ffc107; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
+          <strong>✅ Vor der Abgabe Ihres Projekts zu überprüfen</strong>
+        </p>
+
+        <div class="checklist">
+          <div class="checklist-card html">
+            <h3>HTML</h3>
+            <ul>
+              <li><span class="checkbox"></span> DOCTYPE vorhanden und korrekt</li>
+              <li><span class="checkbox"></span> Meta-Charset UTF-8 und Viewport</li>
+              <li><span class="checkbox"></span> Semantische Tags verwendet</li>
+              <li><span class="checkbox"></span> Bilder mit alt-Attribut</li>
+              <li><span class="checkbox"></span> Formulare mit Labels</li>
+              <li><span class="checkbox"></span> W3C-Validierung ohne Fehler</li>
+              <li><span class="checkbox"></span> Konsistente Einrückung (2 Leerzeichen)</li>
+            </ul>
+          </div>
+
+          <div class="checklist-card css">
+            <h3>CSS</h3>
+            <ul>
+              <li><span class="checkbox"></span> Externe CSS-Datei</li>
+              <li><span class="checkbox"></span> CSS-Variablen definiert</li>
+              <li><span class="checkbox"></span> Konsistente Benennung (BEM)</li>
+              <li><span class="checkbox"></span> Mobile First (Media Queries)</li>
+              <li><span class="checkbox"></span> Kein !important (außer Ausnahme)</li>
+              <li><span class="checkbox"></span> Eigenschaften in logischer Reihenfolge</li>
+              <li><span class="checkbox"></span> Konsistente Einrückung</li>
+            </ul>
+          </div>
+
+          <div class="checklist-card js">
+            <h3>JavaScript</h3>
+            <ul>
+              <li><span class="checkbox"></span> 'use strict' am Dateianfang</li>
+              <li><span class="checkbox"></span> const/let verwendet (kein var)</li>
+              <li><span class="checkbox"></span> Konsistente Benennung (camelCase)</li>
+              <li><span class="checkbox"></span> Dokumentierte Funktionen (JSDoc)</li>
+              <li><span class="checkbox"></span> addEventListener (kein onclick)</li>
+              <li><span class="checkbox"></span> Eingabevalidierung</li>
+              <li><span class="checkbox"></span> Fehlerbehandlung (try/catch)</li>
+            </ul>
+          </div>
+
+          <div class="checklist-card general">
+            <h3>Allgemein</h3>
+            <ul>
+              <li><span class="checkbox"></span> Logische Ordnerstruktur</li>
+              <li><span class="checkbox"></span> Dateinamen in kebab-case</li>
+              <li><span class="checkbox"></span> Keine ungenutzten Dateien</li>
+              <li><span class="checkbox"></span> Optimierte Bilder</li>
+              <li><span class="checkbox"></span> In verschiedenen Browsern getestet</li>
+              <li><span class="checkbox"></span> Im responsiven Design getestet</li>
+              <li><span class="checkbox"></span> Konsole ohne Fehler</li>
+            </ul>
+          </div>
+
+          <div class="checklist-card security">
+            <h3>🔒 Sicherheit</h3>
+            <ul>
+              <li><span class="checkbox"></span> Privacy-by-Design : Daten minimiert</li>
+              <li><span class="checkbox"></span> Keine CSS-#ID-Selektoren</li>
+              <li><span class="checkbox"></span> Kein direktes innerHTML auf Benutzerinhalt</li>
+              <li><span class="checkbox"></span> DOMPurify bei dynamischem HTML-Rendering</li>
+              <li><span class="checkbox"></span> HTTP-Sicherheits-Header definiert</li>
+              <li><span class="checkbox"></span> CORS-Richtlinien konfiguriert</li>
+              <li><span class="checkbox"></span> Datenvalidierung serverseitig</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ressourcen -->
+    <div class="resources">
+      <h2>📚 Zusätzliche Ressourcen</h2>
+      <div class="grid">
+        <div>
+          <h3>Validierung</h3>
+          <ul>
+            <li>• <a href="https://validator.w3.org/" target="_blank">HTML Validator</a></li>
+            <li>• <a href="https://jigsaw.w3.org/css-validator/" target="_blank">CSS Validator</a></li>
+            <li>• <a href="https://jshint.com/" target="_blank">JSHint</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Dokumentation</h3>
+          <ul>
+            <li>• <a href="https://developer.mozilla.org/de/" target="_blank">MDN Web Docs</a></li>
+            <li>• <a href="https://caniuse.com/" target="_blank">Can I Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem;">
+        <h3>Empfohlene VS Code-Erweiterungen</h3>
+        <p>Prettier • ESLint • HTML CSS Support • Live Server</p>
+      </div>
+    </div>
+
+    <!-- Abschlussbemerkungen -->
+    <div class="note-finale">
+      <h2>💡 Abschlussbemerkungen</h2>
+      <p>Diese Standards sind <strong>Richtlinien</strong>, die Ihnen helfen, qualitativ hochwertigen Code zu schreiben.</p>
+
+      <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+        <p style="font-weight: 600; margin-bottom: 0.5rem;">Das Wichtige :</p>
+        <ol style="margin-left: 1.5rem;">
+          <li><strong>Konsistenz</strong> : Wählen Sie einen Stil und halten Sie sich daran</li>
+          <li><strong>Lesbarkeit</strong> : Ihr Code muss von anderen verstanden werden können</li>
+          <li><strong>Erweiterbarkeit</strong> : Ihr Code muss leicht modifizierbar sein</li>
+        </ol>
+      </div>
+
+      <div class="conseil">
+        💡 <strong>Tipp</strong> : Lesen Sie Ihren Code, als würden Sie ihn zum ersten Mal sehen. Wenn er schwer zu verstehen ist, muss er vereinfacht werden!
+      </div>
+    </div>
+
+    <footer>
+      <p>Dokument erstellt für den Kurs Web Development - HES-SO Wallis</p>
+      <p>Letzte Aktualisierung : Februar 2025</p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleSection(header) {
+      const section = header.parentElement;
+      const content = section.querySelector('.section-content');
+
+      section.classList.toggle('open');
+      content.classList.toggle('active');
+    }
+
+    // Ersten Abschnitt standardmäßig öffnen
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstSection = document.querySelector('.section');
+      if (firstSection) {
+        firstSection.classList.add('open');
+        firstSection.querySelector('.section-content').classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
