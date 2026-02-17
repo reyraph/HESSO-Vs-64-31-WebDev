@@ -582,14 +582,14 @@
                         <label class="fm-label" for="fm-v-required">
                             <code>required</code> — Cannot be empty
                         </label>
-                        <input type="text" id="fm-v-required" class="fm-input" required placeholder="This field is required">
+                        <input type="text" id="fm-v-required" name="required-field" class="fm-input" required placeholder="This field is required">
                     </div>
 
                     <div class="fm-group">
                         <label class="fm-label" for="fm-v-minmax-len">
                             <code>minlength="3" maxlength="10"</code> — Length constraints
                         </label>
-                        <input type="text" id="fm-v-minmax-len" class="fm-input" required minlength="3" maxlength="10" placeholder="3 to 10 characters">
+                        <input type="text" id="fm-v-minmax-len" name="length-field" class="fm-input" required minlength="3" maxlength="10" placeholder="3 to 10 characters">
                         <p class="fm-hint"><code>minlength</code> triggers validation on submit if the value is too short. <code>maxlength</code> physically blocks typing beyond the limit.</p>
                     </div>
 
@@ -597,14 +597,14 @@
                         <label class="fm-label" for="fm-v-minmax">
                             <code>min="1" max="100" step="10"</code> — Numeric constraints
                         </label>
-                        <input type="number" id="fm-v-minmax" class="fm-input" min="1" max="100" step="10" value="50">
+                        <input type="number" id="fm-v-minmax" name="numeric-field" class="fm-input" min="1" max="100" step="10" value="50">
                     </div>
 
                     <div class="fm-group">
                         <label class="fm-label" for="fm-v-pattern">
                             <code>pattern="[A-Z]{2}\s?[0-9]{1,6}"</code> — Swiss licence plate
                         </label>
-                        <input type="text" id="fm-v-pattern" class="fm-input" required pattern="[A-Z]{2}\s?[0-9]{1,6}" placeholder="VS 123456" title="Two uppercase letters (canton) followed by 1 to 6 digits (e.g., VS 123456)">
+                        <input type="text" id="fm-v-pattern" name="plate" class="fm-input" required pattern="[A-Z]{2}\s?[0-9]{1,6}" placeholder="VS 123456" title="Two uppercase letters (canton) followed by 1 to 6 digits (e.g., VS 123456)">
                         <p class="fm-hint">Format: 2 uppercase letters (canton code) + optional space + 1 to 6 digits. Examples: <code>VS 123456</code>, <code>GE12</code>, <code>BE 1</code>.</p>
                     </div>
 
@@ -612,7 +612,7 @@
                         <label class="fm-label" for="fm-v-placeholder">
                             <code>placeholder</code> + <code>autocomplete</code> + <code>list</code>
                         </label>
-                        <input type="text" id="fm-v-placeholder" class="fm-input" placeholder="Start typing a city..." autocomplete="address-level2" list="swiss-cities">
+                        <input type="text" id="fm-v-placeholder" name="city" class="fm-input" placeholder="Start typing a city..." autocomplete="address-level2" list="swiss-cities">
                         <datalist id="swiss-cities">
                             <option value="Sion"></option>
                             <option value="Sierre"></option>
@@ -632,7 +632,7 @@
                         <label class="fm-label" for="fm-v-readonly">
                             <code>readonly</code> — Readable but not editable
                         </label>
-                        <input type="text" id="fm-v-readonly" class="fm-input" value="This value is read-only" readonly>
+                        <input type="text" id="fm-v-readonly" name="readonly-field" class="fm-input" value="This value is read-only" readonly>
                         <p class="fm-hint">Value is <strong>sent</strong> with the form but cannot be changed by the user.</p>
                     </div>
 
@@ -640,7 +640,7 @@
                         <label class="fm-label" for="fm-v-disabled">
                             <code>disabled</code> — Greyed out, not submitted
                         </label>
-                        <input type="text" id="fm-v-disabled" class="fm-input" value="This field is disabled" disabled>
+                        <input type="text" id="fm-v-disabled" name="disabled-field" class="fm-input" value="This field is disabled" disabled>
                         <p class="fm-hint">Value is <strong>not sent</strong> with the form data. The field is completely inactive.</p>
                     </div>
 
