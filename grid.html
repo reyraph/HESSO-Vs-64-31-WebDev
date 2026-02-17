@@ -385,39 +385,56 @@ grid-template-areas:
                 </p>
             </div>
             <p class="demo-section__note">
-                By default, items flow in order and leave <strong>holes</strong> when a wide item
-                cannot fit. <code>dense</code> back-fills those holes with later (smaller) items.
+                A hole appears when a wide item (<code>span 2</code>) cannot fit in the remaining
+                space of the current row and jumps to the next one, leaving an empty cell behind.
+                Here, items 1–3 fill 3 of the 4 columns — item 4 (wide) needs 2 columns but only
+                1 is left, so it jumps to row 2 and leaves a <strong>hole at row 1, col 4</strong>.
+                In the dense panel, item 5 travels <em>back</em> to fill that hole — watch how
+                item 5 ends up visually before item 4!
             </p>
 
             <div class="gd-dense-compare">
 
                 <div class="gd-compare__panel">
                     <h3 class="gd-compare__title">Default flow</h3>
-                    <p class="gd-compare__desc">Holes appear after wide items — DOM order is preserved.</p>
+                    <p class="gd-compare__desc">
+                        Items placed strictly in DOM order. Wide items jump rows, leaving holes.
+                        Result: <strong>4 rows, 2 empty cells</strong>.
+                    </p>
+                    <!-- Sequence: 1×1 ×3, wide, 1×1, wide, 1×1 ×4
+                         Holes appear at (row1,col4) and (row2,col4) -->
                     <div class="gd-flow-grid" aria-label="Default grid flow">
-                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
-                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
-                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">2</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">3</div>
+                        <div class="gd-flow-cell gd-flow-cell--wide">4 (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">5</div>
+                        <div class="gd-flow-cell gd-flow-cell--wide">6 (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">7</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">8</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">9</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">10</div>
                     </div>
                 </div>
 
                 <div class="gd-compare__panel">
                     <h3 class="gd-compare__title"><code>grid-auto-flow: dense</code></h3>
-                    <p class="gd-compare__desc">Small items back-fill holes — visual order may differ from DOM order.</p>
+                    <p class="gd-compare__desc">
+                        Same 10 items, same DOM order. Dense back-fills holes:
+                        item 5 moves to row 1 col 4. Result: <strong>3 rows, 0 empty cells</strong>.
+                    </p>
+                    <!-- Same sequence — dense places item 5 at (row1,col4) instead of (row2,col3) -->
                     <div class="gd-flow-grid gd-flow-grid--dense" aria-label="Dense grid flow">
-                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
-                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--wide">wide (span 2)</div>
-                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--a">1×1</div>
-                        <div class="gd-flow-cell gd-flow-cell--b">1×1</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">1</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">2</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">3</div>
+                        <div class="gd-flow-cell gd-flow-cell--wide">4 (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">5</div>
+                        <div class="gd-flow-cell gd-flow-cell--wide">6 (span 2)</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">7</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">8</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">9</div>
+                        <div class="gd-flow-cell gd-flow-cell--a">10</div>
                     </div>
                 </div>
 

@@ -7,5 +7,6 @@
   "files.eol": "\n",
   "html.format.indentInnerHtml": true,
   "css.lint.important": "warning",
-  "javascript.preferences.quoteStyle": "single"
+  "javascript.preferences.quoteStyle": "single",
+  "sarif-viewer.connectToGithubCodeScanning": "off"
 }

@@ -339,6 +339,20 @@
                 </p>
             </div>
 
+            <!-- ── Interactive sliders ──────────────────────── -->
+            <div class="crop-controls">
+                <label class="crop-controls__label">
+                    Width
+                    <input type="range" id="crop-width-slider" min="0" max="100" value="100">
+                    <output id="crop-width-value">100 %</output>
+                </label>
+                <label class="crop-controls__label">
+                    Height
+                    <input type="range" id="crop-height-slider" min="0" max="100" value="100">
+                    <output id="crop-height-value">100 %</output>
+                </label>
+            </div>
+
             <!-- ── Sub-section A: object-fit ─────────────────── -->
             <div class="crop-subsection">
                 <h3 class="crop-subsection__title">A — <code>object-fit</code> values</h3>
@@ -544,6 +558,40 @@
             <a href="https://picsum.photos" target="_blank" rel="noopener">picsum.photos</a>
         </p>
     </footer>
+
+    <!-- ====================================================
+         JavaScript – Interactive crop sliders
+    ===================================================== -->
+    <script>
+    (function () {
+        /* -- Slider references -- */
+        var widthSlider  = document.getElementById('crop-width-slider');
+        var heightSlider = document.getElementById('crop-height-slider');
+        var widthOutput  = document.getElementById('crop-width-value');
+        var heightOutput = document.getElementById('crop-height-value');
+
+        /* -- All target images -- */
+        var images = document.querySelectorAll('.crop-img');
+
+        /* -- Update helper -- */
+        function applySize() {
+            var w = widthSlider.value + '%';
+            var h = heightSlider.value + '%';
+
+            widthOutput.textContent  = widthSlider.value + ' %';
+            heightOutput.textContent = heightSlider.value + ' %';
+
+            images.forEach(function (img) {
+                img.style.width  = w;
+                img.style.height = h;
+            });
+        }
+
+        /* -- Event listeners -- */
+        widthSlider.addEventListener('input', applySize);
+        heightSlider.addEventListener('input', applySize);
+    })();
+    </script>
 
 </body>
 </html>
