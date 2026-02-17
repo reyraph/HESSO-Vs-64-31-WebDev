@@ -1200,3 +1200,442 @@ form input.error {
         gap: 0.75rem;
     }
 }
+
+/* ============================================================
+   BOX MODEL DEMO STYLES
+   Used by: boxmodel.html
+   ============================================================ */
+
+/* ── Section 1 – Static diagram ──────────────────────────── */
+.bm-diagram-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+}
+
+.bm-diagram {
+    background-color: rgba(255, 152, 0, 0.2);
+    border: 2px dashed #ff9800;
+    padding: 2rem;
+    position: relative;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #e65100;
+}
+
+.bm-diagram__tag {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    font-size: 0.72rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bm-diagram__layer--border {
+    background-color: rgba(66, 66, 66, 0.15);
+    border: 3px solid #424242;
+    padding: 1.5rem;
+    position: relative;
+    color: #424242;
+}
+
+.bm-diagram__layer--border > .bm-diagram__tag {
+    color: #424242;
+}
+
+.bm-diagram__layer--padding {
+    background-color: rgba(76, 175, 80, 0.2);
+    border: 2px dashed #4caf50;
+    padding: 1.5rem;
+    position: relative;
+    color: #2e7d32;
+}
+
+.bm-diagram__layer--padding > .bm-diagram__tag {
+    color: #2e7d32;
+}
+
+.bm-diagram__layer--content {
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    color: #333;
+    font-weight: bold;
+    min-width: 120px;
+    padding: 1.5rem 2rem;
+}
+
+/* ── Section 2 – Playground layout ───────────────────────── */
+.bm-playground {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+/* ── Controls panel ──────────────────────────────────────── */
+.bm-controls {
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bm-controls__fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin: 0;
+    padding: 0.6rem 0.9rem 0.8rem;
+}
+
+.bm-controls__fieldset legend {
+    font-size: 0.82rem;
+    font-weight: bold;
+    color: #2e7d32;
+    padding: 0 0.4rem;
+}
+
+.bm-controls__group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+}
+
+.bm-controls__name {
+    flex: 0 0 110px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.bm-controls__group input[type='range'] {
+    flex: 1;
+    min-width: 80px;
+}
+
+.bm-controls__group output {
+    flex: 0 0 50px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    text-align: right;
+    color: #333;
+}
+
+.bm-controls__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.bm-controls__checkbox code {
+    background-color: #e8f5e9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: #1b5e20;
+}
+
+/* ── Live preview area ───────────────────────────────────── */
+.bm-preview {
+    flex: 1;
+    min-width: 0;
+}
+
+.bm-preview__hint {
+    margin: 0 0 1rem;
+    font-size: 0.82rem;
+    color: #888;
+    font-style: italic;
+}
+
+.bm-preview__stage {
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1.5rem;
+    overflow: auto;
+    min-height: 200px;
+}
+
+/* Orange zone that visualises margin (using its own padding) */
+.bm-margin-zone {
+    display: inline-block;
+    background-color: rgba(255, 152, 0, 0.2);
+    border: 1px dashed #ff9800;
+}
+
+/* The actual target div */
+.bm-target {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-style: solid;
+    border-color: #424242;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.bm-target__label {
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    pointer-events: none;
+}
+
+/* ── Readout ─────────────────────────────────────────────── */
+.bm-readout {
+    background-color: #263238;
+    color: #a5d6a7;
+    font-family: monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    overflow-x: auto;
+}
+
+/* ── Live CSS code block ─────────────────────────────────── */
+.bm-code {
+    background-color: #263238;
+    color: #e0e0e0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    margin-top: 0.75rem;
+    overflow-x: auto;
+}
+
+.bm-code code {
+    font-family: monospace;
+    white-space: pre;
+}
+
+/* ── Responsive: stack controls above preview on narrow screens ── */
+@media (max-width: 740px) {
+    .bm-playground {
+        flex-direction: column;
+    }
+
+    .bm-controls {
+        flex: unset;
+    }
+}
+
+/* ============================================================
+   SECTION 3 – CSS POSITION EXPLORER
+   Used by: boxmodel.html
+   ============================================================ */
+
+/* ── Theory table ────────────────────────────────────────── */
+.pos-theory-table {
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+    width: 100%;
+}
+
+.pos-theory-table th,
+.pos-theory-table td {
+    border: 1px solid #c8e6c9;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.pos-theory-table th {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.pos-theory-table code {
+    background-color: #c8e6c9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.82rem;
+    color: #1b5e20;
+}
+
+/* ── Playground layout ───────────────────────────────────── */
+.pos-playground {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+/* ── Controls ────────────────────────────────────────────── */
+.pos-controls {
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pos-controls__select-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pos-controls__select {
+    flex: 1;
+    font-family: monospace;
+    font-size: 0.9rem;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* Origin info box */
+.pos-origin-info {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    border-radius: 0 4px 4px 0;
+    color: #333;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    padding: 0.6rem 0.9rem;
+}
+
+.pos-origin-info code {
+    background-color: #c8e6c9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: #1b5e20;
+}
+
+/* Disabled slider styling */
+.bm-controls__group input[type='range']:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* ── Preview area ────────────────────────────────────────── */
+.pos-preview {
+    flex: 1;
+    min-width: 0;
+}
+
+/* The positioned ancestor container */
+.pos-container {
+    background-color: #eeeeee;
+    border: 2px solid #bdbdbd;
+    border-radius: 6px;
+    min-height: 350px;
+    padding: 1rem;
+    position: relative;
+}
+
+/* Origin marker (top-left crosshair) */
+.pos-origin-marker {
+    border-left: 2px dashed #e65100;
+    border-top: 2px dashed #e65100;
+    display: none;
+    height: 40px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    z-index: 1;
+}
+
+.pos-origin-marker__label {
+    background-color: #e65100;
+    border-radius: 2px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 0.65rem;
+    left: 4px;
+    padding: 1px 4px;
+    position: absolute;
+    top: 4px;
+}
+
+/* Sibling flow boxes */
+.pos-sibling {
+    border-radius: 4px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    height: 50px;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+}
+
+.pos-sibling--1 { background-color: #1565c0; }
+.pos-sibling--2 { background-color: #6a1b9a; }
+.pos-sibling--3 { background-color: #00838f; }
+
+/* Target div */
+.pos-target {
+    background-color: #e65100;
+    border: 2px solid #bf360c;
+    border-radius: 4px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: bold;
+    height: 50px;
+    margin-bottom: 0.5rem;
+    min-width: 100px;
+    padding: 0 1rem;
+    z-index: 2;
+}
+
+/* Note for fixed/sticky */
+.pos-note {
+    background-color: #fff3e0;
+    border-left: 4px solid #ff9800;
+    border-radius: 0 4px 4px 0;
+    color: #555;
+    display: none;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.9rem;
+}
+
+/* Scroll filler for sticky demo */
+.pos-scroll-filler {
+    color: #999;
+    display: none;
+    font-size: 0.82rem;
+    padding: 0.5rem 0;
+}
+
+.pos-scroll-filler__spacer {
+    height: 500px;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 740px) {
+    .pos-playground {
+        flex-direction: column;
+    }
+
+    .pos-controls {
+        flex: unset;
+    }
+}

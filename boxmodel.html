@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CSS Box Model – Interactive Explorer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ====================================================
+         Page header
+    ===================================================== -->
+    <header class="page-header">
+        <h1>CSS Box Model</h1>
+        <p>An interactive explorer to understand how content, padding, border and margin work together</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Section navigation">
+        <span class="grid-nav__logo">📦 BoxModel</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="#demo-layers">Layers</a></li>
+            <li><a class="grid-nav__link" href="#demo-playground">Playground</a></li>
+            <li><a class="grid-nav__link" href="#demo-position">Position</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ================================================
+             Section 1 – Theory: the four layers
+        ================================================= -->
+        <section id="demo-layers" class="demo-section">
+            <div class="demo-label">
+                <h2>The Box Model Layers</h2>
+                <p>
+                    Every HTML element is a rectangular box made of four nested layers:
+                    <code>margin</code> &nbsp;|&nbsp;
+                    <code>border</code> &nbsp;|&nbsp;
+                    <code>padding</code> &nbsp;|&nbsp;
+                    <code>content</code>
+                </p>
+            </div>
+
+            <!-- Static CSS-only diagram -->
+            <div class="bm-diagram-wrapper">
+                <div class="bm-diagram">
+                    <span class="bm-diagram__tag">margin</span>
+                    <div class="bm-diagram__layer--border">
+                        <span class="bm-diagram__tag">border</span>
+                        <div class="bm-diagram__layer--padding">
+                            <span class="bm-diagram__tag">padding</span>
+                            <div class="bm-diagram__layer--content">
+                                content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why box -->
+            <div class="demo-why">
+                <strong>content-box vs border-box</strong> &mdash;
+                By default, <code>width</code> and <code>height</code> only size the
+                <em>content</em> area (<code>box-sizing: content-box</code>).
+                Padding and border are <strong>added on top</strong>, making the rendered
+                element larger than the declared size.
+                With <code>box-sizing: border-box</code>, the declared <code>width</code>
+                <strong>includes</strong> padding and border &mdash; the content area shrinks
+                to fit. Most modern projects apply <code>border-box</code> globally via
+                <code>*, *::before, *::after { box-sizing: border-box; }</code>.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 2 – Interactive playground
+        ================================================= -->
+        <section id="demo-playground" class="demo-section">
+            <div class="demo-label">
+                <h2>Interactive Playground</h2>
+                <p>
+                    Drag the sliders to change each CSS property in real time.
+                    Toggle <code>box-sizing</code> and observe how the total rendered size changes.
+                </p>
+            </div>
+
+            <div class="bm-playground">
+
+                <!-- ── Controls panel ──────────────────────── -->
+                <div class="bm-controls">
+
+                    <!-- Dimensions -->
+                    <fieldset class="bm-controls__fieldset">
+                        <legend>Dimensions</legend>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">width</span>
+                            <input type="range" id="bm-width" min="50" max="400" value="200">
+                            <output id="bm-width-val">200 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">height</span>
+                            <input type="range" id="bm-height" min="50" max="300" value="150">
+                            <output id="bm-height-val">150 px</output>
+                        </label>
+                    </fieldset>
+
+                    <!-- Padding -->
+                    <fieldset class="bm-controls__fieldset">
+                        <legend>Padding</legend>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">padding-top</span>
+                            <input type="range" id="bm-pt" min="0" max="80" value="20">
+                            <output id="bm-pt-val">20 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">padding-right</span>
+                            <input type="range" id="bm-pr" min="0" max="80" value="20">
+                            <output id="bm-pr-val">20 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">padding-bottom</span>
+                            <input type="range" id="bm-pb" min="0" max="80" value="20">
+                            <output id="bm-pb-val">20 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">padding-left</span>
+                            <input type="range" id="bm-pl" min="0" max="80" value="20">
+                            <output id="bm-pl-val">20 px</output>
+                        </label>
+                    </fieldset>
+
+                    <!-- Border -->
+                    <fieldset class="bm-controls__fieldset">
+                        <legend>Border</legend>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">border-width</span>
+                            <input type="range" id="bm-bw" min="0" max="20" value="3">
+                            <output id="bm-bw-val">3 px</output>
+                        </label>
+                    </fieldset>
+
+                    <!-- Margin -->
+                    <fieldset class="bm-controls__fieldset">
+                        <legend>Margin</legend>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">margin-top</span>
+                            <input type="range" id="bm-mt" min="0" max="60" value="10">
+                            <output id="bm-mt-val">10 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">margin-right</span>
+                            <input type="range" id="bm-mr" min="0" max="60" value="10">
+                            <output id="bm-mr-val">10 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">margin-bottom</span>
+                            <input type="range" id="bm-mb" min="0" max="60" value="10">
+                            <output id="bm-mb-val">10 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">margin-left</span>
+                            <input type="range" id="bm-ml" min="0" max="60" value="10">
+                            <output id="bm-ml-val">10 px</output>
+                        </label>
+                    </fieldset>
+
+                    <!-- Box-sizing toggle -->
+                    <fieldset class="bm-controls__fieldset">
+                        <legend>Box Sizing</legend>
+                        <label class="bm-controls__checkbox">
+                            <input type="checkbox" id="bm-border-box">
+                            <span><code>border-box</code> (unchecked = <code>content-box</code>)</span>
+                        </label>
+                    </fieldset>
+                </div>
+
+                <!-- ── Live preview ────────────────────────── -->
+                <div class="bm-preview">
+                    <p class="bm-preview__hint">Margin zone (orange) &rarr; Border (dark) &rarr; Padding (green) &rarr; Content (white)</p>
+
+                    <div class="bm-preview__stage">
+                        <!-- Orange wrapper visualises the margin area -->
+                        <div class="bm-margin-zone" id="bm-margin-zone">
+                            <div class="bm-target" id="bm-target">
+                                <span class="bm-target__label" id="bm-content-label">content</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Readout -->
+                    <div class="bm-readout" id="bm-readout">
+                        <!-- filled by JS -->
+                    </div>
+
+                    <!-- Live CSS code -->
+                    <pre class="bm-code"><code id="bm-code-output">/* move a slider… */</code></pre>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 3 – CSS Position Explorer
+             Demonstrates: position values + top/right/bottom/left offsets
+        ================================================= -->
+        <section id="demo-position" class="demo-section">
+            <div class="demo-label">
+                <h2>CSS Position Explorer</h2>
+                <p>
+                    <code>position</code> &nbsp;|&nbsp;
+                    <code>top</code> / <code>right</code> / <code>bottom</code> / <code>left</code> offsets
+                </p>
+            </div>
+
+            <!-- Theory: the 5 position values -->
+            <div class="demo-why">
+                <strong>The 5 position values at a glance:</strong>
+                <table class="pos-theory-table">
+                    <thead>
+                        <tr>
+                            <th>Value</th>
+                            <th>Offset origin</th>
+                            <th>Removed from flow?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>static</code></td>
+                            <td>None &mdash; offsets are <strong>ignored</strong></td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><code>relative</code></td>
+                            <td>Element's <strong>own normal position</strong></td>
+                            <td>No (space preserved)</td>
+                        </tr>
+                        <tr>
+                            <td><code>absolute</code></td>
+                            <td>Nearest <strong>positioned ancestor</strong> (or viewport)</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><code>fixed</code></td>
+                            <td>The <strong>viewport</strong></td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><code>sticky</code></td>
+                            <td>Scrolls normally, then <strong>sticks</strong> at threshold</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pos-playground">
+
+                <!-- ── Controls ────────────────────────────── -->
+                <div class="pos-controls">
+
+                    <!-- Position type selector -->
+                    <fieldset class="bm-controls__fieldset">
+                        <legend>Position type</legend>
+                        <label class="pos-controls__select-label">
+                            <span class="bm-controls__name">position</span>
+                            <select id="pos-type" class="pos-controls__select">
+                                <option value="static" selected>static</option>
+                                <option value="relative">relative</option>
+                                <option value="absolute">absolute</option>
+                                <option value="fixed">fixed</option>
+                                <option value="sticky">sticky</option>
+                            </select>
+                        </label>
+                    </fieldset>
+
+                    <!-- Offset sliders -->
+                    <fieldset class="bm-controls__fieldset" id="pos-offsets-fieldset">
+                        <legend>Offsets</legend>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">top</span>
+                            <input type="range" id="pos-top" min="-200" max="200" value="0">
+                            <output id="pos-top-val">0 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">right</span>
+                            <input type="range" id="pos-right" min="-200" max="200" value="0">
+                            <output id="pos-right-val">0 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">bottom</span>
+                            <input type="range" id="pos-bottom" min="-200" max="200" value="0">
+                            <output id="pos-bottom-val">0 px</output>
+                        </label>
+                        <label class="bm-controls__group">
+                            <span class="bm-controls__name">left</span>
+                            <input type="range" id="pos-left" min="-200" max="200" value="0">
+                            <output id="pos-left-val">0 px</output>
+                        </label>
+                    </fieldset>
+
+                    <!-- Origin info -->
+                    <div class="pos-origin-info" id="pos-origin-info">
+                        Offsets are ignored with <code>position: static</code>.
+                    </div>
+                </div>
+
+                <!-- ── Live preview ────────────────────────── -->
+                <div class="pos-preview">
+                    <p class="bm-preview__hint">
+                        Grey box = positioned ancestor (<code>position: relative</code>).
+                        Coloured boxes = siblings in normal document flow.
+                    </p>
+
+                    <div class="pos-container" id="pos-container">
+                        <!-- Origin marker (dashed crosshair at container 0,0) -->
+                        <div class="pos-origin-marker" id="pos-origin-marker">
+                            <span class="pos-origin-marker__label">origin</span>
+                        </div>
+
+                        <div class="pos-sibling pos-sibling--1">Sibling 1</div>
+                        <div class="pos-target" id="pos-target">Target</div>
+                        <div class="pos-sibling pos-sibling--2">Sibling 2</div>
+                        <div class="pos-sibling pos-sibling--3">Sibling 3</div>
+
+                        <!-- Extra tall content for sticky scrolling demo -->
+                        <div class="pos-scroll-filler" id="pos-scroll-filler">
+                            <p>Scroll down inside this container to see <code>sticky</code> in action&hellip;</p>
+                            <div class="pos-scroll-filler__spacer"></div>
+                            <p>End of scrollable area.</p>
+                        </div>
+                    </div>
+
+                    <!-- Warning note for fixed/sticky -->
+                    <p class="pos-note" id="pos-note"></p>
+
+                    <!-- Live CSS code -->
+                    <pre class="bm-code"><code id="pos-code-output">/* choose a position type… */</code></pre>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            CSS Box Model Demo &mdash; HES-SO Valais Web Development Course
+        </p>
+    </footer>
+
+    <!-- ====================================================
+         JavaScript – Interactive box model sliders
+    ===================================================== -->
+    <script>
+    (function () {
+
+        /* ── Slider references ───────────────────────── */
+        var w   = document.getElementById('bm-width');
+        var h   = document.getElementById('bm-height');
+        var pt  = document.getElementById('bm-pt');
+        var pr  = document.getElementById('bm-pr');
+        var pb  = document.getElementById('bm-pb');
+        var pl  = document.getElementById('bm-pl');
+        var bw  = document.getElementById('bm-bw');
+        var mt  = document.getElementById('bm-mt');
+        var mr  = document.getElementById('bm-mr');
+        var mb  = document.getElementById('bm-mb');
+        var ml  = document.getElementById('bm-ml');
+        var bb  = document.getElementById('bm-border-box');
+
+        /* ── Output references ───────────────────────── */
+        var wVal  = document.getElementById('bm-width-val');
+        var hVal  = document.getElementById('bm-height-val');
+        var ptVal = document.getElementById('bm-pt-val');
+        var prVal = document.getElementById('bm-pr-val');
+        var pbVal = document.getElementById('bm-pb-val');
+        var plVal = document.getElementById('bm-pl-val');
+        var bwVal = document.getElementById('bm-bw-val');
+        var mtVal = document.getElementById('bm-mt-val');
+        var mrVal = document.getElementById('bm-mr-val');
+        var mbVal = document.getElementById('bm-mb-val');
+        var mlVal = document.getElementById('bm-ml-val');
+
+        /* ── Target elements ─────────────────────────── */
+        var target      = document.getElementById('bm-target');
+        var marginZone  = document.getElementById('bm-margin-zone');
+        var readout     = document.getElementById('bm-readout');
+        var codeOutput  = document.getElementById('bm-code-output');
+        var contentLabel = document.getElementById('bm-content-label');
+
+        /* ── All sliders in one array for event binding ── */
+        var sliders = [w, h, pt, pr, pb, pl, bw, mt, mr, mb, ml];
+
+        /* ── Main update function ────────────────────── */
+        function update() {
+            /* Read values as numbers */
+            var vw  = Number(w.value);
+            var vh  = Number(h.value);
+            var vpt = Number(pt.value);
+            var vpr = Number(pr.value);
+            var vpb = Number(pb.value);
+            var vpl = Number(pl.value);
+            var vbw = Number(bw.value);
+            var vmt = Number(mt.value);
+            var vmr = Number(mr.value);
+            var vmb = Number(mb.value);
+            var vml = Number(ml.value);
+            var isBorderBox = bb.checked;
+
+            /* Update output labels */
+            wVal.textContent  = vw  + ' px';
+            hVal.textContent  = vh  + ' px';
+            ptVal.textContent = vpt + ' px';
+            prVal.textContent = vpr + ' px';
+            pbVal.textContent = vpb + ' px';
+            plVal.textContent = vpl + ' px';
+            bwVal.textContent = vbw + ' px';
+            mtVal.textContent = vmt + ' px';
+            mrVal.textContent = vmr + ' px';
+            mbVal.textContent = vmb + ' px';
+            mlVal.textContent = vml + ' px';
+
+            /* Apply styles to the target div */
+            var boxSizing = isBorderBox ? 'border-box' : 'content-box';
+            target.style.boxSizing    = boxSizing;
+            target.style.width        = vw  + 'px';
+            target.style.height       = vh  + 'px';
+            target.style.paddingTop   = vpt + 'px';
+            target.style.paddingRight = vpr + 'px';
+            target.style.paddingBottom = vpb + 'px';
+            target.style.paddingLeft  = vpl + 'px';
+            target.style.borderWidth  = vbw + 'px';
+
+            /* Apply margin to the margin-zone wrapper (so the orange shows) */
+            marginZone.style.paddingTop    = vmt + 'px';
+            marginZone.style.paddingRight  = vmr + 'px';
+            marginZone.style.paddingBottom = vmb + 'px';
+            marginZone.style.paddingLeft   = vml + 'px';
+
+            /* Compute total rendered size */
+            var totalW, totalH;
+            if (isBorderBox) {
+                /* border-box: declared width includes padding + border */
+                totalW = vw;
+                totalH = vh;
+            } else {
+                /* content-box: padding + border are added outside */
+                totalW = vw + vpl + vpr + (vbw * 2);
+                totalH = vh + vpt + vpb + (vbw * 2);
+            }
+
+            /* Compute content area for display */
+            var contentW, contentH;
+            if (isBorderBox) {
+                contentW = Math.max(0, vw - vpl - vpr - (vbw * 2));
+                contentH = Math.max(0, vh - vpt - vpb - (vbw * 2));
+            } else {
+                contentW = vw;
+                contentH = vh;
+            }
+
+            contentLabel.textContent = contentW + ' x ' + contentH;
+
+            /* Readout */
+            readout.textContent =
+                'box-sizing: ' + boxSizing +
+                '  |  CSS width/height: ' + vw + ' x ' + vh + ' px' +
+                '  |  Rendered (border-edge): ' + totalW + ' x ' + totalH + ' px' +
+                '  |  Content area: ' + contentW + ' x ' + contentH + ' px';
+
+            /* Live CSS code */
+            codeOutput.textContent =
+                '.my-element {\n' +
+                '    box-sizing: ' + boxSizing + ';\n' +
+                '    width: '  + vw  + 'px;\n' +
+                '    height: ' + vh  + 'px;\n' +
+                '    padding: ' + vpt + 'px ' + vpr + 'px ' + vpb + 'px ' + vpl + 'px;\n' +
+                '    border: '  + vbw + 'px solid #333;\n' +
+                '    margin: '  + vmt + 'px ' + vmr + 'px ' + vmb + 'px ' + vml + 'px;\n' +
+                '}\n' +
+                '/* Rendered size (border-edge): ' + totalW + ' x ' + totalH + ' px */\n' +
+                '/* Content area: ' + contentW + ' x ' + contentH + ' px */';
+        }
+
+        /* ── Event binding ───────────────────────────── */
+        sliders.forEach(function (slider) {
+            slider.addEventListener('input', update);
+        });
+        bb.addEventListener('change', update);
+
+        /* ── Initial render ──────────────────────────── */
+        update();
+
+    })();
+    </script>
+
+    <!-- ====================================================
+         JavaScript – CSS Position Explorer
+    ===================================================== -->
+    <script>
+    (function () {
+
+        /* ── References ──────────────────────────────── */
+        var posType    = document.getElementById('pos-type');
+        var topSlider  = document.getElementById('pos-top');
+        var rightSlider = document.getElementById('pos-right');
+        var bottomSlider = document.getElementById('pos-bottom');
+        var leftSlider  = document.getElementById('pos-left');
+        var topVal     = document.getElementById('pos-top-val');
+        var rightVal   = document.getElementById('pos-right-val');
+        var bottomVal  = document.getElementById('pos-bottom-val');
+        var leftVal    = document.getElementById('pos-left-val');
+        var target     = document.getElementById('pos-target');
+        var container  = document.getElementById('pos-container');
+        var originInfo = document.getElementById('pos-origin-info');
+        var originMark = document.getElementById('pos-origin-marker');
+        var codeOutput = document.getElementById('pos-code-output');
+        var noteEl     = document.getElementById('pos-note');
+        var filler     = document.getElementById('pos-scroll-filler');
+
+        var sliders = [topSlider, rightSlider, bottomSlider, leftSlider];
+        var outputs = [topVal, rightVal, bottomVal, leftVal];
+
+        /* ── Origin messages per position value ──────── */
+        var origins = {
+            'static':   'Offsets are ignored with position: static.',
+            'relative': 'Origin: element\'s own normal position in the document flow.',
+            'absolute': 'Origin: the grey container (nearest positioned ancestor with position: relative).',
+            'fixed':    'Origin: the browser viewport (element leaves the flow entirely).',
+            'sticky':   'Sticks when reaching the offset threshold during scroll inside the container.'
+        };
+
+        /* ── Main update function ────────────────────── */
+        function updatePosition() {
+            var type = posType.value;
+            var vt = Number(topSlider.value);
+            var vr = Number(rightSlider.value);
+            var vb = Number(bottomSlider.value);
+            var vl = Number(leftSlider.value);
+
+            /* Update output labels */
+            topVal.textContent    = vt + ' px';
+            rightVal.textContent  = vr + ' px';
+            bottomVal.textContent = vb + ' px';
+            leftVal.textContent   = vl + ' px';
+
+            /* Update origin info */
+            originInfo.textContent = origins[type] || '';
+
+            /* ── Slider enable/disable logic ─────────── */
+            var allDisabled = (type === 'static');
+            var stickyMode  = (type === 'sticky');
+
+            sliders.forEach(function (s, i) {
+                /* For sticky: only top is useful */
+                if (stickyMode) {
+                    s.disabled = (i !== 0); /* index 0 = top */
+                } else {
+                    s.disabled = allDisabled;
+                }
+            });
+
+            /* ── Apply position to target ────────────── */
+            /* For fixed: use absolute as visual approximation inside container */
+            var appliedType = (type === 'fixed') ? 'absolute' : type;
+            target.style.position = appliedType;
+
+            if (type === 'static') {
+                target.style.top    = 'auto';
+                target.style.right  = 'auto';
+                target.style.bottom = 'auto';
+                target.style.left   = 'auto';
+            } else if (type === 'sticky') {
+                target.style.top    = vt + 'px';
+                target.style.right  = 'auto';
+                target.style.bottom = 'auto';
+                target.style.left   = 'auto';
+            } else {
+                target.style.top    = vt + 'px';
+                target.style.right  = vr + 'px';
+                target.style.bottom = vb + 'px';
+                target.style.left   = vl + 'px';
+            }
+
+            /* ── Origin marker visibility ────────────── */
+            var showMarker = (type === 'absolute' || type === 'fixed');
+            originMark.style.display = showMarker ? 'block' : 'none';
+
+            /* ── Scroll filler for sticky demo ───────── */
+            if (type === 'sticky') {
+                container.style.overflow = 'auto';
+                container.style.maxHeight = '350px';
+                filler.style.display = 'block';
+            } else {
+                container.style.overflow = 'visible';
+                container.style.maxHeight = 'none';
+                filler.style.display = 'none';
+            }
+
+            /* ── Note for fixed ──────────────────────── */
+            if (type === 'fixed') {
+                noteEl.textContent = 'Note: In a real page, position: fixed positions the element relative to the viewport. Here we approximate it with absolute inside the container for demo purposes.';
+                noteEl.style.display = 'block';
+            } else if (type === 'sticky') {
+                noteEl.textContent = 'Tip: Scroll inside the grey container above to see the Target stick at the top offset.';
+                noteEl.style.display = 'block';
+            } else {
+                noteEl.style.display = 'none';
+            }
+
+            /* ── Live CSS code ───────────────────────── */
+            var code = '.target {\n    position: ' + type + ';';
+            if (type !== 'static') {
+                if (type === 'sticky') {
+                    code += '\n    top: ' + vt + 'px;';
+                } else {
+                    code += '\n    top: '    + vt + 'px;';
+                    code += '\n    right: '  + vr + 'px;';
+                    code += '\n    bottom: ' + vb + 'px;';
+                    code += '\n    left: '   + vl + 'px;';
+                }
+            }
+            code += '\n}';
+
+            if (type === 'absolute' || type === 'fixed') {
+                code += '\n\n/* The positioned ancestor needs: */\n.container {\n    position: relative;\n}';
+            }
+
+            codeOutput.textContent = code;
+        }
+
+        /* ── Event binding ───────────────────────────── */
+        posType.addEventListener('change', updatePosition);
+        sliders.forEach(function (s) {
+            s.addEventListener('input', updatePosition);
+        });
+
+        /* ── Initial render ──────────────────────────── */
+        updatePosition();
+
+    })();
+    </script>
+
+</body>
+</html>
