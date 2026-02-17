@@ -1639,3 +1639,308 @@ form input.error {
         flex: unset;
     }
 }
+
+/* ============================================================
+   FORMS DEMO STYLES
+   Used by: forms.html
+   ============================================================ */
+
+/* ── Form grid (2-column label / input layout) ──────────── */
+.fm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.fm-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.fm-group--wide {
+    grid-column: 1 / -1;
+}
+
+/* ── Labels ──────────────────────────────────────────────── */
+.fm-label {
+    font-size: 0.88rem;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.fm-label code {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    font-size: 0.82rem;
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
+/* ── Inputs ──────────────────────────────────────────────── */
+.fm-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.fm-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+    outline: none;
+}
+
+.fm-input--small {
+    max-width: 80px;
+}
+
+/* ── Textarea fixed resize ───────────────────────────────── */
+.fm-textarea--fixed {
+    resize: none;
+}
+
+/* ── Hint text ───────────────────────────────────────────── */
+.fm-hint {
+    color: #888;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.fm-hint code {
+    background-color: #f0f0f0;
+    font-size: 0.75rem;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* ── Code snippet (for hidden input demo) ────────────────── */
+.fm-code-snippet {
+    background-color: #263238;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-family: monospace;
+    font-size: 0.8rem;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0.5rem 0.75rem;
+}
+
+/* ── Checkbox / Radio groups ─────────────────────────────── */
+.fm-check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.fm-check {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 0.88rem;
+    gap: 0.3rem;
+}
+
+/* ── Range slider row ────────────────────────────────────── */
+.fm-range-row {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.fm-range-row input[type='range'] {
+    flex: 1;
+}
+
+.fm-range-row output {
+    font-family: monospace;
+    font-size: 0.9rem;
+    min-width: 2.5rem;
+    text-align: right;
+}
+
+/* ── Color picker row ────────────────────────────────────── */
+.fm-color-row {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.fm-color-preview {
+    background-color: #4caf50;
+    border-radius: 4px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 0.82rem;
+    padding: 0.35rem 0.75rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.fm-btn {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0.55rem 1.2rem;
+    transition: background-color 0.2s;
+}
+
+.fm-btn--submit {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.fm-btn--submit:hover {
+    background-color: #388e3c;
+}
+
+.fm-btn--reset {
+    background-color: #ff9800;
+    color: #fff;
+}
+
+.fm-btn--reset:hover {
+    background-color: #e65100;
+}
+
+.fm-btn--button {
+    background-color: #1565c0;
+    color: #fff;
+}
+
+.fm-btn--button:hover {
+    background-color: #0d47a1;
+}
+
+/* ── Fieldset inside the form ────────────────────────────── */
+.fm-fieldset {
+    border: 1px solid #c8e6c9;
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.fm-fieldset legend {
+    color: #2e7d32;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0 0.4rem;
+}
+
+.fm-inline-label {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 140px;
+    font-size: 0.85rem;
+    gap: 0.3rem;
+}
+
+/* ── Calculator row (output demo) ────────────────────────── */
+.fm-calc-row {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.fm-calc-row output {
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    color: #2e7d32;
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.4rem 0.75rem;
+}
+
+/* ── Meter / Progress rows ───────────────────────────────── */
+.fm-meter-row {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.82rem;
+    color: #555;
+}
+
+.fm-meter-row meter,
+.fm-meter-row progress {
+    flex: 0 0 200px;
+    height: 20px;
+}
+
+.fm-meter-row code {
+    background-color: #f0f0f0;
+    font-size: 0.75rem;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* ── Validation form ─────────────────────────────────────── */
+.fm-validation-form {
+    margin: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .fm-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   HUB / LANDING PAGE STYLES
+   Used by: index.html
+   ============================================================ */
+
+.hub-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 2rem 0;
+}
+
+.hub-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.hub-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+
+.hub-card__icon {
+    font-size: 2rem;
+}
+
+.hub-card__title {
+    color: #2e7d32;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.hub-card__desc {
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+}

@@ -1,234 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscript Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HTML Forms – Native Components Showcase</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Inscription</h1>
-    <form method="POST" action="/inscription">
-        <div>
-            <label for="nom">Nom complet:</label>
-            <input type="text" id="nom" name="nom" required>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="password">Mot de passe:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div>
-            <label for="confirm_password">Confirmer le mot de passe:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
-        </div>
-        <div>
-            <label for="pays">Pays d'origine:</label>
-            <select id="pays" name="pays" required>
-                <option value="">-- Sélectionnez votre pays --</option>
-                <option value="AFG">Afghanistan</option>
-                <option value="ZAF">Afrique du Sud</option>
-                <option value="ALB">Albanie</option>
-                <option value="DZA">Algérie</option>
-                <option value="DEU">Allemagne</option>
-                <option value="AND">Andorre</option>
-                <option value="AGO">Angola</option>
-                <option value="ATG">Antigua-et-Barbuda</option>
-                <option value="SAU">Arabie saoudite</option>
-                <option value="ARG">Argentine</option>
-                <option value="ARM">Arménie</option>
-                <option value="AUS">Australie</option>
-                <option value="AUT">Autriche</option>
-                <option value="AZE">Azerbaïdjan</option>
-                <option value="BHS">Bahamas</option>
-                <option value="BHR">Bahreïn</option>
-                <option value="BGD">Bangladesh</option>
-                <option value="BRB">Barbade</option>
-                <option value="BLR">Biélorussie</option>
-                <option value="BEL">Belgique</option>
-                <option value="BLZ">Belize</option>
-                <option value="BEN">Bénin</option>
-                <option value="BTN">Bhoutan</option>
-                <option value="BOL">Bolivie</option>
-                <option value="BIH">Bosnie-Herzégovine</option>
-                <option value="BWA">Botswana</option>
-                <option value="BRA">Brésil</option>
-                <option value="BRN">Brunéi</option>
-                <option value="BGR">Bulgarie</option>
-                <option value="BFA">Burkina Faso</option>
-                <option value="BDI">Burundi</option>
-                <option value="CPV">Cabo Verde</option>
-                <option value="KHM">Cambodge</option>
-                <option value="CMR">Cameroun</option>
-                <option value="CAN">Canada</option>
-                <option value="CAF">République centrafricaine</option>
-                <option value="CHL">Chili</option>
-                <option value="CHN">Chine</option>
-                <option value="CYP">Chypre</option>
-                <option value="COL">Colombie</option>
-                <option value="COM">Comores</option>
-                <option value="COD">Congo (RDC)</option>
-                <option value="COG">Congo (République)</option>
-                <option value="PRK">Corée du Nord</option>
-                <option value="KOR">Corée du Sud</option>
-                <option value="CRI">Costa Rica</option>
-                <option value="CIV">Côte d'Ivoire</option>
-                <option value="HRV">Croatie</option>
-                <option value="CUB">Cuba</option>
-                <option value="DNK">Danemark</option>
-                <option value="DJI">Djibouti</option>
-                <option value="DMA">Dominique</option>
-                <option value="EGY">Égypte</option>
-                <option value="ARE">Émirats arabes unis</option>
-                <option value="ECU">Équateur</option>
-                <option value="ERI">Érythrée</option>
-                <option value="ESP">Espagne</option>
-                <option value="SWZ">Eswatini</option>
-                <option value="EST">Estonie</option>
-                <option value="USA">États-Unis</option>
-                <option value="ETH">Éthiopie</option>
-                <option value="FJI">Fidji</option>
-                <option value="FIN">Finlande</option>
-                <option value="FRA">France</option>
-                <option value="GAB">Gabon</option>
-                <option value="GMB">Gambie</option>
-                <option value="GEO">Géorgie</option>
-                <option value="GHA">Ghana</option>
-                <option value="GRC">Grèce</option>
-                <option value="GRD">Grenade</option>
-                <option value="GTM">Guatemala</option>
-                <option value="GIN">Guinée</option>
-                <option value="GNB">Guinée-Bissau</option>
-                <option value="GNQ">Guinée équatoriale</option>
-                <option value="GUY">Guyana</option>
-                <option value="HTI">Haïti</option>
-                <option value="HND">Honduras</option>
-                <option value="HUN">Hongrie</option>
-                <option value="IND">Inde</option>
-                <option value="IDN">Indonésie</option>
-                <option value="IRQ">Irak</option>
-                <option value="IRN">Iran</option>
-                <option value="IRL">Irlande</option>
-                <option value="ISL">Islande</option>
-                <option value="ISR">Israël</option>
-                <option value="ITA">Italie</option>
-                <option value="JAM">Jamaïque</option>
-                <option value="JPN">Japon</option>
-                <option value="JOR">Jordanie</option>
-                <option value="KAZ">Kazakhstan</option>
-                <option value="KEN">Kenya</option>
-                <option value="KGZ">Kirghizistan</option>
-                <option value="KIR">Kiribati</option>
-                <option value="KWT">Koweït</option>
-                <option value="LAO">Laos</option>
-                <option value="LSO">Lesotho</option>
-                <option value="LVA">Lettonie</option>
-                <option value="LBN">Liban</option>
-                <option value="LBR">Libéria</option>
-                <option value="LBY">Libye</option>
-                <option value="LIE">Liechtenstein</option>
-                <option value="LTU">Lituanie</option>
-                <option value="LUX">Luxembourg</option>
-                <option value="MKD">Macédoine du Nord</option>
-                <option value="MDG">Madagascar</option>
-                <option value="MYS">Malaisie</option>
-                <option value="MWI">Malawi</option>
-                <option value="MDV">Maldives</option>
-                <option value="MLI">Mali</option>
-                <option value="MLT">Malte</option>
-                <option value="MAR">Maroc</option>
-                <option value="MHL">Îles Marshall</option>
-                <option value="MUS">Maurice</option>
-                <option value="MRT">Mauritanie</option>
-                <option value="MEX">Mexique</option>
-                <option value="FSM">Micronésie</option>
-                <option value="MDA">Moldavie</option>
-                <option value="MCO">Monaco</option>
-                <option value="MNG">Mongolie</option>
-                <option value="MNE">Monténégro</option>
-                <option value="MOZ">Mozambique</option>
-                <option value="MMR">Myanmar</option>
-                <option value="NAM">Namibie</option>
-                <option value="NRU">Nauru</option>
-                <option value="NPL">Népal</option>
-                <option value="NIC">Nicaragua</option>
-                <option value="NER">Niger</option>
-                <option value="NGA">Nigéria</option>
-                <option value="NOR">Norvège</option>
-                <option value="NZL">Nouvelle-Zélande</option>
-                <option value="OMN">Oman</option>
-                <option value="UGA">Ouganda</option>
-                <option value="UZB">Ouzbékistan</option>
-                <option value="PAK">Pakistan</option>
-                <option value="PLW">Palaos</option>
-                <option value="PSE">Palestine</option>
-                <option value="PAN">Panama</option>
-                <option value="PNG">Papouasie-Nouvelle-Guinée</option>
-                <option value="PRY">Paraguay</option>
-                <option value="NLD">Pays-Bas</option>
-                <option value="PER">Pérou</option>
-                <option value="PHL">Philippines</option>
-                <option value="POL">Pologne</option>
-                <option value="PRT">Portugal</option>
-                <option value="QAT">Qatar</option>
-                <option value="DOM">République dominicaine</option>
-                <option value="ROU">Roumanie</option>
-                <option value="GBR">Royaume-Uni</option>
-                <option value="RUS">Russie</option>
-                <option value="RWA">Rwanda</option>
-                <option value="KNA">Saint-Christophe-et-Niévès</option>
-                <option value="SMR">Saint-Marin</option>
-                <option value="VCT">Saint-Vincent-et-les-Grenadines</option>
-                <option value="LCA">Sainte-Lucie</option>
-                <option value="SLB">Îles Salomon</option>
-                <option value="WSM">Samoa</option>
-                <option value="STP">Sao Tomé-et-Príncipe</option>
-                <option value="SEN">Sénégal</option>
-                <option value="SRB">Serbie</option>
-                <option value="SYC">Seychelles</option>
-                <option value="SLE">Sierra Leone</option>
-                <option value="SGP">Singapour</option>
-                <option value="SVK">Slovaquie</option>
-                <option value="SVN">Slovénie</option>
-                <option value="SOM">Somalie</option>
-                <option value="SDN">Soudan</option>
-                <option value="SSD">Soudan du Sud</option>
-                <option value="LKA">Sri Lanka</option>
-                <option value="SWE">Suède</option>
-                <option value="CHE">Suisse</option>
-                <option value="SUR">Suriname</option>
-                <option value="SYR">Syrie</option>
-                <option value="TJK">Tadjikistan</option>
-                <option value="TZA">Tanzanie</option>
-                <option value="TCD">Tchad</option>
-                <option value="CZE">Tchéquie</option>
-                <option value="THA">Thaïlande</option>
-                <option value="TLS">Timor oriental</option>
-                <option value="TGO">Togo</option>
-                <option value="TON">Tonga</option>
-                <option value="TTO">Trinité-et-Tobago</option>
-                <option value="TUN">Tunisie</option>
-                <option value="TKM">Turkménistan</option>
-                <option value="TUR">Turquie</option>
-                <option value="TUV">Tuvalu</option>
-                <option value="UKR">Ukraine</option>
-                <option value="URY">Uruguay</option>
-                <option value="VUT">Vanuatu</option>
-                <option value="VAT">Vatican</option>
-                <option value="VEN">Venezuela</option>
-                <option value="VNM">Viêt Nam</option>
-                <option value="YEM">Yémen</option>
-                <option value="ZMB">Zambie</option>
-                <option value="ZWE">Zimbabwe</option>
-            </select>
-        </div>
-        <button type="submit">S'inscrire</button>
-    </form>
 
-    <p>The chemical formula for water is H<sub>2</sub>O.</p>
+    <!-- ====================================================
+         Page header
+    ===================================================== -->
+    <header class="page-header">
+        <h1>HTML Forms</h1>
+        <p>A complete showcase of every native HTML form element and input type</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Section navigation">
+        <span class="grid-nav__logo">&#9998; Forms</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="index.html">&#8962; Home</a></li>
+            <li><a class="grid-nav__link" href="#demo-text">Text</a></li>
+            <li><a class="grid-nav__link" href="#demo-datetime">Date/Time</a></li>
+            <li><a class="grid-nav__link" href="#demo-selection">Selection</a></li>
+            <li><a class="grid-nav__link" href="#demo-range">Range</a></li>
+            <li><a class="grid-nav__link" href="#demo-file">File</a></li>
+            <li><a class="grid-nav__link" href="#demo-textarea">Textarea</a></li>
+            <li><a class="grid-nav__link" href="#demo-buttons">Buttons</a></li>
+            <li><a class="grid-nav__link" href="#demo-grouping">Grouping</a></li>
+            <li><a class="grid-nav__link" href="#demo-validation">Validation</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ================================================
+             Section 1 – Text-based inputs
+        ================================================= -->
+        <section id="demo-text" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 1 — Text Inputs</h2>
+                <p>
+                    All text-based <code>&lt;input&gt;</code> types.
+                    Each renders a slightly different keyboard or UI depending on the browser.
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-text">
+                        <code>type="text"</code> — Generic single-line text
+                    </label>
+                    <input type="text" id="fm-text" class="fm-input" placeholder="Your name">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-email">
+                        <code>type="email"</code> — Email address (validated by browser)
+                    </label>
+                    <input type="email" id="fm-email" class="fm-input" placeholder="user@example.com">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-password">
+                        <code>type="password"</code> — Masked characters
+                    </label>
+                    <input type="password" id="fm-password" class="fm-input" placeholder="Enter password">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-tel">
+                        <code>type="tel"</code> — Phone number (numeric keyboard on mobile)
+                    </label>
+                    <input type="tel" id="fm-tel" class="fm-input" placeholder="+41 27 123 45 67">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-url">
+                        <code>type="url"</code> — URL (browser validates the format)
+                    </label>
+                    <input type="url" id="fm-url" class="fm-input" placeholder="https://example.com">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-search">
+                        <code>type="search"</code> — Search box (may show a clear button)
+                    </label>
+                    <input type="search" id="fm-search" class="fm-input" placeholder="Search...">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-number">
+                        <code>type="number"</code> — Numeric with spinner (min/max/step)
+                    </label>
+                    <input type="number" id="fm-number" class="fm-input" min="0" max="100" step="5" value="25">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label">
+                        <code>type="hidden"</code> — Not visible to the user
+                    </label>
+                    <pre class="fm-code-snippet">&lt;input type="hidden" name="csrf_token" value="abc123"&gt;</pre>
+                    <p class="fm-hint">Hidden fields carry data (e.g., CSRF tokens) without any visual UI.</p>
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong>Why different types matter:</strong> Each type provides built-in browser validation,
+                appropriate mobile keyboards, and accessibility hints.
+                <code>type="email"</code> on mobile shows the <strong>@ key</strong>;
+                <code>type="tel"</code> opens the <strong>numeric dial pad</strong>.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 2 – Date & Time inputs
+        ================================================= -->
+        <section id="demo-datetime" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 2 — Date &amp; Time</h2>
+                <p>
+                    Native date/time pickers provided by the browser.
+                    No JavaScript library required.
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-date">
+                        <code>type="date"</code> — Calendar date
+                    </label>
+                    <input type="date" id="fm-date" class="fm-input">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-time">
+                        <code>type="time"</code> — Time picker
+                    </label>
+                    <input type="time" id="fm-time" class="fm-input">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-datetime-local">
+                        <code>type="datetime-local"</code> — Date + time combined
+                    </label>
+                    <input type="datetime-local" id="fm-datetime-local" class="fm-input">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-month">
+                        <code>type="month"</code> — Month and year
+                    </label>
+                    <input type="month" id="fm-month" class="fm-input">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-week">
+                        <code>type="week"</code> — Week and year
+                    </label>
+                    <input type="week" id="fm-week" class="fm-input">
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong>Browser support:</strong> Date/time inputs have excellent support on modern browsers.
+                On older browsers, they gracefully degrade to a plain <code>type="text"</code> input.
+                Always validate dates on the <strong>server side</strong> as well.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 3 – Selection controls
+        ================================================= -->
+        <section id="demo-selection" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 3 — Selection Controls</h2>
+                <p>
+                    <code>checkbox</code> &nbsp;|&nbsp;
+                    <code>radio</code> &nbsp;|&nbsp;
+                    <code>&lt;select&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;datalist&gt;</code>
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <!-- Checkboxes -->
+                <div class="fm-group">
+                    <span class="fm-label"><code>type="checkbox"</code> — Multiple selections</span>
+                    <div class="fm-check-group">
+                        <label class="fm-check">
+                            <input type="checkbox" name="lang" value="html" checked>
+                            HTML
+                        </label>
+                        <label class="fm-check">
+                            <input type="checkbox" name="lang" value="css">
+                            CSS
+                        </label>
+                        <label class="fm-check">
+                            <input type="checkbox" name="lang" value="js">
+                            JavaScript
+                        </label>
+                        <label class="fm-check">
+                            <input type="checkbox" name="lang" value="react">
+                            React
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Radio buttons -->
+                <div class="fm-group">
+                    <span class="fm-label"><code>type="radio"</code> — Single selection (same <code>name</code>)</span>
+                    <div class="fm-check-group">
+                        <label class="fm-check">
+                            <input type="radio" name="level" value="beginner" checked>
+                            Beginner
+                        </label>
+                        <label class="fm-check">
+                            <input type="radio" name="level" value="intermediate">
+                            Intermediate
+                        </label>
+                        <label class="fm-check">
+                            <input type="radio" name="level" value="advanced">
+                            Advanced
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Select -->
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-select">
+                        <code>&lt;select&gt;</code> — Dropdown (single)
+                    </label>
+                    <select id="fm-select" class="fm-input">
+                        <option value="">-- Choose a framework --</option>
+                        <option value="react">React</option>
+                        <option value="vue">Vue</option>
+                        <option value="angular">Angular</option>
+                        <option value="svelte">Svelte</option>
+                    </select>
+                </div>
+
+                <!-- Select multiple -->
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-select-multi">
+                        <code>&lt;select multiple&gt;</code> — Multi-select listbox (Ctrl/Cmd + click)
+                    </label>
+                    <select id="fm-select-multi" class="fm-input" multiple size="4">
+                        <optgroup label="Front-end">
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="js">JavaScript</option>
+                        </optgroup>
+                        <optgroup label="Back-end">
+                            <option value="java">Java</option>
+                            <option value="python">Python</option>
+                            <option value="node">Node.js</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- Datalist -->
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-datalist">
+                        <code>&lt;datalist&gt;</code> — Auto-complete suggestions
+                    </label>
+                    <input type="text" id="fm-datalist" class="fm-input" list="browsers-list" placeholder="Start typing...">
+                    <datalist id="browsers-list">
+                        <option value="Chrome"></option>
+                        <option value="Firefox"></option>
+                        <option value="Safari"></option>
+                        <option value="Edge"></option>
+                        <option value="Opera"></option>
+                        <option value="Brave"></option>
+                    </datalist>
+                    <p class="fm-hint">The browser suggests options from the <code>&lt;datalist&gt;</code>, but the user can still type any value.</p>
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong>Checkboxes vs Radios:</strong> Checkboxes allow <strong>multiple</strong> selections
+                (independent toggles). Radios allow exactly <strong>one</strong> selection per group
+                (all share the same <code>name</code> attribute). <code>&lt;select multiple&gt;</code>
+                supports <code>&lt;optgroup&gt;</code> for categorized options.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 4 – Range & Color
+        ================================================= -->
+        <section id="demo-range" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 4 — Range &amp; Color</h2>
+                <p>
+                    <code>type="range"</code> &nbsp;|&nbsp;
+                    <code>type="color"</code>
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-range">
+                        <code>type="range"</code> — Slider (min/max/step)
+                    </label>
+                    <div class="fm-range-row">
+                        <input type="range" id="fm-range" min="0" max="100" step="1" value="50">
+                        <output id="fm-range-val">50</output>
+                    </div>
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-color">
+                        <code>type="color"</code> — Color picker
+                    </label>
+                    <div class="fm-color-row">
+                        <input type="color" id="fm-color" value="#4caf50">
+                        <span class="fm-color-preview" id="fm-color-preview">#4caf50</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong>The <code>&lt;output&gt;</code> element:</strong> Pair a range slider with
+                <code>&lt;output&gt;</code> to show the current value. This is more semantic than using
+                a <code>&lt;span&gt;</code> and is specifically designed for computed or user-driven results.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 5 – File & Media
+        ================================================= -->
+        <section id="demo-file" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 5 — File Upload</h2>
+                <p>
+                    <code>type="file"</code> &nbsp;|&nbsp;
+                    <code>multiple</code> &nbsp;|&nbsp;
+                    <code>accept</code>
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-file">
+                        <code>type="file"</code> — Single file
+                    </label>
+                    <input type="file" id="fm-file" class="fm-input">
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-file-multi">
+                        <code>type="file" multiple accept="image/*"</code> — Multiple images only
+                    </label>
+                    <input type="file" id="fm-file-multi" class="fm-input" multiple accept="image/*">
+                    <p class="fm-hint">The <code>accept</code> attribute filters the file dialog but is <strong>not a security measure</strong> &mdash; always validate on the server.</p>
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong>Security reminder:</strong> The <code>accept</code> attribute is a <strong>UI hint</strong> only.
+                A malicious user can bypass it (e.g., via DevTools or cURL). Server-side file type validation
+                and size limits are <strong>mandatory</strong>.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 6 – Textarea
+        ================================================= -->
+        <section id="demo-textarea" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 6 — Text Areas</h2>
+                <p>
+                    <code>&lt;textarea&gt;</code> for multi-line text input
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-textarea">
+                        Default <code>&lt;textarea rows="4" cols="50"&gt;</code> — Resizable
+                    </label>
+                    <textarea id="fm-textarea" class="fm-input" rows="4" cols="50" placeholder="Write something here..."></textarea>
+                </div>
+
+                <div class="fm-group">
+                    <label class="fm-label" for="fm-textarea-fixed">
+                        Fixed size — <code>resize: none</code> via CSS
+                    </label>
+                    <textarea id="fm-textarea-fixed" class="fm-input fm-textarea--fixed" rows="4" cols="50" placeholder="This textarea cannot be resized by the user."></textarea>
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong>Resize control:</strong> By default, most browsers let users resize a
+                <code>&lt;textarea&gt;</code>. You can control this with the CSS
+                <code>resize</code> property: <code>none</code>, <code>vertical</code>,
+                <code>horizontal</code>, or <code>both</code>.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 7 – Buttons & Submit
+        ================================================= -->
+        <section id="demo-buttons" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 7 — Buttons &amp; Submit</h2>
+                <p>
+                    <code>&lt;button&gt;</code> types &nbsp;|&nbsp;
+                    <code>&lt;input type="submit"&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;input type="reset"&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;input type="image"&gt;</code>
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;button type="submit"&gt;</code></span>
+                    <button type="submit" class="fm-btn fm-btn--submit">Submit</button>
+                    <p class="fm-hint">Default inside a <code>&lt;form&gt;</code>. Triggers form submission and validation.</p>
+                </div>
+
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;button type="reset"&gt;</code></span>
+                    <button type="reset" class="fm-btn fm-btn--reset">Reset</button>
+                    <p class="fm-hint">Resets all form fields to their initial values.</p>
+                </div>
+
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;button type="button"&gt;</code></span>
+                    <button type="button" class="fm-btn fm-btn--button">Generic Button</button>
+                    <p class="fm-hint">Does <strong>nothing</strong> by default. Requires JavaScript to add behavior.</p>
+                </div>
+
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;input type="submit"&gt;</code></span>
+                    <input type="submit" class="fm-btn" value="Input Submit">
+                    <p class="fm-hint">Same as <code>&lt;button type="submit"&gt;</code> but cannot contain HTML children.</p>
+                </div>
+
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;input type="reset"&gt;</code></span>
+                    <input type="reset" class="fm-btn" value="Input Reset">
+                </div>
+
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;input type="image"&gt;</code></span>
+                    <input type="image" src="https://picsum.photos/seed/btn/120/40" alt="Image submit" width="120" height="40">
+                    <p class="fm-hint">An image that acts as a submit button. Sends click coordinates (x, y) with the form data.</p>
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong><code>&lt;button&gt;</code> vs <code>&lt;input&gt;</code>:</strong>
+                Prefer <code>&lt;button&gt;</code> because it can contain <strong>HTML content</strong>
+                (icons, spans, etc.), while <code>&lt;input type="submit"&gt;</code> only accepts a
+                plain text <code>value</code>. Always specify <code>type</code> explicitly &mdash;
+                the default is <code>submit</code> inside a form, which may cause unintended submissions.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 8 – Grouping & Accessibility
+        ================================================= -->
+        <section id="demo-grouping" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 8 — Grouping &amp; Accessibility</h2>
+                <p>
+                    <code>&lt;fieldset&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;legend&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;label&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;output&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;meter&gt;</code> &nbsp;|&nbsp;
+                    <code>&lt;progress&gt;</code>
+                </p>
+            </div>
+
+            <div class="fm-grid">
+                <!-- Fieldset + Legend -->
+                <div class="fm-group fm-group--wide">
+                    <span class="fm-label"><code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> — Grouping related fields</span>
+                    <fieldset class="fm-fieldset">
+                        <legend>Personal Information</legend>
+                        <label class="fm-inline-label">
+                            First name
+                            <input type="text" class="fm-input" placeholder="Jean">
+                        </label>
+                        <label class="fm-inline-label">
+                            Last name
+                            <input type="text" class="fm-input" placeholder="Dupont">
+                        </label>
+                    </fieldset>
+                </div>
+
+                <!-- Label: explicit vs implicit -->
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;label for="..."&gt;</code> — Explicit association</span>
+                    <label for="fm-explicit">Click this label:</label>
+                    <input type="text" id="fm-explicit" class="fm-input" placeholder="Focus jumps here">
+                    <p class="fm-hint">The <code>for</code> attribute matches the input's <code>id</code>. Clicking the label focuses the input.</p>
+                </div>
+
+                <!-- Output -->
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;output&gt;</code> — Computed result</span>
+                    <div class="fm-calc-row">
+                        <input type="number" id="fm-calc-a" class="fm-input fm-input--small" value="10">
+                        <span>+</span>
+                        <input type="number" id="fm-calc-b" class="fm-input fm-input--small" value="20">
+                        <span>=</span>
+                        <output id="fm-calc-result">30</output>
+                    </div>
+                </div>
+
+                <!-- Meter -->
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;meter&gt;</code> — Gauge (disk usage, score)</span>
+                    <div class="fm-meter-row">
+                        <meter min="0" max="100" low="25" high="75" optimum="50" value="68">68%</meter>
+                        <span>68 / 100</span>
+                    </div>
+                    <div class="fm-meter-row">
+                        <meter min="0" max="100" low="25" high="75" optimum="50" value="15">15%</meter>
+                        <span>15 / 100 (low)</span>
+                    </div>
+                    <div class="fm-meter-row">
+                        <meter min="0" max="100" low="25" high="75" optimum="50" value="92">92%</meter>
+                        <span>92 / 100 (high)</span>
+                    </div>
+                </div>
+
+                <!-- Progress -->
+                <div class="fm-group">
+                    <span class="fm-label"><code>&lt;progress&gt;</code> — Progress bar</span>
+                    <div class="fm-meter-row">
+                        <progress max="100" value="65">65%</progress>
+                        <span>Determinate (65%)</span>
+                    </div>
+                    <div class="fm-meter-row">
+                        <progress>Loading...</progress>
+                        <span>Indeterminate (no <code>value</code>)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-why">
+                <strong>Accessibility:</strong> Screen readers use <code>&lt;fieldset&gt;</code> and
+                <code>&lt;legend&gt;</code> to group related fields. <code>&lt;label&gt;</code> association
+                (via <code>for</code> or nesting) is <strong>essential</strong> &mdash; without it,
+                assistive technologies cannot link the label text to its input.
+            </div>
+        </section>
+
+        <!-- ================================================
+             Section 9 – Validation Attributes
+        ================================================= -->
+        <section id="demo-validation" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 9 — Validation Attributes</h2>
+                <p>
+                    <code>required</code> &nbsp;|&nbsp;
+                    <code>minlength</code> / <code>maxlength</code> &nbsp;|&nbsp;
+                    <code>min</code> / <code>max</code> &nbsp;|&nbsp;
+                    <code>pattern</code> &nbsp;|&nbsp;
+                    <code>readonly</code> &nbsp;|&nbsp;
+                    <code>disabled</code>
+                </p>
+            </div>
+
+            <!-- This form uses native browser validation (no JS) -->
+            <form class="fm-validation-form" novalidate="false">
+                <div class="fm-grid">
+                    <div class="fm-group">
+                        <label class="fm-label" for="fm-v-required">
+                            <code>required</code> — Cannot be empty
+                        </label>
+                        <input type="text" id="fm-v-required" class="fm-input" required placeholder="This field is required">
+                    </div>
+
+                    <div class="fm-group">
+                        <label class="fm-label" for="fm-v-minmax-len">
+                            <code>minlength="3" maxlength="10"</code> — Length constraints
+                        </label>
+                        <input type="text" id="fm-v-minmax-len" class="fm-input" minlength="3" maxlength="10" placeholder="3 to 10 characters">
+                    </div>
+
+                    <div class="fm-group">
+                        <label class="fm-label" for="fm-v-minmax">
+                            <code>min="1" max="100" step="10"</code> — Numeric constraints
+                        </label>
+                        <input type="number" id="fm-v-minmax" class="fm-input" min="1" max="100" step="10" value="50">
+                    </div>
+
+                    <div class="fm-group">
+                        <label class="fm-label" for="fm-v-pattern">
+                            <code>pattern="[A-Z]{2}[0-9]{3}"</code> — Regex (e.g., VS123)
+                        </label>
+                        <input type="text" id="fm-v-pattern" class="fm-input" pattern="[A-Z]{2}[0-9]{3}" placeholder="VS123" title="Two uppercase letters followed by three digits">
+                    </div>
+
+                    <div class="fm-group">
+                        <label class="fm-label" for="fm-v-placeholder">
+                            <code>placeholder</code> + <code>autocomplete</code>
+                        </label>
+                        <input type="text" id="fm-v-placeholder" class="fm-input" placeholder="Hint text shown when empty" autocomplete="given-name">
+                        <p class="fm-hint"><code>autocomplete</code> tells the browser what kind of data to suggest (e.g., <code>given-name</code>, <code>email</code>, <code>postal-code</code>).</p>
+                    </div>
+
+                    <div class="fm-group">
+                        <label class="fm-label" for="fm-v-readonly">
+                            <code>readonly</code> — Readable but not editable
+                        </label>
+                        <input type="text" id="fm-v-readonly" class="fm-input" value="This value is read-only" readonly>
+                        <p class="fm-hint">Value is <strong>sent</strong> with the form but cannot be changed by the user.</p>
+                    </div>
+
+                    <div class="fm-group">
+                        <label class="fm-label" for="fm-v-disabled">
+                            <code>disabled</code> — Greyed out, not submitted
+                        </label>
+                        <input type="text" id="fm-v-disabled" class="fm-input" value="This field is disabled" disabled>
+                        <p class="fm-hint">Value is <strong>not sent</strong> with the form data. The field is completely inactive.</p>
+                    </div>
+
+                    <div class="fm-group fm-group--wide">
+                        <button type="submit" class="fm-btn fm-btn--submit">Test Validation (Submit)</button>
+                        <p class="fm-hint">Click to trigger native browser validation popups on the fields above.</p>
+                    </div>
+                </div>
+            </form>
+
+            <div class="demo-why">
+                <strong>Client-side vs Server-side validation:</strong>
+                HTML5 validation attributes provide <strong>instant user feedback</strong> but are
+                <strong>bypassable</strong> (via DevTools, cURL, or Postman).
+                They are a <strong>UX convenience</strong>, not a security measure.
+                Real validation <strong>must always happen on the server</strong>.
+                Remember the OWASP Top 10: never trust client input.
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            HTML Forms Demo &mdash; HES-SO Valais Web Development Course
+        </p>
+    </footer>
+
+    <!-- ====================================================
+         JavaScript – Live updates for range, color, calculator
+    ===================================================== -->
+    <script>
+    (function () {
+
+        /* ── Range slider ────────────────────────────── */
+        var range = document.getElementById('fm-range');
+        var rangeVal = document.getElementById('fm-range-val');
+        range.addEventListener('input', function () {
+            rangeVal.textContent = range.value;
+        });
+
+        /* ── Color picker ────────────────────────────── */
+        var color = document.getElementById('fm-color');
+        var colorPreview = document.getElementById('fm-color-preview');
+        color.addEventListener('input', function () {
+            colorPreview.textContent = color.value;
+            colorPreview.style.backgroundColor = color.value;
+            /* Adjust text color for readability */
+            var r = parseInt(color.value.slice(1, 3), 16);
+            var g = parseInt(color.value.slice(3, 5), 16);
+            var b = parseInt(color.value.slice(5, 7), 16);
+            var brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            colorPreview.style.color = brightness > 128 ? '#333' : '#fff';
+        });
+
+        /* ── Calculator (output demo) ────────────────── */
+        var calcA = document.getElementById('fm-calc-a');
+        var calcB = document.getElementById('fm-calc-b');
+        var calcResult = document.getElementById('fm-calc-result');
+        function updateCalc() {
+            calcResult.textContent = Number(calcA.value) + Number(calcB.value);
+        }
+        calcA.addEventListener('input', updateCalc);
+        calcB.addEventListener('input', updateCalc);
+
+    })();
+    </script>
+
 </body>
-<script src="js/forms.js"></script>
 </html>
