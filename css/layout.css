@@ -71,6 +71,123 @@
     padding: 0;
 }
 
+/* ── Main navigation – dropdown (all pages) ─────────────────── */
+.main-nav {
+    align-items: center;
+    background-color: var(--color-dark);
+    display: flex;
+    justify-content: left;
+    padding: 0.8rem 1.5rem;
+    position: relative;
+}
+
+.main-nav__logo {
+    color: var(--color-white);
+    font-weight: 700;
+    white-space: nowrap;
+    display: inline-block;
+    margin-right: 2em;
+}
+
+.main-nav__menu {
+    align-items: center;
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav__link {
+    border-radius: var(--radius-sm);
+    color: var(--color-white);
+    padding: 0.45rem 0.75rem;
+    text-decoration: none;
+    transition: background-color 0.15s;
+    white-space: nowrap;
+}
+
+.main-nav__link:hover,
+.main-nav__link:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-nav__item--has-dropdown {
+    position: relative;
+}
+
+.main-nav__toggle {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--color-white);
+    cursor: pointer;
+    display: flex;
+    font-size: inherit;
+    gap: 0.3rem;
+    padding: 0.45rem 0.75rem;
+    transition: background-color 0.15s;
+    white-space: nowrap;
+}
+
+.main-nav__toggle:hover,
+.main-nav__toggle:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-nav__toggle[aria-expanded='true'] {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.main-nav__arrow {
+    display: inline-block;
+    font-size: 0.6em;
+    transition: transform 0.2s;
+}
+
+.main-nav__toggle[aria-expanded='true'] .main-nav__arrow {
+    transform: rotate(180deg);
+}
+
+.main-nav__dropdown {
+    background-color: var(--color-dark);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    display: none;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    min-width: 220px;
+    padding: 0.4rem 0;
+    position: absolute;
+    top: calc(100% + 4px);
+    z-index: 100;
+}
+
+.main-nav__dropdown--open {
+    display: block;
+}
+
+.main-nav__dropdown-link {
+    color: var(--color-white);
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: background-color 0.15s;
+    white-space: nowrap;
+}
+
+.main-nav__dropdown-link:hover,
+.main-nav__dropdown-link:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.main-nav__dropdown-link--active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+}
+
 /* ── Hub grid (index.html) ──────────────────────────────────── */
 .hub-grid {
     display: grid;

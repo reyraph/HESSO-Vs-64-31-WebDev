@@ -25,13 +25,37 @@
     <!-- ====================================================
          Site navigation
     ===================================================== -->
-    <nav class="grid-nav" aria-label="Section navigation">
-        <span class="grid-nav__logo">&#9634; BoxModel</span>
-        <ul class="grid-nav__links" role="list">
-            <li><a class="grid-nav__link" href="index.html">&#8962; Home</a></li>
-            <li><a class="grid-nav__link" href="#demo-layers">Layers</a></li>
-            <li><a class="grid-nav__link" href="#demo-playground">Playground</a></li>
-            <li><a class="grid-nav__link" href="#demo-position">Position</a></li>
+    <nav class="main-nav" aria-label="Main navigation">
+        <span class="main-nav__logo">&#9634; Box Model</span>
+        <ul class="main-nav__menu" role="list">
+            <li>
+                <a class="main-nav__link" href="index.html">&#8962; Home</a>
+            </li>
+            <li class="main-nav__item--has-dropdown">
+                <button class="main-nav__toggle" type="button" aria-haspopup="true" aria-expanded="false">
+                    HTML <span class="main-nav__arrow" aria-hidden="true">&#9660;</span>
+                </button>
+                <ul class="main-nav__dropdown" role="list">
+                    <li><a class="main-nav__dropdown-link" href="basic.html">&#128196; Basics</a></li>
+                    <li><a class="main-nav__dropdown-link" href="formatting.html">&#182; Formatting &amp; Lists</a></li>
+                    <li><a class="main-nav__dropdown-link" href="imagesmedias.html">&#128444; Images &amp; Media</a></li>
+                    <li><a class="main-nav__dropdown-link" href="head.html">&#128279; Head, Meta &amp; Links</a></li>
+                    <li><a class="main-nav__dropdown-link" href="forms.html">&#9998; Forms</a></li>
+                    <li><a class="main-nav__dropdown-link" href="scripts.html">&#9889; Scripting in HTML</a></li>
+                </ul>
+            </li>
+            <li class="main-nav__item--has-dropdown">
+                <button class="main-nav__toggle" type="button" aria-haspopup="true" aria-expanded="false">
+                    CSS <span class="main-nav__arrow" aria-hidden="true">&#9660;</span>
+                </button>
+                <ul class="main-nav__dropdown" role="list">
+                    <li><a class="main-nav__dropdown-link" href="boxmodel.html">&#9634; Box Model</a></li>
+                    <li><a class="main-nav__dropdown-link" href="flexbox.html">&#9881; FlexBox</a></li>
+                    <li><a class="main-nav__dropdown-link" href="grid.html">&#9638; Grid</a></li>
+                    <li><a class="main-nav__dropdown-link" href="selectors.html">&#9783; CSS Selectors</a></li>
+                    <li><a class="main-nav__dropdown-link" href="typography.html">&#127344; Typography &amp; Functions</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 
@@ -362,6 +386,7 @@
     </footer>
 
     <script src="js/boxmodel.js"></script>
+    <script src="js/nav.js"></script>
 
 </body>
 </html>
