@@ -36,7 +36,7 @@ This collection of demo pages is designed to help students **learn by doing**. I
 
 ## Project structure
 
-```
+```text
 webdev/
 ├── index.html              # Hub page
 ├── boxmodel.html
