@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Formatting &amp; Lists &ndash; HES-SO Valais</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- ====================================================
+         Page header
+    ===================================================== -->
+    <header class="page-header">
+        <h1>Formatting &amp; Lists</h1>
+        <p>HES-SO Valais &mdash; Web Development &mdash; Inline text, hyperlinks, and list elements</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Section navigation">
+        <span class="grid-nav__logo">&#182; Formatting</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="index.html">&#8962; Home</a></li>
+            <li><a class="grid-nav__link" href="#demo-text">Text</a></li>
+            <li><a class="grid-nav__link" href="#demo-links">Links</a></li>
+            <li><a class="grid-nav__link" href="#demo-lists">Lists</a></li>
+            <li><a class="grid-nav__link" href="#demo-definition">Definition</a></li>
+            <li><a class="grid-nav__link" href="#demo-quotes">Quotes</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ====================================================
+             Section 1 — Text Formatting
+        ===================================================== -->
+        <section id="demo-text" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 1 &mdash; Text Formatting</h2>
+                <p>
+                    HTML provides many inline elements to annotate text with meaning.
+                    Each element carries a specific semantic purpose beyond its visual appearance.
+                </p>
+            </div>
+
+            <p class="demo-section__note">
+                These are all <strong>inline</strong> elements &mdash; they flow within a line of text
+                without breaking the layout.
+            </p>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;strong&gt;</code> &mdash; Important</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>This word is <strong>critically important</strong> to understand.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;This word is
+  &lt;strong&gt;critically important&lt;/strong&gt;
+  to understand.&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><strong>Semantic importance</strong> &mdash; not just bold. Screen readers stress the word. Use for genuinely critical content, not decoration.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;em&gt;</code> &mdash; Emphasis</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>I <em>really</em> did not say she stole the money.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;I &lt;em&gt;really&lt;/em&gt; did not
+  say she stole the money.&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><strong>Stressed emphasis</strong> that changes the meaning of a sentence. Screen readers alter intonation. Different from <code>&lt;i&gt;</code> (which is purely stylistic).</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;mark&gt;</code> &mdash; Highlight</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>Search results for <mark>CSS grid</mark> are shown below.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;Search results for
+  &lt;mark&gt;CSS grid&lt;/mark&gt;
+  are shown below.&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Marks text as <strong>relevant to the user's current context</strong> &mdash; typically search results or a highlighted passage.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;del&gt;</code> &amp; <code>&lt;ins&gt;</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <p>Price: <del>CHF 99</del> <ins>CHF 49</ins> &mdash; limited offer!</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;Price: &lt;del&gt;CHF 99&lt;/del&gt;
+  &lt;ins&gt;CHF 49&lt;/ins&gt;&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>&lt;del&gt;</code> marks deleted content (strikethrough); <code>&lt;ins&gt;</code> marks inserted content (underline). Used to show document revisions.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;small&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code></h3>
+                    <div class="sel-demo-card__preview fmt-size-demo">
+                        <p>Normal text <small>fine print &amp; legal</small></p>
+                        <p>H<sub>2</sub>O &nbsp;&nbsp; E = mc<sup>2</sup></p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;small&gt;fine print&lt;/small&gt;
+H&lt;sub&gt;2&lt;/sub&gt;O
+E = mc&lt;sup&gt;2&lt;/sup&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>&lt;small&gt;</code> for fine print; <code>&lt;sub&gt;</code> for subscript (chemistry, maths); <code>&lt;sup&gt;</code> for superscript (exponents, footnotes).</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;code&gt;</code> &amp; <code>&lt;kbd&gt;</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <p>Run <code>npm install</code> then press <kbd>Enter</kbd>.</p>
+                        <p>The variable <code>let count = 0;</code> is declared here.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;Run &lt;code&gt;npm install&lt;/code&gt;
+  then press &lt;kbd&gt;Enter&lt;/kbd&gt;.&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>&lt;code&gt;</code> for inline code snippets; <code>&lt;kbd&gt;</code> for keyboard input or key names. Both render in a monospace font by default.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;abbr&gt;</code> &mdash; Abbreviation</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>
+                            The <abbr title="World Wide Web Consortium">W3C</abbr> defines web standards.
+                            <abbr title="HyperText Markup Language">HTML</abbr> was created in 1991.
+                        </p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;abbr title="World Wide Web
+  Consortium"&gt;W3C&lt;/abbr&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Hover over the abbreviations above to see the full form in a tooltip. Improves accessibility for non-expert readers.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;cite&gt;</code> &amp; <code>&lt;q&gt;</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <p>As stated in <cite>A List Apart</cite>:</p>
+                        <p><q>Good design is obvious. Great design is transparent.</q></p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;cite&gt;A List Apart&lt;/cite&gt;
+&lt;q&gt;Great design is
+  transparent.&lt;/q&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>&lt;cite&gt;</code> references a creative work (book, film, article); <code>&lt;q&gt;</code> marks an inline quotation &mdash; the browser adds quotation marks automatically.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Semantic vs presentational:</strong> Prefer semantic elements over
+                <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code>, which are purely visual.
+                <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> carry meaning that assistive
+                technologies can convey. Style bold/italic text with CSS if it is purely decorative.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 2 — Hyperlinks
+        ===================================================== -->
+        <section id="demo-links" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 2 &mdash; Hyperlinks</h2>
+                <p>
+                    The <code>&lt;a&gt;</code> element is the foundation of the web.
+                    Its <code>href</code> attribute can point to pages, files, email addresses, phone
+                    numbers, or anchors within the same page.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Basic link</h3>
+                    <div class="sel-demo-card__preview">
+                        <a href="index.html">&#8962; Go to Home page</a>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;a href="index.html"&gt;
+  Go to Home page
+&lt;/a&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>href</code> can be a relative path, an absolute URL, or any of the special protocols below.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>target="_blank"</code> + <code>rel</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">MDN Web Docs &#8599;</a>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;a href="https://developer.mozilla.org"
+   target="_blank"
+   rel="noopener noreferrer"&gt;
+  MDN Web Docs
+&lt;/a&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>target="_blank"</code> opens in a new tab. Always add <code>rel="noopener noreferrer"</code> to prevent the opened page from accessing <code>window.opener</code> &mdash; a security best practice.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>mailto:</code> &amp; <code>tel:</code></h3>
+                    <div class="sel-demo-card__preview fmt-link-list">
+                        <a href="mailto:info@example.com">&#9993; info@example.com</a>
+                        <a href="tel:+41271234567">&#9742; +41 27 123 45 67</a>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;a href="mailto:info@example.com"&gt;
+  info@example.com
+&lt;/a&gt;
+
+&lt;a href="tel:+41271234567"&gt;
+  +41 27 123 45 67
+&lt;/a&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>mailto:</code> opens the user's email client; <code>tel:</code> initiates a phone call on mobile devices. Especially useful in responsive design.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Download link</h3>
+                    <div class="sel-demo-card__preview">
+                        <a href="css/variables.css" download="design-tokens.css">&#8659; Download design tokens</a>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;a href="report.pdf"
+   download="annual-report.pdf"&gt;
+  Download report
+&lt;/a&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>download</code> attribute forces a download instead of navigation. The attribute value becomes the suggested filename.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Anchor link (same page)</h3>
+                    <div class="sel-demo-card__preview">
+                        <a href="#demo-quotes">Jump to Quotes section &darr;</a>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Link --&gt;
+&lt;a href="#demo-quotes"&gt;
+  Jump to Quotes
+&lt;/a&gt;
+
+&lt;!-- Target --&gt;
+&lt;section id="demo-quotes"&gt;
+  ...
+&lt;/section&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>#</code> prefix references a matching <code>id</code> on the page. Used for table of contents, skip navigation, and smooth scrolling.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Button-style link</h3>
+                    <div class="sel-demo-card__preview">
+                        <a href="index.html" class="fmt-btn-link">&#8962; Back to Hub</a>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;a href="index.html"
+   class="btn"&gt;
+  Back to Hub
+&lt;/a&gt;
+
+/* CSS */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+}</code></pre>
+                    <p class="sel-demo-card__explain">Use <code>display: inline-block</code> on an <code>&lt;a&gt;</code> to apply padding and make it look like a button. Keep using <code>&lt;a&gt;</code> for navigation, <code>&lt;button&gt;</code> for actions.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Security note &mdash; <code>rel="noopener noreferrer"</code>:</strong>
+                Without this attribute on <code>target="_blank"</code> links, the newly opened page can access
+                the original page via <code>window.opener</code> and redirect it to a phishing site.
+                Modern browsers partially mitigate this, but always add <code>rel="noopener noreferrer"</code>
+                as a defence-in-depth measure.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 3 — Ordered & Unordered Lists
+        ===================================================== -->
+        <section id="demo-lists" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 3 &mdash; Ordered &amp; Unordered Lists</h2>
+                <p>
+                    HTML lists group related items. <code>&lt;ul&gt;</code> is for unordered sets;
+                    <code>&lt;ol&gt;</code> is for sequences where order matters.
+                    Both use <code>&lt;li&gt;</code> for individual items.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;ul&gt;</code> &mdash; Unordered list</h3>
+                    <div class="sel-demo-card__preview">
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Bullet points. Order is irrelevant. Change the bullet style with CSS <code>list-style-type</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;ol&gt;</code> &mdash; Ordered list</h3>
+                    <div class="sel-demo-card__preview">
+                        <ol>
+                            <li>Clone the repository</li>
+                            <li>Install dependencies</li>
+                            <li>Start the dev server</li>
+                        </ol>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;ol&gt;
+  &lt;li&gt;Clone the repo&lt;/li&gt;
+  &lt;li&gt;Install deps&lt;/li&gt;
+  &lt;li&gt;Start server&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Numbered list. Order matters (steps, rankings, instructions). Numbers are generated automatically by the browser.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>type</code> &amp; <code>start</code> attributes</h3>
+                    <div class="sel-demo-card__preview fmt-list-compare">
+                        <div>
+                            <p style="font-size:0.8rem; color: var(--color-text-muted); margin-bottom:0.25rem;"><code>type="A"</code></p>
+                            <ol type="A">
+                                <li>Alpha</li>
+                                <li>Beta</li>
+                                <li>Gamma</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <p style="font-size:0.8rem; color: var(--color-text-muted); margin-bottom:0.25rem;"><code>type="i" start="3"</code></p>
+                            <ol type="i" start="3">
+                                <li>Third</li>
+                                <li>Fourth</li>
+                                <li>Fifth</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <p style="font-size:0.8rem; color: var(--color-text-muted); margin-bottom:0.25rem;"><code>reversed</code></p>
+                            <ol reversed>
+                                <li>Gold</li>
+                                <li>Silver</li>
+                                <li>Bronze</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;ol type="A"&gt;...&lt;/ol&gt;
+&lt;ol type="i" start="3"&gt;...&lt;/ol&gt;
+&lt;ol reversed&gt;...&lt;/ol&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>type</code>: <code>1</code> (default), <code>A</code>, <code>a</code>, <code>I</code>, <code>i</code>. <code>start</code> sets the starting number. <code>reversed</code> counts down.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Nested lists</h3>
+                    <div class="sel-demo-card__preview">
+                        <ul>
+                            <li>Front-end
+                                <ul>
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                </ul>
+                            </li>
+                            <li>Back-end
+                                <ul>
+                                    <li>Node.js</li>
+                                    <li>Java</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;ul&gt;
+  &lt;li&gt;Front-end
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Back-end&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Lists can be nested to any depth. A <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code> must always be placed <em>inside</em> a <code>&lt;li&gt;</code>, never directly as a sibling of <code>&lt;li&gt;</code>.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Use lists for navigation too:</strong> Most navigation bars are semantically a
+                <code>&lt;ul&gt;</code> of <code>&lt;a&gt;</code> links wrapped in a <code>&lt;nav&gt;</code>.
+                This gives screen reader users the item count and landmark navigation for free.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 4 — Definition Lists
+        ===================================================== -->
+        <section id="demo-definition" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 4 &mdash; Definition Lists</h2>
+                <p>
+                    The <code>&lt;dl&gt;</code> element groups terms and their definitions.
+                    It is ideal for glossaries, metadata, and key-value pairs.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Basic glossary</h3>
+                    <div class="sel-demo-card__preview">
+                        <dl class="fmt-dl">
+                            <dt>HTML</dt>
+                            <dd>HyperText Markup Language &mdash; the structure of a web page.</dd>
+                            <dt>CSS</dt>
+                            <dd>Cascading Style Sheets &mdash; the visual presentation layer.</dd>
+                            <dt>JavaScript</dt>
+                            <dd>A scripting language that adds interactivity to web pages.</dd>
+                        </dl>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup...&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Cascading Style...&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>&lt;dt&gt;</code> is the term; <code>&lt;dd&gt;</code> is the description. One <code>&lt;dt&gt;</code> can have multiple <code>&lt;dd&gt;</code> elements.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Metadata use case</h3>
+                    <div class="sel-demo-card__preview">
+                        <dl class="fmt-dl fmt-dl--meta">
+                            <dt>Author</dt>
+                            <dd>Jane Smith</dd>
+                            <dt>Published</dt>
+                            <dd><time datetime="2025-09-01">September 1, 2025</time></dd>
+                            <dt>Category</dt>
+                            <dd>Web Development</dd>
+                            <dt>Reading time</dt>
+                            <dd>8 minutes</dd>
+                        </dl>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;dl&gt;
+  &lt;dt&gt;Author&lt;/dt&gt;
+  &lt;dd&gt;Jane Smith&lt;/dd&gt;
+  &lt;dt&gt;Published&lt;/dt&gt;
+  &lt;dd&gt;&lt;time datetime="2025-09-01"&gt;
+    September 1, 2025
+  &lt;/time&gt;&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                    <p class="sel-demo-card__explain">A <code>&lt;dl&gt;</code> styled as a grid makes an elegant metadata panel. The <code>&lt;time&gt;</code> element provides a machine-readable date.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>When to use <code>&lt;dl&gt;</code>:</strong> Whenever you have pairs of
+                label–value data. Common use cases: glossaries, FAQs (question/answer), API documentation,
+                product specifications, and blog post metadata. Avoid using a table for simple key-value pairs.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 5 — Quotes & Citations
+        ===================================================== -->
+        <section id="demo-quotes" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 5 &mdash; Quotes &amp; Citations</h2>
+                <p>
+                    HTML provides dedicated elements for quoting external content and attributing sources,
+                    both for inline quotations and block-level quotations.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;q&gt;</code> &mdash; Inline quote</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>Tim Berners-Lee once said: <q cite="https://www.w3.org/People/Berners-Lee/">The Web is more a social creation than a technical one.</q></p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;He said:
+  &lt;q cite="https://example.com"&gt;
+    The Web is more a social
+    creation than a technical one.
+  &lt;/q&gt;
+&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The browser automatically adds quotation marks. The optional <code>cite</code> attribute holds the URL of the source (not displayed to users, but useful for machines).</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;blockquote&gt;</code> &mdash; Block quote</h3>
+                    <div class="sel-demo-card__preview">
+                        <blockquote class="fmt-blockquote" cite="https://developer.mozilla.org">
+                            <p>HTML is the standard markup language for creating web pages. It describes the structure of a web page semantically and originally included cues for the appearance of the document.</p>
+                            <footer>&mdash; <cite>MDN Web Docs</cite></footer>
+                        </blockquote>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;blockquote cite="https://..."&gt;
+  &lt;p&gt;HTML is the standard markup
+    language...&lt;/p&gt;
+  &lt;footer&gt;
+    &mdash; &lt;cite&gt;MDN Web Docs&lt;/cite&gt;
+  &lt;/footer&gt;
+&lt;/blockquote&gt;</code></pre>
+                    <p class="sel-demo-card__explain">A <strong>block-level</strong> quotation. Conventionally styled with an indent. The <code>&lt;footer&gt;</code> inside holds the attribution; <code>&lt;cite&gt;</code> names the source.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;cite&gt;</code> &mdash; Reference</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>The concept is explained in <cite>CSS: The Definitive Guide</cite> by Eric Meyer.</p>
+                        <p>The film <cite>The Social Network</cite> depicts the founding of Facebook.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;cite&gt;CSS: The Definitive Guide&lt;/cite&gt;
+&lt;cite&gt;The Social Network&lt;/cite&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Used to reference a <em>creative work</em>: book, article, film, song, thesis. Renders in italic by default. Do not use <code>&lt;cite&gt;</code> for a person's name.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Quotes vs citations:</strong> <code>&lt;blockquote&gt;</code> and <code>&lt;q&gt;</code>
+                are for the <em>quoted text itself</em>. <code>&lt;cite&gt;</code> is for the
+                <em>title of the source</em>. The <code>cite</code> <em>attribute</em> holds the source
+                URL (machine-readable, invisible to users). These are three distinct concepts
+                &mdash; do not confuse them.
+            </aside>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            HES-SO Valais &mdash; Web Development Course
+        </p>
+    </footer>
+
+</body>
+</html>

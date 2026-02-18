@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Script Integration &ndash; HES-SO Valais</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- ====================================================
+         Page header
+    ===================================================== -->
+    <header class="page-header">
+        <h1>Script Integration</h1>
+        <p>HES-SO Valais &mdash; Web Development &mdash; How and where to include JavaScript in HTML</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Section navigation">
+        <span class="grid-nav__logo">&#9889; Scripts</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="index.html">&#8962; Home</a></li>
+            <li><a class="grid-nav__link" href="#demo-inline">Inline</a></li>
+            <li><a class="grid-nav__link" href="#demo-external">External</a></li>
+            <li><a class="grid-nav__link" href="#demo-head">In head</a></li>
+            <li><a class="grid-nav__link" href="#demo-defer">defer</a></li>
+            <li><a class="grid-nav__link" href="#demo-async">async</a></li>
+            <li><a class="grid-nav__link" href="#demo-body">Before /body</a></li>
+            <li><a class="grid-nav__link" href="#demo-module">module</a></li>
+            <li><a class="grid-nav__link" href="#demo-timeline">Timeline</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ====================================================
+             Section 1 — Inline script
+        ===================================================== -->
+        <section id="demo-inline" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 1 &mdash; Inline Script</h2>
+                <p>
+                    An inline script embeds JavaScript code directly between <code>&lt;script&gt;</code>
+                    tags, without referencing an external file.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Live demo</h3>
+                    <div class="sel-demo-card__preview">
+                        <p id="scr-inline-output" class="scr-output">Click the button to run inline JS.</p>
+                        <button class="scr-btn" id="scr-inline-btn" type="button">Run inline script</button>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p id="output"&gt;Click the button.&lt;/p&gt;
+&lt;button id="btn"&gt;Run&lt;/button&gt;
+
+&lt;script&gt;
+  document.getElementById('btn')
+    .addEventListener('click', function () {
+      document.getElementById('output')
+        .textContent = 'Script ran at '
+          + new Date().toLocaleTimeString();
+    });
+&lt;/script&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The JavaScript lives directly in the HTML file. The browser parses and executes it immediately when encountered.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">When to use inline scripts</h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr><th>Use case</th><th>Inline?</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Small one-off snippets</td><td>Acceptable</td></tr>
+                                <tr><td>Prototype / demo</td><td>Acceptable</td></tr>
+                                <tr><td>Analytics initialisation</td><td>Common</td></tr>
+                                <tr><td>Application logic</td><td>Avoid</td></tr>
+                                <tr><td>Reusable across pages</td><td>Never</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Inline: not cacheable --&gt;
+&lt;script&gt;
+  const API_KEY = 'abc123';
+  trackEvent('page_view');
+&lt;/script&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Inline scripts are <strong>not cached</strong> by the browser &mdash; they are re-parsed on every page load. They also conflict with strict <abbr title="Content Security Policy">CSP</abbr> headers that block inline scripts.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>CSP and inline scripts:</strong> A <code>Content-Security-Policy</code>
+                header with <code>script-src 'self'</code> will block all inline scripts. This is
+                the strongest XSS defence available &mdash; but it requires moving all JS to external
+                files. Using <code>'unsafe-inline'</code> in CSP defeats this protection.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 2 — External script
+        ===================================================== -->
+        <section id="demo-external" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 2 &mdash; External Script</h2>
+                <p>
+                    An external script references a separate <code>.js</code> file via the <code>src</code>
+                    attribute. This is the standard approach for application code.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">External file</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="scr-file-structure">
+                            <div class="scr-file scr-file--html">index.html</div>
+                            <div class="scr-file scr-file--js">js/app.js</div>
+                            <div class="scr-file scr-file--js">js/utils.js</div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- In HTML: reference the file --&gt;
+&lt;script src="js/app.js"&gt;&lt;/script&gt;
+
+&lt;!-- Multiple files --&gt;
+&lt;script src="js/utils.js"&gt;&lt;/script&gt;
+&lt;script src="js/app.js"&gt;&lt;/script&gt;</code></pre>
+                    <p class="sel-demo-card__explain">When <code>src</code> is present, any content between the tags is ignored. Do not mix <code>src</code> and inline code in the same <code>&lt;script&gt;</code> tag.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Benefits of external scripts</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row"><strong>Cacheable</strong><span>Browser caches the file after the first visit &mdash; no re-download on subsequent pages</span></div>
+                            <div class="im-attr-row"><strong>Reusable</strong><span>One file shared across every page in the site</span></div>
+                            <div class="im-attr-row"><strong>CSP-compatible</strong><span>Works with strict Content-Security-Policy headers</span></div>
+                            <div class="im-attr-row"><strong>Tooling</strong><span>Editors, linters, and bundlers (Vite, Webpack) work best with separate files</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Cache hint: versioned filename --&gt;
+&lt;script src="js/app.v3.2.1.js"&gt;
+&lt;/script&gt;
+
+&lt;!-- Or query string busting --&gt;
+&lt;script src="js/app.js?v=3"&gt;
+&lt;/script&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Add a version query string or filename hash when deploying updates to force browsers to download the new version and bypass the cached file.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Separation of concerns:</strong> Keeping JavaScript in separate <code>.js</code>
+                files mirrors the three-layer model: HTML (structure), CSS (presentation), JS (behaviour).
+                This makes code easier to read, test, and maintain. It is the expected pattern in all
+                professional projects.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 3 — In <head> (blocking)
+        ===================================================== -->
+        <section id="demo-head" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 3 &mdash; In <code>&lt;head&gt;</code> Without Attributes</h2>
+                <p>
+                    Placing a <code>&lt;script src="..."&gt;</code> in <code>&lt;head&gt;</code>
+                    without <code>defer</code> or <code>async</code> <strong>blocks HTML parsing</strong>
+                    until the script is fully downloaded and executed.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">The blocking problem</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="scr-timeline">
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">HTML parse</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--html" style="width: 25%;"></div>
+                                    <div class="scr-bar scr-bar--blocked" style="width: 35%;"></div>
+                                    <div class="scr-bar scr-bar--html" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">Script</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--empty" style="width: 25%;"></div>
+                                    <div class="scr-bar scr-bar--download" style="width: 20%;"></div>
+                                    <div class="scr-bar scr-bar--execute" style="width: 15%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scr-legend">
+                            <span class="scr-legend__item scr-legend__item--html">HTML parsing</span>
+                            <span class="scr-legend__item scr-legend__item--blocked">Blocked (white screen)</span>
+                            <span class="scr-legend__item scr-legend__item--download">Script download</span>
+                            <span class="scr-legend__item scr-legend__item--execute">Script execution</span>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;!-- Browser stops parsing HTML here.
+       Users see a blank page while
+       app.js downloads. --&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Not parsed until script finishes --&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The browser reads HTML top to bottom. When it encounters <code>&lt;script&gt;</code>, it pauses, downloads the file, runs it, then resumes. This is called a <strong>render-blocking script</strong>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Why it was done this way</h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size:0.9rem;">Scripts in <code>&lt;head&gt;</code> were originally placed there to:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem; line-height: 1.9;">
+                            <li>Be available before the page body rendered</li>
+                            <li>Avoid <code>document.write()</code> issues (legacy API)</li>
+                            <li>Load libraries (jQuery) early for plugins</li>
+                        </ul>
+                        <p style="font-size:0.9rem; margin-top: 0.75rem;">Today, <code>defer</code> and <code>async</code> make this unnecessary.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Avoid this pattern --&gt;
+&lt;head&gt;
+  &lt;script src="jquery.js"&gt;&lt;/script&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;!-- Use this instead --&gt;
+&lt;head&gt;
+  &lt;script src="jquery.js" defer&gt;&lt;/script&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>defer</code> preserves script execution order (jQuery before app.js) and eliminates the blocking penalty. It is the direct replacement for the old head-script pattern.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Exceptions &mdash; scripts that must block:</strong> Some scripts legitimately
+                need to run before HTML is parsed: A/B testing tools (need to alter the DOM before
+                paint), or critical polyfills. Even then, these should be small inline snippets &mdash;
+                not large external files.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 4 — defer
+        ===================================================== -->
+        <section id="demo-defer" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 4 &mdash; The <code>defer</code> Attribute</h2>
+                <p>
+                    <code>defer</code> downloads the script in parallel with HTML parsing and
+                    executes it <em>after</em> the entire HTML document has been parsed.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Behaviour</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="scr-timeline">
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">HTML parse</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--html" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">Script</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--download" style="width: 40%;"></div>
+                                    <div class="scr-bar scr-bar--wait" style="width: 45%;"></div>
+                                    <div class="scr-bar scr-bar--execute" style="width: 15%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scr-legend">
+                            <span class="scr-legend__item scr-legend__item--html">HTML parsing (uninterrupted)</span>
+                            <span class="scr-legend__item scr-legend__item--download">Downloading (parallel)</span>
+                            <span class="scr-legend__item scr-legend__item--wait">Waiting for DOM ready</span>
+                            <span class="scr-legend__item scr-legend__item--execute">Executing</span>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;script src="utils.js" defer&gt;&lt;/script&gt;
+  &lt;script src="app.js"   defer&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Both scripts download in parallel. They execute <strong>in order</strong> (utils.js then app.js) after HTML parsing completes. This is equivalent to <code>DOMContentLoaded</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Key properties of <code>defer</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row"><strong>Non-blocking</strong><span>HTML parsing continues uninterrupted</span></div>
+                            <div class="im-attr-row"><strong>Ordered</strong><span>Multiple deferred scripts execute in document order</span></div>
+                            <div class="im-attr-row"><strong>DOM ready</strong><span>The full DOM is available when the script runs</span></div>
+                            <div class="im-attr-row"><strong>Only for external</strong><span><code>defer</code> has no effect on inline scripts</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- DOM is ready when this runs --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- No need for this pattern: --&gt;
+&lt;script&gt;
+  document.addEventListener(
+    'DOMContentLoaded', function () {
+      // ... app code
+    }
+  );
+&lt;/script&gt;</code></pre>
+                    <p class="sel-demo-card__explain">With <code>defer</code>, you do not need to wrap your code in a <code>DOMContentLoaded</code> listener &mdash; the DOM is guaranteed to be built when the script runs.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Recommended default:</strong> Use <code>defer</code> for all external scripts
+                placed in <code>&lt;head&gt;</code>. It combines the best of both worlds: early download
+                (while HTML is parsed) and safe DOM access (runs after parsing). This page itself uses
+                <code>defer</code> on its scripts.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 5 — async
+        ===================================================== -->
+        <section id="demo-async" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 5 &mdash; The <code>async</code> Attribute</h2>
+                <p>
+                    <code>async</code> downloads the script in parallel with HTML parsing and executes it
+                    <em>immediately</em> when the download finishes &mdash; interrupting parsing if needed.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Behaviour</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="scr-timeline">
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">HTML parse</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--html" style="width: 40%;"></div>
+                                    <div class="scr-bar scr-bar--blocked" style="width: 15%;"></div>
+                                    <div class="scr-bar scr-bar--html" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">Script</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--download" style="width: 40%;"></div>
+                                    <div class="scr-bar scr-bar--execute" style="width: 15%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scr-legend">
+                            <span class="scr-legend__item scr-legend__item--html">HTML parsing</span>
+                            <span class="scr-legend__item scr-legend__item--blocked">Paused for execution</span>
+                            <span class="scr-legend__item scr-legend__item--download">Downloading (parallel)</span>
+                            <span class="scr-legend__item scr-legend__item--execute">Executing (interrupts parse)</span>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;!-- WARNING: order not guaranteed.
+       Each runs as soon as downloaded. --&gt;
+  &lt;script src="analytics.js" async&gt;&lt;/script&gt;
+  &lt;script src="app.js"       async&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain">With two async scripts, whichever downloads first executes first &mdash; <strong>order is not guaranteed</strong>. This makes <code>async</code> unsuitable for scripts with dependencies.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>defer</code> vs <code>async</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr><th>Property</th><th><code>defer</code></th><th><code>async</code></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Downloads in parallel</td><td>Yes</td><td>Yes</td></tr>
+                                <tr><td>Blocks HTML parse</td><td>No</td><td>Only during execution</td></tr>
+                                <tr><td>Execution order</td><td>In order</td><td>First come, first served</td></tr>
+                                <tr><td>DOM available</td><td>Always</td><td>Not guaranteed</td></tr>
+                                <tr><td>Best for</td><td>App logic</td><td>Independent scripts</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Good use of async: analytics,
+     chat widgets, ad scripts --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;
+
+&lt;!-- Bad use of async: scripts that
+     depend on each other --&gt;
+&lt;script src="jquery.js"  async&gt;&lt;/script&gt;
+&lt;script src="plugin.js"  async&gt;&lt;/script&gt;
+&lt;!-- plugin.js may run BEFORE jQuery! --&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Use <code>async</code> only for fully independent scripts that do not rely on the DOM or other scripts: analytics, A/B testing, third-party widgets.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Mental model:</strong> <code>defer</code> says <em>"Download early, wait for me
+                politely."</em> <code>async</code> says <em>"Download and interrupt whenever you're
+                ready."</em> For most application scripts, <code>defer</code> is safer and more
+                predictable.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 6 — Before the body closing tag
+        ==================================================== -->
+        <section id="demo-body" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 6 &mdash; Script Before <code>&lt;/body&gt;</code></h2>
+                <p>
+                    The traditional approach: placing <code>&lt;script&gt;</code> tags just before the
+                    closing <code>&lt;/body&gt;</code> tag. The DOM is already built by this point.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Behaviour</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="scr-timeline">
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">HTML parse</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--html" style="width: 80%;"></div>
+                                    <div class="scr-bar scr-bar--blocked" style="width: 20%;"></div>
+                                </div>
+                            </div>
+                            <div class="scr-timeline__row">
+                                <span class="scr-timeline__label">Script</span>
+                                <div class="scr-timeline__track">
+                                    <div class="scr-bar scr-bar--empty" style="width: 80%;"></div>
+                                    <div class="scr-bar scr-bar--download" style="width: 10%;"></div>
+                                    <div class="scr-bar scr-bar--execute" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;Page&lt;/title&gt;
+  &lt;link rel="stylesheet"
+        href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Content first&lt;/h1&gt;
+  &lt;p&gt;All DOM elements above
+     are parsed before scripts.&lt;/p&gt;
+
+  &lt;!-- Scripts at the very end --&gt;
+  &lt;script src="utils.js"&gt;&lt;/script&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The page content renders before scripts are downloaded. However, the script download only starts <em>after</em> the full HTML is parsed &mdash; unlike <code>defer</code>, which starts downloading immediately.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">End-of-body vs <code>defer</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr><th>Property</th><th>End-of-body</th><th><code>defer</code></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Download starts</td><td>After full HTML parsed</td><td>Immediately on parse</td></tr>
+                                <tr><td>DOM available</td><td>Yes</td><td>Yes</td></tr>
+                                <tr><td>Execution order</td><td>In order</td><td>In order</td></tr>
+                                <tr><td>Page content visible</td><td>Before scripts</td><td>Before scripts</td></tr>
+                                <tr><td>Total load time</td><td>Slower</td><td>Faster</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- defer wins: download starts early --&gt;
+&lt;head&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- HTML loads while JS downloads --&gt;
+&lt;/body&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>defer</code> is strictly better than end-of-body: same safe DOM access, but the download starts earlier. End-of-body is a legacy pattern still common in older codebases.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Historical context:</strong> Before <code>defer</code> was widely supported
+                (circa 2010), placing scripts at the end of <code>&lt;body&gt;</code> was the recommended
+                best practice. Many tutorials and books still teach this. Modern best practice is
+                <code>defer</code> in <code>&lt;head&gt;</code>, which provides the same DOM safety
+                with faster total load time.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 7 — type="module"
+        ===================================================== -->
+        <section id="demo-module" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 7 &mdash; <code>type="module"</code></h2>
+                <p>
+                    ES modules are the modern JavaScript module system. Scripts loaded with
+                    <code>type="module"</code> are automatically deferred, scoped, and support
+                    <code>import</code>/<code>export</code>.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Module basics</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="scr-file-structure">
+                            <div class="scr-file scr-file--html">index.html</div>
+                            <div class="scr-file scr-file--js">js/main.js</div>
+                            <div class="scr-file scr-file--js">js/utils.js (module)</div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- In HTML --&gt;
+&lt;script type="module" src="js/main.js"&gt;
+&lt;/script&gt;
+
+/* js/utils.js */
+export function greet(name) {
+  return 'Hello, ' + name + '!';
+}
+
+/* js/main.js */
+import { greet } from './utils.js';
+console.log(greet('World'));</code></pre>
+                    <p class="sel-demo-card__explain">Modules use <code>import</code> and <code>export</code> to share code between files. The browser resolves the dependency graph automatically.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Module vs classic script</h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr><th>Property</th><th>Module</th><th>Classic</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Deferred by default</td><td>Yes</td><td>No</td></tr>
+                                <tr><td>Strict mode</td><td>Always</td><td>Opt-in</td></tr>
+                                <tr><td>Top-level scope</td><td>Module scope</td><td>Global scope</td></tr>
+                                <tr><td><code>import</code>/<code>export</code></td><td>Yes</td><td>No</td></tr>
+                                <tr><td>CORS required</td><td>Yes</td><td>No (same-origin)</td></tr>
+                                <tr><td>Executed once</td><td>Yes</td><td>Each <code>&lt;script&gt;</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Module: safe, scoped, deferred --&gt;
+&lt;script type="module" src="app.js"&gt;
+&lt;/script&gt;
+
+&lt;!-- Fallback for older browsers --&gt;
+&lt;script nomodule src="app.legacy.js"&gt;
+&lt;/script&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Use <code>nomodule</code> to provide a classic fallback for browsers that do not support ES modules. Modern browsers ignore <code>nomodule</code> scripts.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Scope isolation</h3>
+                    <div class="sel-demo-card__preview">
+                        <p id="scr-scope-output" class="scr-output">Module scope demo: click to test.</p>
+                        <button class="scr-btn" id="scr-scope-btn" type="button">Check global scope</button>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;script type="module"&gt;
+  /* This variable is NOT global */
+  const secret = 'module-scoped';
+  window.moduleRan = true;
+&lt;/script&gt;
+
+&lt;script&gt;
+  /* Classic script — global scope */
+  var exposed = 'I am on window';
+&lt;/script&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Variables declared in a module are <strong>not added to <code>window</code></strong>. This prevents accidental global pollution &mdash; a major source of bugs in classic scripts.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>React and <code>type="module"</code>:</strong> When you run <code>npm create vite</code>
+                to start a React project, the generated <code>index.html</code> contains
+                <code>&lt;script type="module" src="/src/main.jsx"&gt;</code>. Vite's development server
+                and build pipeline are built entirely around ES modules. Understanding this is essential
+                for your React project.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 8 — Interactive Timeline
+        ===================================================== -->
+        <section id="demo-timeline" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 8 &mdash; Loading Timeline Comparison</h2>
+                <p>
+                    This interactive diagram animates the loading sequences for all four strategies.
+                    Press <strong>Play</strong> to watch each one unfold in real time.
+                </p>
+            </div>
+
+            <div class="scr-timeline-full">
+
+                <div class="scr-timeline-controls">
+                    <button class="scr-btn scr-btn--play" id="scr-play-btn" type="button">&#9654; Play animation</button>
+                    <button class="scr-btn scr-btn--reset" id="scr-reset-btn" type="button">&#8635; Reset</button>
+                </div>
+
+                <div class="scr-timeline-grid" id="scr-timeline-grid">
+                    <div class="scr-tl-header">
+                        <div class="scr-tl-label-col">Strategy</div>
+                        <div class="scr-tl-track-col">
+                            <div class="scr-tl-axis">
+                                <span>0ms</span><span>200ms</span><span>400ms</span>
+                                <span>600ms</span><span>800ms</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row: Blocking -->
+                    <div class="scr-tl-group">
+                        <div class="scr-tl-strategy">Blocking<br><code>&lt;head&gt;</code></div>
+                        <div class="scr-tl-lanes">
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">HTML</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--html" data-start="0" data-dur="25" data-label="HTML parsing"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--blocked" data-start="25" data-dur="30" data-label="Blocked"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--html" data-start="55" data-dur="45" data-label="HTML parsing"></div>
+                                </div>
+                            </div>
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">Script</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--download" data-start="25" data-dur="20" data-label="Downloading"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--execute" data-start="45" data-dur="10" data-label="Executing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row: defer -->
+                    <div class="scr-tl-group">
+                        <div class="scr-tl-strategy">defer<br><code>&lt;head&gt;</code></div>
+                        <div class="scr-tl-lanes">
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">HTML</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--html" data-start="0" data-dur="100" data-label="HTML parsing (uninterrupted)"></div>
+                                </div>
+                            </div>
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">Script</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--download" data-start="0" data-dur="35" data-label="Downloading (parallel)"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--wait" data-start="35" data-dur="65" data-label="Waiting for DOM"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--execute" data-start="100" data-dur="10" data-label="Executing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row: async -->
+                    <div class="scr-tl-group">
+                        <div class="scr-tl-strategy">async<br><code>&lt;head&gt;</code></div>
+                        <div class="scr-tl-lanes">
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">HTML</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--html" data-start="0" data-dur="40" data-label="HTML parsing"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--blocked" data-start="40" data-dur="10" data-label="Paused for execution"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--html" data-start="50" data-dur="50" data-label="HTML parsing resumes"></div>
+                                </div>
+                            </div>
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">Script</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--download" data-start="0" data-dur="40" data-label="Downloading (parallel)"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--execute" data-start="40" data-dur="10" data-label="Executing (interrupts)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row: end of body -->
+                    <div class="scr-tl-group">
+                        <div class="scr-tl-strategy">Before<br><code>&lt;/body&gt;</code></div>
+                        <div class="scr-tl-lanes">
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">HTML</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--html" data-start="0" data-dur="80" data-label="HTML parsing"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--blocked" data-start="80" data-dur="30" data-label="Blocked at end"></div>
+                                </div>
+                            </div>
+                            <div class="scr-tl-lane">
+                                <span class="scr-tl-lane-label">Script</span>
+                                <div class="scr-tl-track">
+                                    <div class="scr-tl-bar scr-tl-bar--download" data-start="80" data-dur="18" data-label="Downloading (late start)"></div>
+                                    <div class="scr-tl-bar scr-tl-bar--execute" data-start="98" data-dur="12" data-label="Executing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scr-tl-legend">
+                    <span class="scr-legend__item scr-legend__item--html">HTML parsing</span>
+                    <span class="scr-legend__item scr-legend__item--blocked">Blocked / paused</span>
+                    <span class="scr-legend__item scr-legend__item--download">Script downloading</span>
+                    <span class="scr-legend__item scr-legend__item--wait">Waiting for DOM</span>
+                    <span class="scr-legend__item scr-legend__item--execute">Script executing</span>
+                </div>
+            </div>
+
+            <aside class="demo-why">
+                <strong>The winner for app code:</strong> <code>defer</code> in <code>&lt;head&gt;</code>
+                provides the earliest possible script download start (like <code>async</code>) with
+                guaranteed DOM availability and execution order (like end-of-body), with no blocking penalty.
+                Use it as your default for all application scripts.
+            </aside>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            HES-SO Valais &mdash; Web Development Course
+        </p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

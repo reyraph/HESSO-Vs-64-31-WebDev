@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Images &amp; Media &ndash; HES-SO Valais</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- ====================================================
+         Page header
+    ===================================================== -->
+    <header class="page-header">
+        <h1>Images &amp; Media</h1>
+        <p>HES-SO Valais &mdash; Web Development &mdash; Images, SVG, video, audio, and embedding</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Section navigation">
+        <span class="grid-nav__logo">&#128444; Media</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="index.html">&#8962; Home</a></li>
+            <li><a class="grid-nav__link" href="#demo-img">Images</a></li>
+            <li><a class="grid-nav__link" href="#demo-figure">Figure</a></li>
+            <li><a class="grid-nav__link" href="#demo-picture">Picture</a></li>
+            <li><a class="grid-nav__link" href="#demo-svg">SVG</a></li>
+            <li><a class="grid-nav__link" href="#demo-video">Video</a></li>
+            <li><a class="grid-nav__link" href="#demo-audio">Audio</a></li>
+            <li><a class="grid-nav__link" href="#demo-iframe">Iframe</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ====================================================
+             Section 1 — The <img> element
+        ===================================================== -->
+        <section id="demo-img" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 1 &mdash; The <code>&lt;img&gt;</code> Element</h2>
+                <p>
+                    The <code>&lt;img&gt;</code> element embeds raster images (JPEG, PNG, GIF, WebP, AVIF).
+                    It is a <strong>void element</strong> (no closing tag) and an <strong>inline element</strong>
+                    by default.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Required attributes</h3>
+                    <div class="sel-demo-card__preview im-img-preview">
+                        <img
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='160'%3E%3Crect width='300' height='160' fill='%23e0e0e0'/%3E%3Crect x='110' y='40' width='80' height='60' fill='%23bdbdbd' rx='4'/%3E%3Cpolygon points='110,100 150,55 190,100' fill='%239e9e9e'/%3E%3Ccircle cx='135' cy='65' r='9' fill='%239e9e9e'/%3E%3Ctext x='150' y='135' font-family='sans-serif' font-size='13' text-anchor='middle' fill='%23757575'%3EMountain photo%3C/text%3E%3C/svg%3E"
+                            alt="A mountain landscape at sunset"
+                            width="300"
+                            height="160">
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;img
+  src="mountain.jpg"
+  alt="A mountain landscape at sunset"
+  width="300"
+  height="160"&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>src</code> is the image path; <code>alt</code> is the text alternative for screen readers and broken images. Always provide a meaningful <code>alt</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Empty <code>alt</code> for decorative images</h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size: 0.9rem;">
+                            If an image is purely decorative (adds no information), use an
+                            <strong>empty</strong> <code>alt</code> attribute: <code>alt=""</code>.
+                        </p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+                            Screen readers will skip it entirely &mdash; which is exactly what you want
+                            for background textures, decorative dividers, or icon-only images.
+                        </p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Decorative — skip it --&gt;
+&lt;img src="divider.png" alt=""&gt;
+
+&lt;!-- Informative — describe it --&gt;
+&lt;img src="chart.png"
+     alt="Bar chart showing 40%
+          growth in Q3 2025"&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Missing <code>alt</code> is a WCAG failure. Empty <code>alt=""</code> is intentional and correct for decorative images.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>loading</code> &amp; <code>decoding</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row">
+                                <code>loading="lazy"</code>
+                                <span>Defer loading until near viewport &mdash; saves bandwidth</span>
+                            </div>
+                            <div class="im-attr-row">
+                                <code>loading="eager"</code>
+                                <span>Load immediately (default behaviour)</span>
+                            </div>
+                            <div class="im-attr-row">
+                                <code>decoding="async"</code>
+                                <span>Decode in background &mdash; does not block rendering</span>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;img
+  src="hero.jpg"
+  alt="Hero banner"
+  width="1200"
+  height="600"
+  loading="lazy"
+  decoding="async"&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Use <code>loading="lazy"</code> on all images below the fold. Keep <code>loading="eager"</code> for the LCP (Largest Contentful Paint) image &mdash; typically the hero.</p>
+                </div>
+
+                <!-- Interactive: object-fit explorer -->
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>object-fit</code> explorer (CSS)</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-fit-controls">
+                            <label for="im-fit-select" style="font-size:0.85rem; font-weight:bold;">object-fit:</label>
+                            <select id="im-fit-select" class="im-fit-select">
+                                <option value="fill">fill</option>
+                                <option value="contain">contain</option>
+                                <option value="cover" selected>cover</option>
+                                <option value="none">none</option>
+                                <option value="scale-down">scale-down</option>
+                            </select>
+                        </div>
+                        <div class="im-fit-frame">
+                            <img id="im-fit-img"
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Crect width='600' height='300' fill='%234c7daf'/%3E%3Ccircle cx='300' cy='150' r='80' fill='%236fa3d0' opacity='.6'/%3E%3Ctext x='300' y='160' font-family='sans-serif' font-size='22' text-anchor='middle' fill='white'%3Eobject-fit demo%3C/text%3E%3C/svg%3E"
+                                alt="Coloured rectangle demonstrating object-fit values"
+                                style="object-fit: cover;">
+                        </div>
+                    </div>
+                    <pre class="sel-code-block" id="im-fit-code"><code>img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}</code></pre>
+                    <p class="sel-demo-card__explain"><code>object-fit</code> controls how an image is resized inside a fixed container. Essential for gallery thumbnails and responsive cards.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Always set <code>width</code> and <code>height</code>:</strong> Without explicit
+                dimensions, the browser does not know the image's aspect ratio before it loads, causing
+                <em>layout shift</em> (CLS). Always include both attributes matching the intrinsic size
+                of the image. CSS can then override the display size without breaking aspect ratio.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 2 — <figure> & <figcaption>
+        ===================================================== -->
+        <section id="demo-figure" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 2 &mdash; <code>&lt;figure&gt;</code> &amp; <code>&lt;figcaption&gt;</code></h2>
+                <p>
+                    The <code>&lt;figure&gt;</code> element groups self-contained media content
+                    (image, diagram, code listing) with an optional <code>&lt;figcaption&gt;</code> label.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Image with caption</h3>
+                    <div class="sel-demo-card__preview">
+                        <figure class="im-figure">
+                            <img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23c8e6c9'/%3E%3Ccircle cx='160' cy='80' r='45' fill='%2366bb6a'/%3E%3Cpath d='M100 170 Q160 110 220 170' stroke='%234caf50' stroke-width='3' fill='none'/%3E%3Ctext x='160' y='168' font-family='sans-serif' font-size='12' text-anchor='middle' fill='%23388e3c'%3EFigure demo%3C/text%3E%3C/svg%3E"
+                                alt="Abstract green circular shape on a light green background"
+                                width="320"
+                                height="180">
+                            <figcaption>Fig. 1 &mdash; An abstract circular composition demonstrating the <code>&lt;figure&gt;</code> element.</figcaption>
+                        </figure>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;figure&gt;
+  &lt;img
+    src="diagram.png"
+    alt="System architecture diagram"
+    width="320"
+    height="180"&gt;
+  &lt;figcaption&gt;
+    Fig. 1 — System architecture.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>&lt;figcaption&gt;</code> can appear before or after the media. Screen readers associate it with the figure automatically.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Code listing as figure</h3>
+                    <div class="sel-demo-card__preview">
+                        <figure class="im-figure">
+                            <pre class="sel-code-block" style="margin:0;"><code>function greet(name) {
+  return 'Hello, ' + name + '!';
+}</code></pre>
+                            <figcaption>Listing 1 &mdash; A simple JavaScript greeting function.</figcaption>
+                        </figure>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;figure&gt;
+  &lt;pre&gt;&lt;code&gt;
+    function greet(name) { ... }
+  &lt;/code&gt;&lt;/pre&gt;
+  &lt;figcaption&gt;
+    Listing 1 — Greeting function.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>&lt;figure&gt;</code> is not limited to images. It works for any self-contained content: code, charts, videos, audio, tables&hellip;</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Why not just use <code>&lt;img&gt;</code> + <code>&lt;p&gt;</code>?</strong>
+                A <code>&lt;figure&gt;</code> makes the relationship between the media and its caption
+                <em>explicit</em> in the HTML. It can be moved as a unit without losing context,
+                and assistive technologies understand the association.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 3 — <picture> & <source>
+        ===================================================== -->
+        <section id="demo-picture" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 3 &mdash; <code>&lt;picture&gt;</code> &amp; <code>&lt;source&gt;</code></h2>
+                <p>
+                    The <code>&lt;picture&gt;</code> element lets the browser choose the most suitable
+                    image from a list of <code>&lt;source&gt;</code> candidates &mdash;
+                    based on viewport size or supported format.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Modern format with fallback</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row"><strong>AVIF</strong><span>Best compression (Chrome, Firefox)</span></div>
+                            <div class="im-attr-row"><strong>WebP</strong><span>Wide support (Safari 14+)</span></div>
+                            <div class="im-attr-row"><strong>JPEG</strong><span>Universal fallback for all browsers</span></div>
+                        </div>
+                        <p style="font-size:0.8rem; color:var(--color-text-muted); margin-top:0.5rem;">The browser picks the first <code>&lt;source&gt;</code> it supports.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;picture&gt;
+  &lt;source
+    srcset="photo.avif"
+    type="image/avif"&gt;
+  &lt;source
+    srcset="photo.webp"
+    type="image/webp"&gt;
+  &lt;img
+    src="photo.jpg"
+    alt="Mountain view"
+    width="800"
+    height="500"&gt;
+&lt;/picture&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>&lt;img&gt;</code> inside <code>&lt;picture&gt;</code> is the mandatory fallback and provides the <code>alt</code> text for the whole element.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Art direction (responsive crop)</h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size: 0.9rem;">Serve a <strong>different image framing</strong> based on viewport width:</p>
+                        <div class="im-art-direction-demo">
+                            <div class="im-art-box">
+                                <div class="im-art-wide">Wide viewport: landscape crop</div>
+                            </div>
+                            <div class="im-art-box">
+                                <div class="im-art-narrow">Narrow viewport: portrait crop</div>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;picture&gt;
+  &lt;!-- Portrait crop on mobile --&gt;
+  &lt;source
+    media="(max-width: 600px)"
+    srcset="portrait.jpg"&gt;
+  &lt;!-- Landscape crop on desktop --&gt;
+  &lt;img
+    src="landscape.jpg"
+    alt="Team photo"
+    width="1200"
+    height="600"&gt;
+&lt;/picture&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>media</code> attribute works like a CSS media query. The browser evaluates sources in order and uses the first match.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong><code>&lt;picture&gt;</code> vs <code>srcset</code>:</strong>
+                Use <code>srcset</code> on a plain <code>&lt;img&gt;</code> when serving the same image
+                at different resolutions (DPR/size). Use <code>&lt;picture&gt;</code> when you need
+                art direction (different crops) or different formats with fallbacks.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 4 — Inline SVG
+        ===================================================== -->
+        <section id="demo-svg" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 4 &mdash; Inline <code>&lt;svg&gt;</code></h2>
+                <p>
+                    SVG (Scalable Vector Graphics) is an XML-based format for two-dimensional graphics.
+                    Inline SVG is placed directly in HTML and can be styled and animated with CSS.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Basic shapes</h3>
+                    <div class="sel-demo-card__preview im-svg-preview">
+                        <svg width="200" height="120" viewBox="0 0 200 120" aria-label="Basic SVG shapes: circle, rectangle, and line" role="img">
+                            <rect x="10" y="10" width="60" height="40" fill="#4c7daf" rx="4"/>
+                            <circle cx="130" cy="35" r="28" fill="#66bb6a"/>
+                            <line x1="10" y1="90" x2="190" y2="90" stroke="#ef5350" stroke-width="3"/>
+                            <polygon points="160,70 185,105 135,105" fill="#ff9800"/>
+                        </svg>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;svg width="200" height="120"
+     viewBox="0 0 200 120"
+     aria-label="Shapes demo"
+     role="img"&gt;
+  &lt;rect x="10" y="10"
+        width="60" height="40"
+        fill="#4c7daf" rx="4"/&gt;
+  &lt;circle cx="130" cy="35" r="28"
+          fill="#66bb6a"/&gt;
+  &lt;line x1="10" y1="90"
+        x2="190" y2="90"
+        stroke="#ef5350"
+        stroke-width="3"/&gt;
+  &lt;polygon
+    points="160,70 185,105 135,105"
+    fill="#ff9800"/&gt;
+&lt;/svg&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>viewBox</code> attribute defines the SVG coordinate system. The <code>width</code>/<code>height</code> set the rendered size on screen.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">CSS-controlled SVG</h3>
+                    <div class="sel-demo-card__preview im-svg-preview">
+                        <svg width="200" height="100" viewBox="0 0 200 100" aria-label="CSS-styled SVG icon" role="img">
+                            <circle class="im-svg-circle" cx="100" cy="50" r="40"/>
+                            <path class="im-svg-check" d="M80 50 L95 65 L120 38" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;svg viewBox="0 0 200 100"&gt;
+  &lt;circle class="icon-circle"
+          cx="100" cy="50" r="40"/&gt;
+  &lt;path class="icon-check"
+        d="M80 50 L95 65 L120 38"
+        fill="none"/&gt;
+&lt;/svg&gt;
+
+/* CSS */
+.icon-circle { fill: #4caf50; }
+.icon-check  { stroke: white; }</code></pre>
+                    <p class="sel-demo-card__explain">Inline SVG elements can have <code>class</code> attributes and be styled with regular CSS &mdash; including hover effects, transitions, and animations.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">SVG as icon (accessible)</h3>
+                    <div class="sel-demo-card__preview im-svg-preview">
+                        <button class="im-icon-btn" type="button" aria-label="Delete item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Delete
+                        </button>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;button type="button"
+        aria-label="Delete item"&gt;
+  &lt;svg aria-hidden="true"
+       focusable="false"
+       viewBox="0 0 24 24"&gt;
+    &lt;path d="..." fill="none"
+          stroke="currentColor"/&gt;
+  &lt;/svg&gt;
+  Delete
+&lt;/button&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Set <code>aria-hidden="true"</code> on decorative icons so screen readers skip them. Use <code>currentColor</code> so the icon inherits its parent's text color automatically.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>SVG vs raster images:</strong> SVG scales to any resolution without pixelation
+                (perfect for logos, icons, and charts) and is typically smaller in file size than a PNG.
+                Use SVG for anything drawn with shapes and paths. Use raster formats (JPEG, WebP) for
+                photographs.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 5 — <video>
+        ===================================================== -->
+        <section id="demo-video" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 5 &mdash; The <code>&lt;video&gt;</code> Element</h2>
+                <p>
+                    The <code>&lt;video&gt;</code> element embeds a native video player.
+                    Multiple <code>&lt;source&gt;</code> elements provide format fallbacks across browsers.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Basic video with controls</h3>
+                    <div class="sel-demo-card__preview im-media-note">
+                        <div class="im-media-placeholder">
+                            <span class="im-media-icon">&#9654;</span>
+                            <p>Video player would appear here with a real <code>.mp4</code> or <code>.webm</code> file.</p>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;video
+  controls
+  width="640"
+  height="360"
+  poster="thumbnail.jpg"&gt;
+  &lt;source
+    src="clip.webm"
+    type="video/webm"&gt;
+  &lt;source
+    src="clip.mp4"
+    type="video/mp4"&gt;
+  &lt;p&gt;Your browser does not support
+     HTML video.&lt;/p&gt;
+&lt;/video&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>controls</code> shows the native browser playback UI. The <code>poster</code> image is displayed before the video plays. The fallback <code>&lt;p&gt;</code> is shown in unsupported browsers.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Key attributes</h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr><th>Attribute</th><th>Effect</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>controls</code></td><td>Show browser UI (play, volume…)</td></tr>
+                                <tr><td><code>autoplay</code></td><td>Start playing on load</td></tr>
+                                <tr><td><code>muted</code></td><td>Start muted (required with autoplay)</td></tr>
+                                <tr><td><code>loop</code></td><td>Restart when finished</td></tr>
+                                <tr><td><code>poster</code></td><td>Thumbnail image before play</td></tr>
+                                <tr><td><code>preload</code></td><td><code>none</code> / <code>metadata</code> / <code>auto</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;video
+  autoplay muted loop
+  preload="metadata"
+  width="800" height="450"&gt;
+  &lt;source src="bg.webm"
+          type="video/webm"&gt;
+&lt;/video&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>autoplay</code> requires <code>muted</code> in modern browsers &mdash; browsers block autoplay with sound to protect users. Use this pattern for silent background videos only.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Format support:</strong> WebM (VP9) offers the best compression for modern
+                browsers. MP4 (H.264) is the universal fallback. Always provide both.
+                Avoid embedding large videos on your own server &mdash; use a CDN or a platform like
+                YouTube/Vimeo and embed via <code>&lt;iframe&gt;</code> to save bandwidth.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 6 — <audio>
+        ===================================================== -->
+        <section id="demo-audio" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 6 &mdash; The <code>&lt;audio&gt;</code> Element</h2>
+                <p>
+                    The <code>&lt;audio&gt;</code> element follows the same pattern as <code>&lt;video&gt;</code>
+                    but without a visual display area. It supports multiple source formats for cross-browser compatibility.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Basic audio player</h3>
+                    <div class="sel-demo-card__preview im-media-note">
+                        <div class="im-media-placeholder">
+                            <span class="im-media-icon">&#9834;</span>
+                            <p>Audio player would appear here with a real <code>.mp3</code> or <code>.ogg</code> file.</p>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;audio controls&gt;
+  &lt;source src="sound.ogg"
+          type="audio/ogg"&gt;
+  &lt;source src="sound.mp3"
+          type="audio/mpeg"&gt;
+  &lt;p&gt;Your browser does not
+     support HTML audio.&lt;/p&gt;
+&lt;/audio&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Provide OGG first (open format), then MP3 (widest compatibility). The browser uses the first format it supports.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Key attributes</h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr><th>Attribute</th><th>Effect</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>controls</code></td><td>Show play/pause/volume UI</td></tr>
+                                <tr><td><code>autoplay</code></td><td>Start on page load (blocked without user gesture on mobile)</td></tr>
+                                <tr><td><code>loop</code></td><td>Restart when finished</td></tr>
+                                <tr><td><code>muted</code></td><td>Start with audio off</td></tr>
+                                <tr><td><code>preload</code></td><td>Hint to browser: <code>none</code> / <code>metadata</code> / <code>auto</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;audio controls preload="metadata"&gt;
+  &lt;source src="podcast.mp3"
+          type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>preload="metadata"</code> loads only duration and format info &mdash; a good default that avoids unnecessary bandwidth consumption.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Autoplay and user experience:</strong> Most browsers block <code>autoplay</code>
+                on audio unless the user has interacted with the page first. Never autoplay audio with
+                sound &mdash; it is considered an accessibility violation and a major UX anti-pattern.
+                Always give users control with the <code>controls</code> attribute.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 7 — <iframe>
+        ===================================================== -->
+        <section id="demo-iframe" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 7 &mdash; The <code>&lt;iframe&gt;</code> Element</h2>
+                <p>
+                    The <code>&lt;iframe&gt;</code> element embeds another HTML document inside the current
+                    page &mdash; used for maps, video players, payment forms, and third-party widgets.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Embedding an iframe</h3>
+                    <div class="sel-demo-card__preview">
+                        <iframe
+                            class="im-iframe-demo"
+                            src="basic.html"
+                            title="HTML Basics page embedded as an example"
+                            width="100%"
+                            height="200"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;iframe
+  src="https://example.com/map"
+  title="Interactive map of Sion"
+  width="600"
+  height="400"
+  loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>title</code> attribute is required for accessibility &mdash; screen readers announce it as the name of the embedded document.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>sandbox</code> attribute (security)</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row"><code>sandbox</code><span>Enable all restrictions (most secure)</span></div>
+                            <div class="im-attr-row"><code>allow-scripts</code><span>Allow JS execution inside the iframe</span></div>
+                            <div class="im-attr-row"><code>allow-forms</code><span>Allow form submission</span></div>
+                            <div class="im-attr-row"><code>allow-same-origin</code><span>Allow access to same-origin resources</span></div>
+                            <div class="im-attr-row"><code>allow-popups</code><span>Allow new windows/tabs</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Minimal sandbox --&gt;
+&lt;iframe
+  src="widget.html"
+  sandbox&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Carefully relaxed --&gt;
+&lt;iframe
+  src="widget.html"
+  sandbox="allow-scripts
+           allow-forms"&gt;
+&lt;/iframe&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The <code>sandbox</code> attribute restricts what the embedded document can do. Start with <code>sandbox</code> alone (all restrictions on) and only relax specific capabilities as needed.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Security: clickjacking</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-security-note">
+                            <strong>Clickjacking attack:</strong> An attacker loads your website invisibly in an iframe and overlays a transparent button on top of your site's button &mdash; tricking users into clicking something they didn't intend.
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Server HTTP header --&gt;
+X-Frame-Options: DENY
+
+&lt;!-- Modern CSP header --&gt;
+Content-Security-Policy:
+  frame-ancestors 'none'</code></pre>
+                    <p class="sel-demo-card__explain">To prevent your site from being embedded by attackers, set <code>X-Frame-Options: DENY</code> or the CSP <code>frame-ancestors</code> directive on your server responses.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Performance:</strong> Every <code>&lt;iframe&gt;</code> creates a separate
+                browsing context with its own JS engine and document lifecycle. They are expensive.
+                Always add <code>loading="lazy"</code> for iframes below the fold. Prefer a
+                "facade" pattern for embeds (show a thumbnail image; load the iframe only on click).
+            </aside>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            HES-SO Valais &mdash; Web Development Course
+        </p>
+    </footer>
+
+    <script src="js/imagesmedias.js"></script>
+</body>
+</html>

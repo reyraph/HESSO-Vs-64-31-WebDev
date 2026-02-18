@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Head &amp; Meta &ndash; HES-SO Valais</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- ====================================================
+         Page header
+    ===================================================== -->
+    <header class="page-header">
+        <h1>Head &amp; Meta</h1>
+        <p>HES-SO Valais &mdash; Web Development &mdash; Everything inside the <code>&lt;head&gt;</code> element</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Section navigation">
+        <span class="grid-nav__logo">&#128279; Head</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="index.html">&#8962; Home</a></li>
+            <li><a class="grid-nav__link" href="#demo-title">Title</a></li>
+            <li><a class="grid-nav__link" href="#demo-meta">Meta</a></li>
+            <li><a class="grid-nav__link" href="#demo-link">Link</a></li>
+            <li><a class="grid-nav__link" href="#demo-style">Style</a></li>
+            <li><a class="grid-nav__link" href="#demo-script-head">Script</a></li>
+            <li><a class="grid-nav__link" href="#demo-base">Base</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ====================================================
+             Section 1 — <title>
+        ===================================================== -->
+        <section id="demo-title" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 1 &mdash; <code>&lt;title&gt;</code></h2>
+                <p>
+                    The <code>&lt;title&gt;</code> element sets the text shown in the browser tab,
+                    bookmarks, and search engine results. It is the most impactful single element for SEO.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Browser tab preview</h3>
+                    <div class="sel-demo-card__preview">
+                        <!-- Simulated browser UI -->
+                        <div class="hd-browser-mock">
+                            <div class="hd-tab-bar">
+                                <div class="hd-tab hd-tab--active" id="hd-tab-preview">
+                                    <span class="hd-tab__favicon">&#9998;</span>
+                                    <span class="hd-tab__title" id="hd-tab-title">My Page Title</span>
+                                    <span class="hd-tab__close">&times;</span>
+                                </div>
+                                <div class="hd-tab hd-tab--inactive">
+                                    <span class="hd-tab__title">Another Tab</span>
+                                </div>
+                            </div>
+                            <div class="hd-address-bar">
+                                <span>https://example.com/</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <label class="fm-label" for="hd-title-input">Edit the title:</label>
+                            <input type="text" id="hd-title-input" class="fm-input" value="My Page Title" maxlength="60">
+                            <p class="fm-hint" id="hd-title-count">60 characters remaining</p>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;title&gt;My Page Title&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Keep titles under <strong>60 characters</strong> &mdash; Google truncates longer ones in search results. A good pattern: <code>Page Name &ndash; Site Name</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Title in search results</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="hd-serp">
+                            <div class="hd-serp__url">https://hes-so.ch &rsaquo; web-dev</div>
+                            <div class="hd-serp__title">HTML &amp; CSS Course &ndash; HES-SO Valais</div>
+                            <div class="hd-serp__desc">Interactive demo pages for the Web Development course. Each page covers a core HTML/CSS topic with live examples.</div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;title&gt;
+  HTML &amp;amp; CSS Course &amp;ndash; HES-SO Valais
+&lt;/title&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The title is the main clickable link in a Google result. It should be descriptive, unique per page, and include relevant keywords naturally.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Dynamic titles in SPAs:</strong> In React or other single-page applications, the
+                <code>&lt;title&gt;</code> is not automatically updated on navigation. Use
+                <code>document.title = 'New Title'</code> in JavaScript, or a library like
+                <code>react-helmet</code>, to update it on every route change &mdash; required for
+                accessibility (screen reader users rely on the title to know what page loaded).
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 2 — <meta>
+        ===================================================== -->
+        <section id="demo-meta" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 2 &mdash; <code>&lt;meta&gt;</code> Tags</h2>
+                <p>
+                    Meta elements provide metadata about the document: character encoding, viewport
+                    settings, SEO descriptions, and social sharing cards.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Essential meta tags</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row"><code>charset="utf-8"</code><span>Supports all characters (emoji, accented letters…)</span></div>
+                            <div class="im-attr-row"><code>viewport</code><span>Controls layout on mobile devices</span></div>
+                            <div class="im-attr-row"><code>description</code><span>Snippet shown in search results</span></div>
+                            <div class="im-attr-row"><code>author</code><span>Name of the document author</span></div>
+                            <div class="im-attr-row"><code>robots</code><span>Controls search engine indexing</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport"
+  content="width=device-width,
+           initial-scale=1"&gt;
+&lt;meta name="description"
+  content="Learn HTML and CSS
+           interactively."&gt;
+&lt;meta name="author"
+  content="Jane Smith"&gt;
+&lt;meta name="robots"
+  content="index, follow"&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>charset</code> has no <code>name</code> attribute; it uses its own <code>charset</code> attribute. It must appear in the first 1024 bytes of the document.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Open Graph (OG) tags &mdash; social preview builder</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="hd-og-builder">
+                            <div class="fm-group">
+                                <label class="fm-label" for="hd-og-title">og:title</label>
+                                <input type="text" id="hd-og-title" class="fm-input" value="HTML &amp; CSS Course" maxlength="95">
+                            </div>
+                            <div class="fm-group">
+                                <label class="fm-label" for="hd-og-desc">og:description</label>
+                                <input type="text" id="hd-og-desc" class="fm-input" value="Interactive demo pages for the Web Development course." maxlength="200">
+                            </div>
+                            <div class="fm-group">
+                                <label class="fm-label" for="hd-og-site">og:site_name</label>
+                                <input type="text" id="hd-og-site" class="fm-input" value="HES-SO Valais">
+                            </div>
+                        </div>
+                        <div class="hd-og-card" id="hd-og-card">
+                            <div class="hd-og-card__image" aria-hidden="true">
+                                <svg width="100%" height="100%" viewBox="0 0 600 314">
+                                    <rect width="600" height="314" fill="#4c7daf"/>
+                                    <text x="300" y="165" font-family="sans-serif" font-size="24" text-anchor="middle" fill="white" opacity="0.7">og:image</text>
+                                </svg>
+                            </div>
+                            <div class="hd-og-card__body">
+                                <div class="hd-og-card__site" id="hd-og-site-preview">HES-SO VALAIS</div>
+                                <div class="hd-og-card__title" id="hd-og-title-preview">HTML &amp; CSS Course</div>
+                                <div class="hd-og-card__desc" id="hd-og-desc-preview">Interactive demo pages for the Web Development course.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block" id="hd-og-code"><code>&lt;meta property="og:type"
+      content="website"&gt;
+&lt;meta property="og:title"
+      content="HTML &amp;amp; CSS Course"&gt;
+&lt;meta property="og:description"
+      content="Interactive demo pages..."&gt;
+&lt;meta property="og:site_name"
+      content="HES-SO Valais"&gt;
+&lt;meta property="og:image"
+      content="https://..."&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Open Graph tags control the preview card shown when a URL is shared on Slack, LinkedIn, Twitter/X, or iMessage. The <code>og:image</code> should be 1200&times;630 px.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Meta tags are not magic:</strong> They are hints, not commands.
+                Search engines may override your <code>description</code> with content they consider
+                more relevant. The <code>keywords</code> meta tag is completely ignored by Google
+                (abused for spam in the early 2000s). Focus on real content quality over meta tag
+                keyword stuffing.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 3 — <link>
+        ===================================================== -->
+        <section id="demo-link" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 3 &mdash; <code>&lt;link&gt;</code></h2>
+                <p>
+                    The <code>&lt;link&gt;</code> element defines relationships between the current
+                    document and external resources. It is most commonly used for stylesheets and favicons.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Stylesheet</h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size:0.9rem;">The most common use: linking an external CSS file.</p>
+                        <div class="im-attr-list" style="margin-top:0.5rem;">
+                            <div class="im-attr-row"><code>rel="stylesheet"</code><span>Declares the relationship type</span></div>
+                            <div class="im-attr-row"><code>href</code><span>Path to the CSS file</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;link rel="stylesheet"
+      href="css/style.css"&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Place stylesheets in <code>&lt;head&gt;</code> to avoid a Flash of Unstyled Content (FOUC). The browser blocks rendering until linked CSS is downloaded.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Favicon</h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size:0.9rem;">The small icon shown in the browser tab and bookmarks.</p>
+                        <div class="im-attr-list" style="margin-top:0.5rem;">
+                            <div class="im-attr-row"><code>.ico</code><span>Legacy format, wide support</span></div>
+                            <div class="im-attr-row"><code>.svg</code><span>Scalable, best for HiDPI screens</span></div>
+                            <div class="im-attr-row"><code>.png</code><span>Fallback for specific sizes</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- SVG favicon (modern) --&gt;
+&lt;link rel="icon"
+      href="favicon.svg"
+      type="image/svg+xml"&gt;
+
+&lt;!-- ICO fallback (legacy) --&gt;
+&lt;link rel="icon"
+      href="favicon.ico"
+      sizes="any"&gt;
+
+&lt;!-- Apple home screen icon --&gt;
+&lt;link rel="apple-touch-icon"
+      href="apple-touch-icon.png"&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Provide both SVG (modern) and ICO (legacy) favicons. SVG supports dark mode via <code>prefers-color-scheme</code> media queries inside the SVG.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>preload</code> &amp; <code>canonical</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row"><code>rel="preload"</code><span>Start fetching a resource early, before it is discovered in CSS/JS</span></div>
+                            <div class="im-attr-row"><code>rel="canonical"</code><span>Tell search engines which URL is the "official" version to avoid duplicate content penalties</span></div>
+                            <div class="im-attr-row"><code>rel="alternate"</code><span>Alternate versions: RSS feed, different language, print stylesheet</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Preload critical font --&gt;
+&lt;link rel="preload"
+      href="font.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin&gt;
+
+&lt;!-- Canonical URL --&gt;
+&lt;link rel="canonical"
+      href="https://example.com/page"&gt;
+
+&lt;!-- RSS Feed --&gt;
+&lt;link rel="alternate"
+      type="application/rss+xml"
+      href="/feed.xml"&gt;</code></pre>
+                    <p class="sel-demo-card__explain"><code>preload</code> with <code>as="font"</code> requires <code>crossorigin</code> even for same-origin fonts, due to CORS requirements for font resources.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Render-blocking:</strong> Every <code>&lt;link rel="stylesheet"&gt;</code>
+                blocks rendering until the CSS is downloaded and parsed. This is intentional &mdash;
+                the browser needs styles before painting. Use <code>preload</code> for critical resources
+                like hero fonts or images to reduce perceived load time.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 4 — <style>
+        ===================================================== -->
+        <section id="demo-style" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 4 &mdash; <code>&lt;style&gt;</code></h2>
+                <p>
+                    The <code>&lt;style&gt;</code> element embeds CSS directly inside the HTML document,
+                    without an external file. It is placed in <code>&lt;head&gt;</code>.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Inline styles vs external stylesheet</h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr><th></th><th><code>&lt;style&gt;</code></th><th><code>&lt;link&gt;</code></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Location</td><td>Same file</td><td>Separate file</td></tr>
+                                <tr><td>HTTP request</td><td>None</td><td>+1 request</td></tr>
+                                <tr><td>Cacheable</td><td>No</td><td>Yes</td></tr>
+                                <tr><td>Reusable across pages</td><td>No</td><td>Yes</td></tr>
+                                <tr><td>Best for</td><td>Critical CSS</td><td>General styles</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;!-- Critical CSS inline --&gt;
+  &lt;style&gt;
+    body { margin: 0; }
+    .hero { min-height: 100vh; }
+  &lt;/style&gt;
+
+  &lt;!-- Rest of CSS deferred --&gt;
+  &lt;link rel="stylesheet"
+        href="css/main.css"&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Inline <code>&lt;style&gt;</code> is ideal for <strong>critical CSS</strong>: the minimal styles needed to render the above-the-fold content without any render-blocking requests.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Scoped usage</h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size:0.9rem;">Common legitimate uses for <code>&lt;style&gt;</code>:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem; line-height: 1.9;">
+                            <li>Critical CSS inlining for performance</li>
+                            <li>Email HTML (no external CSS allowed)</li>
+                            <li>Single-file HTML demos and prototypes</li>
+                            <li>CMS pages where external files are unavailable</li>
+                        </ul>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- Email-compatible inline CSS --&gt;
+&lt;style&gt;
+  .btn {
+    background: #4c7daf;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+  }
+&lt;/style&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Email clients strip external stylesheets &mdash; inline <code>&lt;style&gt;</code> blocks (and even <code>style</code> attributes) are the only reliable way to style HTML emails.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Do not use <code>&lt;style&gt;</code> as a default:</strong> For multi-page
+                websites, always prefer external stylesheets. They are cached by the browser after the
+                first visit, meaning subsequent pages load with zero CSS download cost.
+                Inline styles in <code>&lt;style&gt;</code> are re-downloaded on every page load.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 5 — <script> in <head>
+        ===================================================== -->
+        <section id="demo-script-head" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 5 &mdash; <code>&lt;script&gt;</code> in <code>&lt;head&gt;</code></h2>
+                <p>
+                    Scripts placed in <code>&lt;head&gt;</code> must use <code>defer</code> or
+                    <code>async</code> to avoid blocking HTML parsing. This section previews the concept
+                    &mdash; all loading strategies are covered in depth on the
+                    <a href="scripts.html">Scripts page</a>.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Without <code>defer</code> &mdash; blocking</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="hd-timeline">
+                            <div class="hd-timeline__row">
+                                <span class="hd-timeline__label">HTML parse</span>
+                                <div class="hd-timeline__track">
+                                    <div class="hd-bar hd-bar--html" style="width:30%"></div>
+                                    <div class="hd-bar hd-bar--blocked" style="width:30%"></div>
+                                    <div class="hd-bar hd-bar--html" style="width:40%"></div>
+                                </div>
+                            </div>
+                            <div class="hd-timeline__row">
+                                <span class="hd-timeline__label">Script</span>
+                                <div class="hd-timeline__track">
+                                    <div class="hd-bar hd-bar--empty" style="width:30%"></div>
+                                    <div class="hd-bar hd-bar--script" style="width:30%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;!-- BLOCKING: HTML parse stops
+       until script is fetched
+       and executed --&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The red zone is the blocked period. Users see a white screen while the script downloads. Avoid this pattern.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">With <code>defer</code> &mdash; non-blocking</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="hd-timeline">
+                            <div class="hd-timeline__row">
+                                <span class="hd-timeline__label">HTML parse</span>
+                                <div class="hd-timeline__track">
+                                    <div class="hd-bar hd-bar--html" style="width:100%"></div>
+                                </div>
+                            </div>
+                            <div class="hd-timeline__row">
+                                <span class="hd-timeline__label">Script</span>
+                                <div class="hd-timeline__track">
+                                    <div class="hd-bar hd-bar--download" style="width:50%"></div>
+                                    <div class="hd-bar hd-bar--wait" style="width:30%"></div>
+                                    <div class="hd-bar hd-bar--exec" style="width:20%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hd-legend">
+                            <span class="hd-legend__item hd-legend__item--download">Downloading</span>
+                            <span class="hd-legend__item hd-legend__item--wait">Waiting for HTML</span>
+                            <span class="hd-legend__item hd-legend__item--exec">Executing</span>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;!-- NON-BLOCKING: downloads
+       in parallel, executes only
+       after HTML is parsed --&gt;
+  &lt;script src="app.js"
+          defer&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain">With <code>defer</code>, HTML parsing is never interrupted. The script runs in document order, after the DOM is ready. This is the <strong>recommended approach</strong> for <code>&lt;head&gt;</code> scripts.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Rule of thumb:</strong> Always place <code>&lt;script&gt;</code> tags with
+                <code>defer</code> in <code>&lt;head&gt;</code>. This starts downloading the script
+                immediately (while HTML is parsing) but runs it safely after the DOM is built.
+                See the full comparison of <code>defer</code>, <code>async</code>,
+                <code>type="module"</code>, and end-of-body placement on the
+                <a href="scripts.html">Scripts page</a>.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 6 — <base>
+        ===================================================== -->
+        <section id="demo-base" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 6 &mdash; <code>&lt;base&gt;</code></h2>
+                <p>
+                    The <code>&lt;base&gt;</code> element sets the default URL and target for all
+                    relative links and resources in the document. There can only be one per page.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Setting a base URL</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="hd-base-demo">
+                            <div class="hd-base-row">
+                                <code class="hd-base-label">&lt;base href="https://cdn.example.com/"&gt;</code>
+                            </div>
+                            <div class="hd-base-row">
+                                <span class="hd-base-relative">img/logo.png</span>
+                                <span class="hd-base-arrow">&rarr;</span>
+                                <span class="hd-base-resolved">https://cdn.example.com/img/logo.png</span>
+                            </div>
+                            <div class="hd-base-row">
+                                <span class="hd-base-relative">css/style.css</span>
+                                <span class="hd-base-arrow">&rarr;</span>
+                                <span class="hd-base-resolved">https://cdn.example.com/css/style.css</span>
+                            </div>
+                            <div class="hd-base-row">
+                                <span class="hd-base-relative">page.html</span>
+                                <span class="hd-base-arrow">&rarr;</span>
+                                <span class="hd-base-resolved">https://cdn.example.com/page.html</span>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;base href="https://cdn.example.com/"
+        target="_blank"&gt;
+&lt;/head&gt;
+
+&lt;!-- These links now resolve
+     relative to the base URL --&gt;
+&lt;img src="img/logo.png"&gt;
+&lt;link rel="stylesheet"
+      href="css/style.css"&gt;
+&lt;a href="docs/guide.html"&gt;Guide&lt;/a&gt;</code></pre>
+                    <p class="sel-demo-card__explain">The optional <code>target</code> attribute sets the default target for all links on the page &mdash; e.g., <code>target="_blank"</code> opens all links in a new tab.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Caveats</h3>
+                    <div class="sel-demo-card__preview">
+                        <div class="im-attr-list">
+                            <div class="im-attr-row"><strong>Anchor links break</strong><span><code>&lt;a href="#section"&gt;</code> becomes absolute URL + #section, not a page-local anchor</span></div>
+                            <div class="im-attr-row"><strong>Only one allowed</strong><span>If two <code>&lt;base&gt;</code> elements exist, only the first is used</span></div>
+                            <div class="im-attr-row"><strong>Affects all resources</strong><span>Images, links, scripts, and stylesheets are all affected</span></div>
+                        </div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!-- With base set, this breaks! --&gt;
+&lt;a href="#section"&gt;Jump&lt;/a&gt;
+&lt;!-- Resolves to: https://cdn.example.com/#section --&gt;
+
+&lt;!-- Fix: use full relative path --&gt;
+&lt;a href="current-page.html#section"&gt;
+  Jump
+&lt;/a&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Anchor links (<code>#id</code>) behave unexpectedly with a <code>&lt;base&gt;</code> element. This is a common trap when migrating to a CDN.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>When to use <code>&lt;base&gt;</code>:</strong> Rarely. The most legitimate
+                use case is serving static HTML files from a CDN root while keeping relative asset paths
+                in the HTML. For most projects, it is simpler to use proper relative or absolute paths
+                in each element individually.
+            </aside>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            HES-SO Valais &mdash; Web Development Course
+        </p>
+    </footer>
+
+    <script src="js/head.js"></script>
+</body>
+</html>

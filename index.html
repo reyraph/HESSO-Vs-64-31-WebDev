@@ -18,7 +18,7 @@
          Page header
     ===================================================== -->
     <header class="page-header">
-        <h1>CSS &amp; HTML Course</h1>
+        <h1>HTML &amp; CSS Course</h1>
         <p>HES-SO Valais &mdash; Web Development &mdash; Interactive demo pages</p>
     </header>
 
@@ -40,64 +40,126 @@
 
     <main class="page-main">
 
-        <div class="hub-grid">
+        <section id="html">
+            
+            <h2>HTML</h2>
 
-            <a class="hub-card" href="boxmodel.html">
-                <span class="hub-card__icon">&#9634;</span>
-                <h2 class="hub-card__title">Box Model</h2>
-                <p class="hub-card__desc">
-                    Interactive box model playground with live sliders for width, height, padding,
-                    border and margin. Includes a CSS position explorer with 5 position types.
-                </p>
-            </a>
+            <div class="hub-grid">
 
-            <a class="hub-card" href="flexbox.html">
-                <span class="hub-card__icon">&#9881;</span>
-                <h2 class="hub-card__title">Flexbox</h2>
-                <p class="hub-card__desc">
-                    7 demos: navigation bar, centered hero, card gallery, grow/shrink visualiser,
-                    sidebar layout, responsive design, and image cropping with interactive sliders.
-                </p>
-            </a>
+                <a class="hub-card" href="basic.html">
+                    <span class="hub-card__icon">&#128196;</span>
+                    <h2 class="hub-card__title">HTML Basics</h2>
+                    <p class="hub-card__desc">
+                        Document skeleton (DOCTYPE, html, head, body), heading hierarchy h1&ndash;h6,
+                        paragraphs, line breaks, an interactive semantic layout diagram
+                        (header, nav, main, article, aside, footer), and block vs inline elements.
+                    </p>
+                </a>
 
-            <a class="hub-card" href="grid.html">
-                <span class="hub-card__icon">&#9638;</span>
-                <h2 class="hub-card__title">Grid</h2>
-                <p class="hub-card__desc">
-                    7 demos: columns &amp; rows, spanning mosaic, named template areas, auto-fit + minmax,
-                    auto-fill vs auto-fit, dense auto-flow, and alignment axes.
-                </p>
-            </a>
+                <a class="hub-card" href="formatting.html">
+                    <span class="hub-card__icon">&#182;</span>
+                    <h2 class="hub-card__title">Formatting &amp; Lists</h2>
+                    <p class="hub-card__desc">
+                        Inline text elements (strong, em, mark, del, code, kbd, abbr&hellip;),
+                        hyperlinks with security attributes (target, rel, mailto, download),
+                        ordered and unordered lists, definition lists, and blockquotes.
+                    </p>
+                </a>
 
-            <a class="hub-card" href="forms.html">
-                <span class="hub-card__icon">&#9998;</span>
-                <h2 class="hub-card__title">Forms</h2>
-                <p class="hub-card__desc">
-                    Complete showcase of every native HTML form element: all input types, selection
-                    controls, file uploads, buttons, grouping elements, and validation attributes.
-                </p>
-            </a>
+                <a class="hub-card" href="imagesmedias.html">
+                    <span class="hub-card__icon">&#128444;</span>
+                    <h2 class="hub-card__title">Images &amp; Media</h2>
+                    <p class="hub-card__desc">
+                        img attributes (alt, loading, decoding), object-fit explorer, figure &amp;
+                        figcaption, responsive picture &amp; source, inline SVG shapes, video and
+                        audio players, and iframe with sandbox security attributes.
+                    </p>
+                </a>
 
-            <a class="hub-card" href="selectors.html">
-                <span class="hub-card__icon">&#9783;</span>
-                <h2 class="hub-card__title">CSS Selectors</h2>
-                <p class="hub-card__desc">
-                    All CSS selectors demonstrated live: basic, combinators, attributes,
-                    pseudo-classes, pseudo-elements, and an interactive specificity calculator.
-                </p>
-            </a>
+                <a class="hub-card" href="head.html">
+                    <span class="hub-card__icon">&#128279;</span>
+                    <h2 class="hub-card__title">Head, Meta &amp; Links</h2>
+                    <p class="hub-card__desc">
+                        Live browser tab preview for &lt;title&gt;, meta tags (charset, viewport,
+                        Open Graph card builder), link rel types (stylesheet, favicon, preload,
+                        canonical), inline &lt;style&gt;, defer vs async diagram, and &lt;base&gt;.
+                    </p>
+                </a>
 
-            <a class="hub-card" href="typography.html">
-                <span class="hub-card__icon">&#127344;</span>
-                <h2 class="hub-card__title">Typography &amp; Functions</h2>
-                <p class="hub-card__desc">
-                    Font families, sizing units, text properties, CSS custom properties (variables),
-                    and modern CSS functions: calc(), clamp(), min(), max(). Includes interactive
-                    playgrounds for fluid typography and live theming.
-                </p>
-            </a>
+                <a class="hub-card" href="forms.html">
+                    <span class="hub-card__icon">&#9998;</span>
+                    <h2 class="hub-card__title">Forms</h2>
+                    <p class="hub-card__desc">
+                        Complete showcase of every native HTML form element: all input types, selection
+                        controls, file uploads, buttons, grouping elements, and validation attributes.
+                    </p>
+                </a>
 
-        </div>
+                <a class="hub-card" href="scripts.html">
+                    <span class="hub-card__icon">&#9889;</span>
+                    <h2 class="hub-card__title">Scripting in HTML</h2>
+                    <p class="hub-card__desc">
+                        Inline vs external scripts, blocking vs non-blocking loading strategies
+                        (defer, async, end-of-body), ES modules (type="module", import/export,
+                        scope isolation), and an animated timeline comparing all four approaches.
+                    </p>
+                </a>
+            </div>
+        </section>
+
+        <section id="css">
+            
+            <h2>CSS</h2>
+
+            <div class="hub-grid">
+
+                <a class="hub-card" href="boxmodel.html">
+                    <span class="hub-card__icon">&#9634;</span>
+                    <h2 class="hub-card__title">Box Model</h2>
+                    <p class="hub-card__desc">
+                        Interactive box model playground with live sliders for width, height, padding,
+                        border and margin. Includes a CSS position explorer with 5 position types.
+                    </p>
+                </a>
+
+                <a class="hub-card" href="flexbox.html">
+                    <span class="hub-card__icon">&#9881;</span>
+                    <h2 class="hub-card__title">Flexbox</h2>
+                    <p class="hub-card__desc">
+                        7 demos: navigation bar, centered hero, card gallery, grow/shrink visualiser,
+                        sidebar layout, responsive design, and image cropping with interactive sliders.
+                    </p>
+                </a>
+
+                <a class="hub-card" href="grid.html">
+                    <span class="hub-card__icon">&#9638;</span>
+                    <h2 class="hub-card__title">Grid</h2>
+                    <p class="hub-card__desc">
+                        7 demos: columns &amp; rows, spanning mosaic, named template areas, auto-fit + minmax,
+                        auto-fill vs auto-fit, dense auto-flow, and alignment axes.
+                    </p>
+                </a>
+
+                <a class="hub-card" href="selectors.html">
+                    <span class="hub-card__icon">&#9783;</span>
+                    <h2 class="hub-card__title">CSS Selectors</h2>
+                    <p class="hub-card__desc">
+                        All CSS selectors demonstrated live: basic, combinators, attributes,
+                        pseudo-classes, pseudo-elements, and an interactive specificity calculator.
+                    </p>
+                </a>
+
+                <a class="hub-card" href="typography.html">
+                    <span class="hub-card__icon">&#127344;</span>
+                    <h2 class="hub-card__title">Typography &amp; Functions</h2>
+                    <p class="hub-card__desc">
+                        Font families, sizing units, text properties, CSS custom properties (variables),
+                        and modern CSS functions: calc(), clamp(), min(), max(). Includes interactive
+                        playgrounds for fluid typography and live theming.
+                    </p>
+                </a>
+            </div>
+        </section>
 
     </main>
 

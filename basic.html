@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HTML Basics &ndash; HES-SO Valais</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- ====================================================
+         Page header
+    ===================================================== -->
+    <header class="page-header">
+        <h1>HTML Basics</h1>
+        <p>HES-SO Valais &mdash; Web Development &mdash; Core HTML structure and elements</p>
+    </header>
+
+    <!-- ====================================================
+         Site navigation
+    ===================================================== -->
+    <nav class="grid-nav" aria-label="Section navigation">
+        <span class="grid-nav__logo">&#128196; HTML Basics</span>
+        <ul class="grid-nav__links" role="list">
+            <li><a class="grid-nav__link" href="index.html">&#8962; Home</a></li>
+            <li><a class="grid-nav__link" href="#demo-structure">Structure</a></li>
+            <li><a class="grid-nav__link" href="#demo-headings">Headings</a></li>
+            <li><a class="grid-nav__link" href="#demo-paragraphs">Paragraphs</a></li>
+            <li><a class="grid-nav__link" href="#demo-semantics">Semantics</a></li>
+            <li><a class="grid-nav__link" href="#demo-block-inline">Block vs Inline</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+
+        <!-- ====================================================
+             Section 1 — Document Structure
+        ===================================================== -->
+        <section id="demo-structure" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 1 &mdash; Document Structure</h2>
+                <p>
+                    Every HTML page is built from the same four mandatory parts: a doctype declaration,
+                    a <code>&lt;html&gt;</code> root element, a <code>&lt;head&gt;</code> for metadata,
+                    and a <code>&lt;body&gt;</code> for all visible content.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;!DOCTYPE html&gt;</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <span class="bsc-doctype-badge">DOCTYPE</span>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                            Tells the browser to use <strong>HTML5 standards mode</strong>,
+                            not the legacy quirks mode from the 1990s.
+                        </p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;!DOCTYPE html&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Always the very first line &mdash; before anything else, even whitespace. It is not an HTML tag; it is a declaration.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;html lang="en"&gt;</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size: 0.9rem;">The <strong>root element</strong> wraps the entire document. The <code>lang</code> attribute declares the page language:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem; line-height: 1.8;">
+                            <li>Helps screen readers use the correct pronunciation</li>
+                            <li>Enables browser spell-checking</li>
+                            <li>Required for WCAG accessibility compliance</li>
+                        </ul>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;html lang="en"&gt;
+  ...
+&lt;/html&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Use BCP 47 language codes: <code>en</code>, <code>fr</code>, <code>de</code>, <code>fr-CH</code>&hellip;</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;head&gt;</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size: 0.9rem;">Contains <strong>metadata</strong> &mdash; information about the page that is not displayed directly:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem; line-height: 1.8;">
+                            <li><code>&lt;title&gt;</code> &mdash; browser tab title</li>
+                            <li><code>&lt;meta&gt;</code> &mdash; charset, viewport, SEO&hellip;</li>
+                            <li><code>&lt;link&gt;</code> &mdash; stylesheets, favicons</li>
+                            <li><code>&lt;script&gt;</code> &mdash; JavaScript files</li>
+                        </ul>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Nothing inside <code>&lt;head&gt;</code> renders visibly on the page.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;body&gt;</code></h3>
+                    <div class="sel-demo-card__preview">
+                        <p style="font-size: 0.9rem;">Contains <strong>all visible content</strong> &mdash; everything the user sees and interacts with:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem; line-height: 1.8;">
+                            <li>Text, headings, paragraphs</li>
+                            <li>Images, videos, audio</li>
+                            <li>Forms, tables, lists</li>
+                            <li>Navigation, buttons, links</li>
+                        </ul>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;body&gt;
+  &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;p&gt;Visible content here.&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+                    <p class="sel-demo-card__explain">There can only be <strong>one</strong> <code>&lt;body&gt;</code> per HTML document.</p>
+                </div>
+
+            </div>
+
+            <!-- Full skeleton -->
+            <div class="bsc-skeleton">
+                <div class="bsc-skeleton__title">Complete HTML skeleton</div>
+                <pre class="sel-code-block"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;title&gt;My Page Title&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first HTML page.&lt;/p&gt;
+
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <aside class="demo-why">
+                <strong>Why the DOCTYPE matters:</strong> Without <code>&lt;!DOCTYPE html&gt;</code>, browsers switch
+                into <em>quirks mode</em> and try to render the page like a late-1990s browser, which breaks most
+                modern CSS. Always declare the doctype on line 1.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 2 — Headings
+        ===================================================== -->
+        <section id="demo-headings" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 2 &mdash; Headings</h2>
+                <p>
+                    HTML provides six heading levels: <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>.
+                    They define the document outline and are critical for both accessibility and SEO.
+                </p>
+            </div>
+
+            <div class="bsc-heading-scale" aria-label="Heading size demonstration">
+                <div class="bsc-heading-row">
+                    <code class="bsc-heading-tag">&lt;h1&gt;</code>
+                    <p class="bsc-heading-preview bsc-heading-preview--h1">Page Title &mdash; one per page</p>
+                </div>
+                <div class="bsc-heading-row">
+                    <code class="bsc-heading-tag">&lt;h2&gt;</code>
+                    <p class="bsc-heading-preview bsc-heading-preview--h2">Major Section</p>
+                </div>
+                <div class="bsc-heading-row">
+                    <code class="bsc-heading-tag">&lt;h3&gt;</code>
+                    <p class="bsc-heading-preview bsc-heading-preview--h3">Sub-section</p>
+                </div>
+                <div class="bsc-heading-row">
+                    <code class="bsc-heading-tag">&lt;h4&gt;</code>
+                    <p class="bsc-heading-preview bsc-heading-preview--h4">Sub-sub-section</p>
+                </div>
+                <div class="bsc-heading-row">
+                    <code class="bsc-heading-tag">&lt;h5&gt;</code>
+                    <p class="bsc-heading-preview bsc-heading-preview--h5">Minor heading</p>
+                </div>
+                <div class="bsc-heading-row">
+                    <code class="bsc-heading-tag">&lt;h6&gt;</code>
+                    <p class="bsc-heading-preview bsc-heading-preview--h6">Smallest heading</p>
+                </div>
+            </div>
+
+            <pre class="sel-code-block" style="margin-top: 1rem;"><code>&lt;h1&gt;Page Title&lt;/h1&gt;
+  &lt;h2&gt;Major Section&lt;/h2&gt;
+    &lt;h3&gt;Sub-section&lt;/h3&gt;
+      &lt;h4&gt;Sub-sub-section&lt;/h4&gt;</code></pre>
+
+            <aside class="demo-why">
+                <strong>Headings are not about size &mdash; they define structure:</strong> Never choose a heading
+                level for its visual size. Use CSS for that. Headings define the <em>logical document outline</em>
+                that screen readers and search engines rely on. Only one <code>&lt;h1&gt;</code> per page;
+                do not skip levels (e.g., jumping from <code>&lt;h2&gt;</code> to <code>&lt;h4&gt;</code>).
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 3 — Paragraphs & Text Flow
+        ===================================================== -->
+        <section id="demo-paragraphs" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 3 &mdash; Paragraphs &amp; Text Flow</h2>
+                <p>
+                    <code>&lt;p&gt;</code>, <code>&lt;br&gt;</code>, and <code>&lt;hr&gt;</code> are
+                    the core elements for structuring and separating blocks of text.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;p&gt;</code> &mdash; Paragraph</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>This is the first paragraph. It creates a block of text with default top and bottom margins applied by the browser.</p>
+                        <p>This is a second paragraph. Notice the vertical whitespace that separates them.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;First paragraph.&lt;/p&gt;
+&lt;p&gt;Second paragraph.&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain">A <strong>block-level</strong> element. Each <code>&lt;p&gt;</code> starts on a new line and adds spacing above and below.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;br&gt;</code> &mdash; Line Break</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>
+                            Line one of a poem.<br>
+                            Line two continues here.<br>
+                            Line three follows.
+                        </p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;
+  Line one of a poem.&lt;br&gt;
+  Line two continues here.&lt;br&gt;
+  Line three follows.
+&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain">A <strong>void element</strong> (no closing tag). Forces a line break <em>within</em> the same block element. Use sparingly &mdash; not as a spacing tool.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;hr&gt;</code> &mdash; Thematic Break</h3>
+                    <div class="sel-demo-card__preview">
+                        <p>Content above the separator.</p>
+                        <hr>
+                        <p>Content below represents a new topic.</p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;Section one ends here.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Section two begins here.&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain">A <strong>thematic break</strong> that signals a change in topic or subject. Not purely decorative &mdash; it carries semantic meaning.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Do not use <code>&lt;br&gt;</code> for spacing:</strong> If you need vertical space between
+                elements, use CSS <code>margin</code> or <code>padding</code>. The <code>&lt;br&gt;</code> element
+                is semantically intended for content where line breaks are part of the meaning &mdash; such as poetry
+                or postal addresses &mdash; not for layout adjustments.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 4 — Semantic Elements
+        ===================================================== -->
+        <section id="demo-semantics" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 4 &mdash; Semantic Elements</h2>
+                <p>
+                    HTML5 introduced semantic elements that describe the <em>purpose</em> of their content.
+                    They replace generic <code>&lt;div&gt;</code>s with meaningful, self-documenting names.
+                    Hover over each zone in the diagram below to learn what it represents.
+                </p>
+            </div>
+
+            <!-- Interactive page diagram -->
+            <div class="bsc-page-diagram" id="bsc-diagram">
+                <div class="bsc-zone bsc-zone--header" data-tag="header" data-desc="Site-wide banner: logo, site title, and tagline. Can also appear inside &lt;article&gt;.">
+                    <code>&lt;header&gt;</code>
+                </div>
+                <div class="bsc-zone bsc-zone--nav" data-tag="nav" data-desc="Primary navigation links. Screen readers can jump directly to it using landmark navigation.">
+                    <code>&lt;nav&gt;</code>
+                </div>
+                <div class="bsc-diagram-middle">
+                    <div class="bsc-diagram-content">
+                        <div class="bsc-zone bsc-zone--main" data-tag="main" data-desc="Unique main content of the page. Only one &lt;main&gt; per document. Never nested inside header, footer, or nav.">
+                            <code>&lt;main&gt;</code>
+                            <div class="bsc-zone bsc-zone--article" data-tag="article" data-desc="Self-contained piece of content that could be distributed independently: blog post, news item, forum reply.">
+                                <code>&lt;article&gt;</code>
+                                <div class="bsc-zone bsc-zone--section" data-tag="section" data-desc="Groups thematically related content. Should always have its own heading (&lt;h2&gt;, &lt;h3&gt;...).">
+                                    <code>&lt;section&gt;</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bsc-zone bsc-zone--aside" data-tag="aside" data-desc="Tangentially related content: sidebars, related links, pull quotes, and advertisements.">
+                        <code>&lt;aside&gt;</code>
+                    </div>
+                </div>
+                <div class="bsc-zone bsc-zone--footer" data-tag="footer" data-desc="Site-wide footer: copyright, legal links, secondary navigation, and contact info.">
+                    <code>&lt;footer&gt;</code>
+                </div>
+            </div>
+
+            <!-- Tooltip shown on hover -->
+            <div class="bsc-tooltip" id="bsc-tooltip" aria-live="polite"></div>
+
+            <!-- Card grid for quick reference -->
+            <div class="sel-demo-grid" style="margin-top: 1.5rem;">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;header&gt;</code></h3>
+                    <pre class="sel-code-block"><code>&lt;header&gt;
+  &lt;h1&gt;Site Name&lt;/h1&gt;
+  &lt;p&gt;Tagline&lt;/p&gt;
+&lt;/header&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Site-wide banner at page level, or an introductory block inside an <code>&lt;article&gt;</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;nav&gt;</code></h3>
+                    <pre class="sel-code-block"><code>&lt;nav aria-label="Main"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Use <code>aria-label</code> when there are multiple <code>&lt;nav&gt;</code> elements on a page to distinguish them.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;main&gt;</code></h3>
+                    <pre class="sel-code-block"><code>&lt;main&gt;
+  &lt;h1&gt;Page Title&lt;/h1&gt;
+  &lt;!-- unique page content --&gt;
+&lt;/main&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Exactly one <code>&lt;main&gt;</code> per page. Never place it inside <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, or <code>&lt;nav&gt;</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;article&gt;</code></h3>
+                    <pre class="sel-code-block"><code>&lt;article&gt;
+  &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+  &lt;p&gt;Post content...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Ask yourself: "Could this be shared or distributed independently?" If yes, use <code>&lt;article&gt;</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;section&gt;</code></h3>
+                    <pre class="sel-code-block"><code>&lt;section&gt;
+  &lt;h2&gt;Chapter 2&lt;/h2&gt;
+  &lt;p&gt;Content...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Groups related content by theme. Should always contain a heading. Not a replacement for a generic <code>&lt;div&gt;</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;aside&gt;</code></h3>
+                    <pre class="sel-code-block"><code>&lt;aside&gt;
+  &lt;h3&gt;Related articles&lt;/h3&gt;
+  &lt;ul&gt;...&lt;/ul&gt;
+&lt;/aside&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Content tangentially related to the main content: sidebars, callout boxes, related links, ads.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title"><code>&lt;footer&gt;</code></h3>
+                    <pre class="sel-code-block"><code>&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2025 HES-SO Valais&lt;/p&gt;
+  &lt;nav aria-label="Legal"&gt;...&lt;/nav&gt;
+&lt;/footer&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Contains copyright, contact info, secondary navigation. Can also appear inside <code>&lt;article&gt;</code>.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>Semantics over presentation:</strong> A <code>&lt;div&gt;</code> is a generic container
+                with no meaning. Semantic elements tell browsers, search engines, and assistive technologies
+                <em>what</em> the content represents. This improves accessibility (WCAG) and SEO at zero extra cost.
+                Use <code>&lt;div&gt;</code> only when no semantic element fits.
+            </aside>
+        </section>
+
+        <!-- ====================================================
+             Section 5 — Block vs Inline
+        ===================================================== -->
+        <section id="demo-block-inline" class="demo-section">
+            <div class="demo-label">
+                <h2>Section 5 &mdash; Block vs Inline</h2>
+                <p>
+                    Every HTML element has a default display type: <strong>block</strong> or <strong>inline</strong>.
+                    Understanding this distinction is essential before learning CSS layout.
+                </p>
+            </div>
+
+            <div class="sel-demo-grid">
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Block elements &mdash; <code>&lt;div&gt;</code></h3>
+                    <div class="sel-demo-card__preview bsc-block-demo">
+                        <div class="bsc-block-box">Block 1 &mdash; takes full width</div>
+                        <div class="bsc-block-box">Block 2 &mdash; starts on new line</div>
+                        <div class="bsc-block-box">Block 3 &mdash; stacks vertically</div>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;div&gt;Block 1&lt;/div&gt;
+&lt;div&gt;Block 2&lt;/div&gt;
+&lt;div&gt;Block 3&lt;/div&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Block elements start on a new line and stretch to the full available width. Other block examples: <code>p</code>, <code>h1&ndash;h6</code>, <code>section</code>, <code>ul</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Inline elements &mdash; <code>&lt;span&gt;</code></h3>
+                    <div class="sel-demo-card__preview bsc-inline-demo">
+                        <p>
+                            Text with <span class="bsc-inline-box">span A</span>
+                            and <span class="bsc-inline-box">span B</span>
+                            flowing <span class="bsc-inline-box">inline</span> inside the paragraph.
+                        </p>
+                    </div>
+                    <pre class="sel-code-block"><code>&lt;p&gt;
+  Text with &lt;span&gt;span A&lt;/span&gt;
+  and &lt;span&gt;span B&lt;/span&gt;
+  flowing inline.
+&lt;/p&gt;</code></pre>
+                    <p class="sel-demo-card__explain">Inline elements flow within text and only take up as much width as their content. Other inline examples: <code>a</code>, <code>strong</code>, <code>em</code>, <code>code</code>.</p>
+                </div>
+
+                <div class="sel-demo-card">
+                    <h3 class="sel-demo-card__title">Key differences</h3>
+                    <div class="sel-demo-card__preview">
+                        <table class="bsc-rules-table">
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Block</th>
+                                    <th>Inline</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Starts on new line</td><td>Yes</td><td>No</td></tr>
+                                <tr><td>Full width by default</td><td>Yes</td><td>No</td></tr>
+                                <tr><td>Accepts width / height</td><td>Yes</td><td>No</td></tr>
+                                <tr><td>Vertical margin works</td><td>Yes</td><td>No</td></tr>
+                                <tr><td>Can contain block?</td><td>Yes</td><td>No</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="sel-code-block"><code>/* CSS can override defaults */
+span { display: block; }
+div  { display: inline; }
+div  { display: flex; }</code></pre>
+                    <p class="sel-demo-card__explain">The CSS <code>display</code> property overrides the default. This is exactly how <code>flexbox</code> and <code>grid</code> work.</p>
+                </div>
+
+            </div>
+
+            <aside class="demo-why">
+                <strong>The golden rule:</strong> You can place inline elements inside block elements, but
+                <strong>never</strong> place block elements inside inline elements. For example, putting a
+                <code>&lt;div&gt;</code> inside a <code>&lt;span&gt;</code> is invalid HTML, and browsers
+                will try to "auto-correct" it in unpredictable ways.
+            </aside>
+        </section>
+
+    </main>
+
+    <!-- ====================================================
+         Page footer
+    ===================================================== -->
+    <footer class="page-footer">
+        <p>
+            HES-SO Valais &mdash; Web Development Course
+        </p>
+    </footer>
+
+    <script src="js/basic.js"></script>
+</body>
+</html>

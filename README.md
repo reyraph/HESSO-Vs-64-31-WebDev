@@ -24,13 +24,25 @@ This collection of demo pages is designed to help students **learn by doing**. I
 
 ## Pages
 
+### HTML pages
+
 | Page | Topic | Highlights |
-|------|-------|------------|
+| ---- | ----- | ---------- |
 | **index.html** | Hub | Central navigation to every demo page |
+| **basic.html** | HTML Basics | Document structure skeleton, heading hierarchy, paragraphs, interactive semantic layout diagram, block vs inline |
+| **formatting.html** | Formatting & Lists | Inline text elements, hyperlinks with security notes, ordered/unordered/definition lists, blockquotes |
+| **imagesmedias.html** | Images & Media | `<img>` attributes, `object-fit` explorer, `<figure>`, `<picture>`, inline SVG, `<video>`, `<audio>`, `<iframe>` with sandbox |
+| **head.html** | Head & Meta | `<title>` tab preview, Open Graph card builder, `<link>` rel types, defer vs async mini-timeline, `<base>` |
+| **forms.html** | Forms | Every native HTML form element — input types, selection controls, file uploads, buttons, grouping, validation |
+| **scripts.html** | Script Integration | Inline, external, blocking head, defer, async, end-of-body, ES modules, animated loading timeline |
+
+### CSS pages
+
+| Page | Topic | Highlights |
+| ---- | ----- | ---------- |
 | **boxmodel.html** | Box Model | Live sliders for width, height, padding, border, margin; CSS position explorer (5 types) |
 | **flexbox.html** | Flexbox | 7 demos — nav bar, centered hero, card gallery, grow/shrink visualiser, sidebar, responsive layout, image cropping |
 | **grid.html** | Grid | 7 demos — columns & rows, spanning mosaic, named areas, auto-fit/minmax, auto-fill vs auto-fit, dense flow, alignment |
-| **forms.html** | Forms | Every native HTML form element — input types, selection controls, file uploads, buttons, grouping, validation |
 | **selectors.html** | CSS Selectors | Basic, combinators, attributes, pseudo-classes, pseudo-elements, interactive specificity calculator |
 | **typography.html** | Typography & Functions | Font families, sizing units, text properties, CSS custom properties, calc(), clamp(), min(), max(), live playgrounds |
 
@@ -39,12 +51,17 @@ This collection of demo pages is designed to help students **learn by doing**. I
 ```text
 webdev/
 ├── index.html              # Hub page
-├── boxmodel.html
-├── flexbox.html
-├── grid.html
-├── forms.html
-├── selectors.html
-├── typography.html
+├── basic.html              # HTML structure & semantics
+├── formatting.html         # Inline elements, lists, quotes
+├── imagesmedias.html       # Images, SVG, video, audio, iframe
+├── head.html               # Head sub-elements & meta tags
+├── scripts.html            # Script loading strategies
+├── boxmodel.html           # CSS box model
+├── flexbox.html            # CSS flexbox
+├── grid.html               # CSS grid
+├── forms.html              # HTML forms
+├── selectors.html          # CSS selectors
+├── typography.html         # Typography & CSS functions
 ├── css/
 │   ├── reset.css           # CSS reset
 │   ├── variables.css       # CSS custom properties (design tokens)
@@ -54,9 +71,13 @@ webdev/
 │   ├── components.css      # Cards, buttons, demo boxes
 │   └── responsive.css      # Media queries
 └── js/
+    ├── basic.js            # Semantic diagram hover interactions
     ├── boxmodel.js         # Box model sliders
     ├── flexbox.js          # Flexbox interactive controls
     ├── forms.js            # Form demos
+    ├── head.js             # Tab title preview, OG card builder
+    ├── imagesmedias.js     # object-fit explorer
+    ├── scripts.js          # Loading timeline animation
     ├── selectors.js        # Specificity calculator
     └── typography.js       # Theme switcher, calc/clamp playgrounds
 ```
