@@ -3,6 +3,14 @@
 Interactive demo pages for the **Web Development** course (2nd-year Bachelor, HES-SO Valais).
 Each page covers a core HTML/CSS topic with live examples, visual explanations, and interactive playgrounds.
 
+## Table of contents
+
+- [What this project provides](#what-this-project-provides)
+- [Pages](#pages)
+- [Project structure](#project-structure)
+- [Installation](#installation)
+- [License](#license)
+
 ## What this project provides
 
 This collection of demo pages is designed to help students **learn by doing**. Instead of reading static documentation, you interact directly with the concepts:
@@ -58,6 +66,7 @@ webdev/
 No build step, no dependencies. This is plain HTML, CSS, and JavaScript.
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/reyraph/webdev.git
    cd webdev
@@ -67,6 +76,7 @@ No build step, no dependencies. This is plain HTML, CSS, and JavaScript.
    - Double-click `index.html` to open it directly.
    - Use the **Live Server** extension in VS Code (right-click `index.html` → *Open with Live Server*).
    - Serve with any static server, for example:
+
      ```bash
      # Python
      python -m http.server 8000
@@ -74,6 +84,7 @@ No build step, no dependencies. This is plain HTML, CSS, and JavaScript.
      # Node (npx, no install needed)
      npx serve .
      ```
+
      Then open `http://localhost:8000` in your browser.
 
 ## License
