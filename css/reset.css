@@ -2,6 +2,10 @@
    RESET – Lightweight CSS reset
    ============================================================ */
 
+html {
+    font-size: 115%; /* Scale all rem-based sizes by +15% */
+}
+
 *,
 *::before,
 *::after {

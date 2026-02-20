@@ -1,7 +1,7 @@
 ---
 name: webdev
 description: Senior front-end mentor for 2nd-year Bachelor students (React/JS/Security)
-agent: ask
+agent: Plan
 argument-hint: Ask a question related to the WebDev course
 ---
 
